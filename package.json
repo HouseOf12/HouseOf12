@@ -7,10 +7,12 @@
     "start": "next start"
   },
   "dependencies": {
+    "@sendgrid/mail": "^7.4.2",
     "bcryptjs": "^2.4.3",
     "connect-mongo": "^3.2.0",
     "express-session": "^1.17.1",
     "mongodb": "^3.5.9",
+    "nanoid": "^3.1.20",
     "next": "latest",
     "passport": "^0.4.1",
     "react": "^16.13.1",
