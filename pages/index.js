@@ -1,5 +1,6 @@
 import React from 'react';
 import { useCurrentUser } from '../hooks/index.js';
+import {Grid, GridItem, Image, Box} from '@chakra-ui/react'
 
 
 const IndexPage = () => {
@@ -18,6 +19,13 @@ const IndexPage = () => {
           }
         `}
       </style>
+      <Grid templateColumns="repeat(4, 1fr)" templateRows="repeat(4, 1fr)" gap={6}>
+          <GridItem>
+            <Box>
+            <Image src="./leo.png" />
+            </Box>
+          </GridItem>
+      </Grid>
       <div style={{ marginBottom: '2rem' }}>
         <h2>
           Hello,
