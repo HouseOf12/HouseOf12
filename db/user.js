@@ -41,6 +41,7 @@ export async function insertUser(db, {
       password,
       name,
       bio,
+      // journal: []
     })
     .then(({ ops }) => ops[0]);
 }
