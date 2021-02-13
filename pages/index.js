@@ -28,7 +28,7 @@ const IndexPage = () => {
       </Grid>
       <div style={{ marginBottom: '2rem' }}>
         <h2>
-          Hello,
+          He,
           {' '}
           {user ? user.name : 'stranger'}
           !
