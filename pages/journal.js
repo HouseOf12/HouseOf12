@@ -1,9 +1,9 @@
-import Journal from "../components/Journal"
+import JournalForm from "../components/JournalForm"
 
 const journal= () => {
     return (
         <div>
-       <Journal/>
+       <JournalForm/>
         </div>
     )
 }
