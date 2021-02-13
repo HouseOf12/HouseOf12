@@ -1,15 +1,18 @@
 import React from "react";
 import { useCurrentUser } from "../hooks/index.js";
-import { Grid, GridItem, Image, Box } from "@chakra-ui/react";
 import HoroscopePics from "@/components/HoroscopePics.js";
+import {Box} from '@chakra-ui/react'
+// import Test from "../components/Test.js"
+
 
 const IndexPage = () => {
   const [user] = useCurrentUser();
 
   return (
     <>
+    <Box bg="#1A365D"> 
       <div style={{ marginBottom: "2rem" }}>
-        <h2>Hello, {user ? user.name : "stranger"}!</h2>
+        <Box color="white">   Hello, {user ? user.name : "stranger"}!</Box>
       </div>
       <style jsx>
         {`
@@ -24,6 +27,7 @@ const IndexPage = () => {
       </style>
 
       <HoroscopePics />
+      </Box>
     </>
   );
 };
