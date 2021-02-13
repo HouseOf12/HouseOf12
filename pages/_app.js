@@ -5,7 +5,8 @@ import '../styles/index.module.css'
 
 function MyApp({ Component, pageProps }) {
  return(
-  <Layout>
+    
+  <Layout >
    <Component {...pageProps} />
   </Layout>
  )
