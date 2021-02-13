@@ -1,18 +1,18 @@
-// import nc from 'next-connect';
-// import { all } from '../../../../middlewares/index';
-// import { findUserById } from '../../../../db/index';
-// import { extractUser } from '../../../../lib/api-helpers';
+import nc from 'next-connect';
+import { all } from '../../../../middlewares/index';
+import { findUserById } from '../../../../db/index';
+import { extractUser } from '../../../../lib/api-helpers';
 
-// const handler = nc();
+const handler = nc();
 
-// handler.use(all);
+handler.use(all);
 
 
+// Post route to create journal entry which will be specific to the user, by id. 
+handler.post(async (req, res) => {
+ //Gabby gonna get back to me real quick
+ //This is attached the submit function in the JournalForm
+});
 
-// handler.post(async (req, res) => {
-//   const journal_entry = extractUser(await findUserById(req.db, req.query.userId));
-//   if (user) res.setHeader('cache-control', `public, max-age=${maxAge}`);
-//   res.send({ user });
-// });
 
-// export default handler;
+export default handler;

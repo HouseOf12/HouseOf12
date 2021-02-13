@@ -24,18 +24,34 @@ const onChangeBody = (e) => {
     setBody(body);
 };
 
-// Stores the date in our date state
-const onChangeDate = (e) => {
-    const date = e.target.value
-    setDate(date)
-};
+// 
+
+const onSubmit = async (e) =>{
+    e.preventDefault()
+    const entry = {
+        title: title,
+        body: body
+    }
+    const res = await fetch("/api/journal",{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body: JSON.stringify(entry)  
+    })
+        if (res.status === 201) {
+            const userObj = await res.json();
+            mutate(userObj);
+        } else {
+            setErrorMsg(await res.text());
+        }
+}
+
 
 
 
 return (
     <div>
         <h1 className = "journal_entry_title">Journal Entry:</h1>
-        <Editable defaultValue="Write Journal Entry Here!">
+        <Editable defaultValue="BODY">
             <EditablePreview />
             <EditableInput />
         </Editable>
