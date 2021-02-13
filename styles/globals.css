@@ -15,9 +15,16 @@ a {
   box-sizing: border-box;
 }
 
+<<<<<<< HEAD
 
 
 
 #home{
   background-color:yellow;
 }
+=======
+.journal_entry_title{
+  color:blueviolet;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+>>>>>>> 05fb53829d29cf75a3d1a6bd3a96ebcf16d930f9

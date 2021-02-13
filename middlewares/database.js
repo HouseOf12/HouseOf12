@@ -24,6 +24,18 @@ export default async function database(req, res, next) {
   }
   req.dbClient = global.mongo.client;
   req.db = global.mongo.client.db(process.env.DB_NAME);
+  
   if (!indexesCreated) await createIndexes(req.db);
   return next();
 }
+//give mongoDB models in the req.db
+/**
+ 
+  req.db = {
+    db: global.mongo.client.db(process.env.DB_NAME),
+    user: require('./models/user), 
+    natal: require('./models/natal),
+    journal: require('./models/journal)
+
+  }
+ */

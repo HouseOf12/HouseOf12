@@ -9,7 +9,9 @@
         "EMAIL_FROM":"averyniceguy@nextjs-mongodb.now.sh",
         "WEB_URI":"https://nextjs-mongodb.now.sh",
         "SESSION_SECRE":"keyboard cat",
-        "USING_SECRETS": "Consider using Zeit Now Secrets instead."
+        "USING_SECRETS": "Consider using Zeit Now Secrets instead.",
+        "API_USER_ID":"615745",
+        "API_KEY":"758b876f8345a5b798e2f02e38e7c7ab"
       }
     }
   }

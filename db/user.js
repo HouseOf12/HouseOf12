@@ -20,6 +20,14 @@ export async function updateUserById(db, id, update) {
   ).then(({ value }) => value);
 }
 
+//import user model from models folder as User
+//User.insertOne().then(response => {})
+//OR syntax
+//const users = await User.find({}) 
+
+//dont pass in db or object, pass all the fields you want into insertUser, 
+//return User.insertOne().then(response => {})
+
 export async function insertUser(db, {
   email, password, bio = '', name, profilePicture,
 }) {
@@ -33,6 +41,7 @@ export async function insertUser(db, {
       password,
       name,
       bio,
+      // journal: []
     })
     .then(({ ops }) => ops[0]);
 }
