@@ -10,7 +10,7 @@ const IndexPage = () => {
 
   return (
     <>
-    <Box bg="#1A365D"> 
+    <Box > 
       <div style={{ marginBottom: "2rem" }}>
         <Box color="white">   Hello, {user ? user.name : "stranger"}!</Box>
       </div>
