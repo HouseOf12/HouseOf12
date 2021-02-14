@@ -31,44 +31,9 @@ export default function Layout({ children }) {
         />
       </Head>
       <header>
-<<<<<<< HEAD
-        <nav>
-          <Link href="/">
-            <a>
-              <h1>House Of 12 </h1>
-            </a>
-          </Link>
-          <div>
-            {!user ? (
-              <>
-                <Link href="/login">
-                  <a>Sign in</a>
-                </Link>
-                <Link href="/signup">
-                  <a>Sign up</a>
-                </Link>
-                <Link href="/journal">
-                  <a>Dream Journal</a>
-                </Link>
-              </>
-            ) : (
-              <>
-                <Link href={`/user/${user._id}`}>
-                  <a>Profile</a>
-                </Link>
-                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                <a tabIndex={0} role="button" onClick={handleLogout}>
-                  Logout
-                </a>
-              </>
-            )}
-          </div>
-        </nav>
-=======
        
         <Navbar />
        
->>>>>>> 10c642899e207687346173d4f35f55228301663f
       </header>
 
       <main>{children}</main>
