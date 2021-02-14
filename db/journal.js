@@ -4,18 +4,22 @@
 //creates ids 
 import { nanoid } from 'nanoid';
 
-export async function insertEntry(db, {title, body, userId}) {
+//this function is attached to the post method for journal in api/journal/index
+export async function insertEntry(db, userId, title, body) {
     return db
     .collection('journals')
     .insertOne({
         _id: nanoid(),
         userId,
         title,
-        body
+        body,
+        date: Date()
     })
-    .then((error, response) => {
-        console.log('ERROR FROM INSERT JOURNAL ENTRY', error);
-        console.log('RESPONSE FROM INSERT JOURNAL ENTRY', response);
-        return response;
-    } )
+    .then(({ ops }) => {
+        console.log('successful entry created', ops);
+        //ops is an array in the repsonse object, ops at 0 is the object that object of the entry that was just put into the db
+        return ops[0];
+    })
 }
+
+//insertOne response is a very large, to see what was added, go into ops (comes from response)
