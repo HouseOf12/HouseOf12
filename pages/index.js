@@ -1,46 +1,40 @@
-import React from 'react';
-import { useCurrentUser } from '../hooks/index.js';
-import {Grid, GridItem, Image, Box} from '@chakra-ui/react'
+import React from "react";
+import { useCurrentUser } from "../hooks/index.js";
+import HoroscopePics from "@/components/HoroscopePics.js";
+import {Box, Center, ChakraProvider, extendTheme} from '@chakra-ui/react'
+import {Fonts} from "../components/Fonts"
+// import Test from "../components/Test.js"
 
 
 const IndexPage = () => {
   const [user] = useCurrentUser();
 
+  const theme = extendTheme({
+    fonts: {
+      body: "Tryst-Regular",
+    },
+  })
+
   return (
-    <>
-      <style jsx>
-        {`
-          p {
-            text-align: center;
-            color: #888;
-          }
-          h3 {
-            color: #555;
-          }
-        `}
-      </style>
-      <Grid templateColumns="repeat(4, 1fr)" templateRows="repeat(4, 1fr)" gap={6}>
-          <GridItem>
-            <Box>
-            <Image src="./leo.png" />
-            </Box>
-          </GridItem>
-      </Grid>
-      <div style={{ marginBottom: '2rem' }}>
-        <h2>
-          He,
-          {' '}
-          {user ? user.name : 'stranger'}
-          !
-        </h2>
-        
+    <ChakraProvider theme={theme}>
+      <Fonts />
+    <Box> 
+     <Center>
+     <div style={{ marginBottom: "2rem" }}>
+        <Box  fontFamily="Tryst-Regular" mt="2">   Hello, {user ? user.name : "stranger"}!</Box>
       </div>
-      <div>
-        
-        
-        
-      </div>
-    </>
+    </Center>
+
+      <HoroscopePics />
+      
+      <Box zIndex="-1"  bgPosition="center" bgSize="cover" minH="100%" minW="32vw" w="100vw" h="auto" position="fixed" overflowX="scroll" top="0" right="0" bgImage="url('./wapperino.jpg')" /> 
+       
+       
+      </Box>
+      </ChakraProvider>
+    
+      // {/* </Box> */}
+    
   );
 };
 export default IndexPage;
