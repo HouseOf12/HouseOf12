@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { useCurrentUser } from '../hooks/index.js';
-import { Box, HStack, useColorMode, Center, Flex, Heading, Text, IconButton } from '@chakra-ui/react';
+import { Box, HStack, useColorMode, Center, Flex, Heading, Text, IconButton, Image } from '@chakra-ui/react';
 import {MoonIcon, SunIcon } from '@chakra-ui/icons'
 
 const Navbar = () => {
@@ -31,10 +31,13 @@ const Navbar = () => {
       align="center"
       justify="space-between"
       wrap="wrap"
-      padding="1.5rem"
+      padding=".5rem"
       zIndex="1"
       color={textColor[colorMode]}
       bgColor={bgColor[colorMode]}
+      bgImage="url(./constnav.jpg)"
+      bgSize="140vh"
+
       position="sticky"
       // w="100%"
       // mb={26}
@@ -43,9 +46,10 @@ const Navbar = () => {
       <Flex align="center" mr={5}>
         <Heading as="h1" size="lg" letterSpacing={"-.1rem"}>
         <Link href="/">
-            <a>
+          <Image w="18vw" h="15vh" borderRadius="16" mt="1" mb="-12" src="./currentlogo.png" />
+            {/* <a>
               House Of 12 
-            </a>
+            </a> */}
           </Link>
         </Heading>
       </Flex>
