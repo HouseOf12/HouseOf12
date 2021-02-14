@@ -13,7 +13,7 @@ function MyApp({ Component, pageProps }) {
    <Box>
    <Component {...pageProps} />
    </Box>
-   {/* </Layout> */}
+   
    
    </ChakraProvider>
   

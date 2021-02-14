@@ -1,7 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
 import { useCurrentUser } from '../hooks/index.js';
-import { Box, HStack, useColorMode, Center, Flex, Heading, Text } from '@chakra-ui/react';
+import { Box, HStack, useColorMode, Center, Flex, Heading, Text, IconButton } from '@chakra-ui/react';
+import {MoonIcon, SunIcon } from '@chakra-ui/icons'
 
 const Navbar = () => {
   const [user, { mutate }] = useCurrentUser();
@@ -31,8 +32,12 @@ const Navbar = () => {
       justify="space-between"
       wrap="wrap"
       padding="1.5rem"
+      zIndex="1"
       color={textColor[colorMode]}
       bgColor={bgColor[colorMode]}
+      position="sticky"
+      // w="100%"
+      // mb={26}
       
     >
       <Flex align="center" mr={5}>
@@ -62,11 +67,13 @@ const Navbar = () => {
             ) : (
                 
                <Box>
+                 <MenuItems>
                 <Link  href={`/user/${user._id}`}>
-                    <MenuItems>
+                    
                   <a>Profile</a> 
-                  </MenuItems>
+                  
                 </Link>
+                </MenuItems>
                 </Box>
               
               
@@ -97,7 +104,13 @@ const Navbar = () => {
               
               
             )}
-        
+         <IconButton
+						rounded="full"
+						onClick={toggleColorMode}
+						icon={colorMode === "light" ? <MoonIcon /> : <SunIcon />}
+					  >
+						Change Color Mode
+					  </IconButton>
     </Box>
     </Flex>
       
