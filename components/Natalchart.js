@@ -49,6 +49,47 @@ const Natalchart = () => {
             
     }
     
+
+
+    const [wheelChart, setWheelChart] = useState()
+   
+
+    useEffect(() => {
+       grabWheel()
+      }, []);
+
+    const grabWheel = () => {
+        var userId = "615745";
+        var apiKey = "758b876f8345a5b798e2f02e38e7c7ab";
+        const wheelData = axios
+        .post("https://json.astrologyapi.com/v1/natal_wheel_chart",
+        {
+            day: '24',
+            month: '2',
+            year: '1998',
+            hour: '06',
+            min: '16',
+            lat: '34.1808',
+            lon: '118.3090',
+            tzone: '5.5',
+            planet_icon_color:"#0A2C52",
+            inner_circle_background:"#7c8394",
+            sign_icon_color:"#A38103",
+            sign_background:"#0A2C52",
+            chart_size:500,
+            image_type:"png"
+          },
+          {headers: {
+            "authorization": "Basic " + btoa(userId+":"+apiKey),
+            "Content-Type":'application/json'
+            }})
+          .then((wheelData) => {
+              
+              setWheelChart(wheelData.data)
+          })
+           
+    }
+    console.log(wheelChart)
     
     const bgColor = {
         light: "rgba(70, 93, 114, 0.9)",
@@ -65,69 +106,11 @@ const Natalchart = () => {
             <Fonts />
         <Box color="white" bgSize="cover" minH="100%" minW="1024px" w="100%" h="auto" position="absolute" overflowX="scroll" top="0" right="0" bgImage="url('./chartwpp.jpg')" > 
         <Center>
-        <Image src="./chart.png" w="26vw" h="48vh " mt="12vh" mb="5vh"/> 
+          <Box  bgSize="cover"  w="26vw" h="50vh " mt="12vh" mb="5vh"  bgImage={`url(${wheelChart.chart_url})`} />
+        
         </Center>
         <CardFlip />
-        {/* <Center>
-        <HStack spacing={24}>
-        <Box h="58vh" w="20vw" borderRadius={16} backgroundImage="url(./suncard.jpg)" bgSize="cover">
-        <Box
-                padding="4"
-                textAlign="center"
-                as="p"
-                fontFamily="body"
-                fontSize="md"
-                fontWeight="light"
-                mt="2"
-                color={textColor[colorMode]}
-                wrap
-                >
-                    The sun is your identity. It is the essence that you shine out into the world. 
-                    It represents the vital force that drives you to seek the highest expression of your true self.
-                    Your sun sign is how you answer the question “I am” and how you experience life and express your individuality.
-                    As the sun puts forth light, so it brings forth life. This planet (also known as a luminary and a star) represents the self, one’s personality and ego, the spirit and what it is that makes the individual unique. It is our identity and our face to the world. The sun also speaks to creative ability and the power of the individual to meet the challenges of everyday life.
-                </Box>
-        </Box>
         
-        
-        <Box h="58vh" w="20vw" borderRadius={16} backgroundImage="url(./mooncard.jpg)" bgSize="cover">
-        <Box
-                padding="4"
-                textAlign="center"
-                as="p"
-                fontFamily="body"
-                fontSize="md"
-                fontWeight="light"
-                mt="2"
-                color={textColor[colorMode]}
-                wrap
-                >
-                Since the Moon is the closest ‘planet’ to Earth, this satellite literally zips around the zodiac, completing its circuit in less than a month. It also touches us more deeply than most planets.
-
-                As the ruler of the tides, it is fitting that the Moon should be the ruler of our emotions. Still waters run deep? Making waves? A wellspring of emotion? Yes, our emotions have long been portrayed in terms of the sea: fluid, momentous, churning from within. Mood swings, instinct, how we feel about things and how our feelings affect others are all influenced by the Moon. Whereas the Sun gives us our spirit, it’s the Moon that gives us our soul.
-                </Box>
-        </Box>
-        
-       
-        <Box h="58vh" w="20vw" borderRadius={16} backgroundImage="url(./asccard.jpg)" bgSize="cover">
-        <Box
-                padding="4"
-                textAlign="center"
-                as="p"
-                fontFamily="body"
-                fontSize="md"
-                fontWeight="light"
-                mt="2"
-                color={textColor[colorMode]}
-                wrap
-                >
-                    Your rising sign represents the way others see you, your general impression on people and your spontaneous reactions. It reflects the zodiacal sign that was ascending on the eastern horizon the moment you were born. Until the early 20th century, the ascendant, rather than the sun sign, was the dominant indicator of one’s nature.
-                    Upon meeting you, people will interact with your rising sign. Does the way people describe you puzzle you? That’s because it’s hard for us to see what others see. What you project may not be how you see yourself at all. If you feel nervous and anxious inside, yet everyone sees you as calm and laid-back, your rising sign may be dramatically different from your moon or sun sign.
-                </Box>
-        </Box>
-        
-        </HStack>
-        </Center> */}
 
         {/* <Center> 
         <Box 

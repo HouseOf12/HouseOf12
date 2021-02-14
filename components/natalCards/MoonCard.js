@@ -44,7 +44,7 @@ import React from 'react'
            
     }
 
- console.log("HIIIIIIIIII", moonSign)
+ 
 
 
 
@@ -119,7 +119,7 @@ import React from 'react'
                 color={textColor[colorMode]}
                 wrap
                 >
-                {moonSign.planet_name}
+                {/* {moonSign.planet_name} */}
                 
                 </Box>
                 <Box
@@ -133,7 +133,7 @@ import React from 'react'
                 color={textColor[colorMode]}
                 wrap
                 >
-                {moonSign.report}
+                {/* {moonSign.report} */}
                 
                 </Box>
                 <Button variant="ghost" onClick={handleClick}> <CgMore /> </Button>
