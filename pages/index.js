@@ -1,36 +1,39 @@
 import React from "react";
 import { useCurrentUser } from "../hooks/index.js";
 import HoroscopePics from "@/components/HoroscopePics.js";
-import {Box} from '@chakra-ui/react'
+import {Box, Center, ChakraProvider, extendTheme} from '@chakra-ui/react'
+import {Fonts} from "../components/Fonts"
 // import Test from "../components/Test.js"
 
 
 const IndexPage = () => {
   const [user] = useCurrentUser();
 
+  const theme = extendTheme({
+    fonts: {
+      body: "Tryst-Regular",
+    },
+  })
+
   return (
-    
-    // <Box color="white" bgSize="cover" minH="100%" minW="1024px" w="100%" h="auto" position="fixed" top="0" right="0" bgImage="url('https://images.unsplash.com/photo-1525352265139-caa4490ea6d0?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTB8fHNob290aW5nJTIwc3RhcnxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80')" > 
+    <ChakraProvider theme={theme}>
+      <Fonts />
     <Box> 
-     
-      {/* <style jsx>
-        {`
-          p {
-            text-align: center;
-            color: #888;
-          }
-          h3 {
-            color: #555;
-          }
-        `}
-      </style> */}
+     <Center>
+     <div style={{ marginBottom: "2rem" }}>
+        <Box  fontFamily="Tryst-Regular" mt="2">   Hello, {user ? user.name : "stranger"}!</Box>
+      </div>
+    </Center>
 
       <HoroscopePics />
-       <div style={{ marginBottom: "2rem" }}>
-        <Box color="white">   Hello, {user ? user.name : "stranger"}!</Box>
-      </div>
+      
+      <Box zIndex="-1"  bgPosition="center" bgSize="cover" minH="100%" minW="32vw" w="100vw" h="auto" position="fixed" overflowX="scroll" top="0" right="0" bgImage="url('./wapperino.jpg')" /> 
+       
+       
       </Box>
-      // </Box>
+      </ChakraProvider>
+    
+      // {/* </Box> */}
     
   );
 };

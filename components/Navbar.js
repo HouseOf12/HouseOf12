@@ -17,7 +17,7 @@ const Navbar = () => {
     light: "rgba(204, 214, 224, 0.63)",
     dark: "rgba(74, 85, 104, 0.7)",
   };
-  const textColor = { light: "black", dark: "gray.100" };
+  const textColor = { light: "blue.600", dark: "gray.100" };
   const { colorMode, toggleColorMode } = useColorMode();
 
   const MenuItems = ({ children }) => (
