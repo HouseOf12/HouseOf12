@@ -1,16 +1,18 @@
 import React, {useState} from 'react'
-import { Editable, EditableInput, EditablePreview } from "@chakra-ui/react"
+import Head from 'next/head';
+import { Editable, EditableInput, EditablePreview, Button} from "@chakra-ui/react"
 
+
+
+// Rename to journalForm?
+// This form already displays the journal entry once you "click to edit"
 const Journal = () => {
 
 //stores the title
 const[title, setTitle] = useState("")
 
 //stores the entry
-const[body,setBody] = useState("");
-
-//stores the date
-const[date, setDate] = useState("")
+const[body,setBody] = useState("")
 
 // Stores the title in our title state
 const onChangeTitle = (e) => {
@@ -24,9 +26,10 @@ const onChangeBody = (e) => {
     setBody(body);
 };
 
-// 
+// The button should handle both the submittal of the new entry, and if the 
+// user wants edit their journal entry. 
 
-const onSubmit = async (e) =>{
+const handleSubmit = async (e) =>{
     e.preventDefault()
     const entry = {
         title: title,
@@ -49,13 +52,23 @@ const onSubmit = async (e) =>{
 
 
 return (
+    <>
+    <Head>
+        <title>Dream Journal</title>
+        </Head>
     <div>
+        
         <h1 className = "journal_entry_title">Journal Entry:</h1>
-        <Editable defaultValue="BODY">
+        
+        <Editable defaultValue="Click to Journal">
             <EditablePreview />
             <EditableInput />
+            <br></br>
+            <br></br>
+            <Button colorScheme="teal" variant="outline">Submit</Button>
         </Editable>
     </div>
+    </>
     )
 }
 

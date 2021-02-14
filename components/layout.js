@@ -158,6 +158,9 @@ export default function Layout({ children }) {
                 <Link href="/signup">
                   <a>Sign up</a>
                 </Link>
+                <Link href="/journal">
+                  <a>Dream Journal</a>
+                </Link>
               </>
             ) : (
               <>
