@@ -106,8 +106,9 @@ const Natalchart = () => {
             <Fonts />
         <Box color="white" bgSize="cover" minH="100%" minW="1024px" w="100%" h="auto" position="absolute" overflowX="scroll" top="0" right="0" bgImage="url('./chartwpp.jpg')" > 
         <Center>
+          
           <Box  bgSize="cover"  w="26vw" h="50vh " mt="12vh" mb="5vh"  bgImage={`url(${wheelChart.chart_url})`} />
-        
+          
         </Center>
         <CardFlip />
         

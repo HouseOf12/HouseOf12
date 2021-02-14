@@ -19,7 +19,8 @@ import {
   InputRightElement,
   Stack,
   Image,
-  Center
+  Center,
+  colorMode
 } from "@chakra-ui/react";
 
 const LoginPage = () => {
@@ -58,11 +59,18 @@ const LoginPage = () => {
     setShowPass(!showPass);
   }
 
-  
+  const bgColor = {
+    light: "rgba(140, 145, 151, 0.7)",
+    dark: "rgba(12, 47, 89, 0.9)",
+  };
+  const textColor = { light: "blue.400", dark: "gray.100" };
+  const { colorMode, toggleColorMode } = useColorMode();
   
 
   return (
     
+    <Box>
+     <Box zIndex="-1" bgColor={bgColor[colorMode]}  bgPosition="center" bgSize="cover" minH="100%" minW="32vw" w="100vw" h="auto" position="fixed" overflowX="scroll" top="0" right="0" bgImage="url('./loginwp.png')" /> 
     <Box
           display="flex"
           position="absolute"
@@ -77,8 +85,10 @@ const LoginPage = () => {
            <Flex
             alignItems="center"
             justifyContent="center"
-            color="gray.200"
-            bg="gray.800"
+            bgColor={bgColor[colorMode]}
+            color={textColor[colorMode]}
+            // color="gray.200"
+            // bg="gray.800"
             // size="sm"
             // size={`${badgeRadius * 2}em`}
             borderRadius="50%"
@@ -159,7 +169,7 @@ const LoginPage = () => {
                     </InputGroup>
                   </FormControl>
                   <Divider />
-                  <Button variantColor="blue" type="submit" shadow="md">
+                  <Button color={textColor[colorMode]} variantColor="blue" type="submit" shadow="md">
                     Login
                   </Button>
                 </Stack>
@@ -167,7 +177,7 @@ const LoginPage = () => {
             </Stack>
           </Box>
     </Box>
-    
+    </Box>
   );
 };
 export default LoginPage;

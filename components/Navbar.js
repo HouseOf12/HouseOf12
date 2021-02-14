@@ -1,8 +1,21 @@
 import React from 'react';
 import Link from 'next/link';
 import { useCurrentUser } from '../hooks/index.js';
-import { Box, HStack, useColorMode, Center, Flex, Heading, Text, IconButton, Image } from '@chakra-ui/react';
+import { Box, HStack, useColorMode, Center, Flex, Heading, Text, IconButton, Image, Icon, Button } from '@chakra-ui/react';
 import {MoonIcon, SunIcon } from '@chakra-ui/icons'
+import { TiThMenuOutline } from "react-icons/ti";
+import {
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  MenuItemOption,
+  MenuGroup,
+  MenuOptionGroup,
+  MenuIcon,
+  MenuCommand,
+  MenuDivider,
+} from "@chakra-ui/react"
 
 const Navbar = () => {
   const [user, { mutate }] = useCurrentUser();
@@ -14,10 +27,10 @@ const Navbar = () => {
   };
 
   const bgColor = {
-    light: "rgba(204, 214, 224, 0.63)",
-    dark: "rgba(74, 85, 104, 0.7)",
+    light: "rgba(140, 145, 151, 0.7)",
+    dark: "rgba(74, 85, 104, 0.9)",
   };
-  const textColor = { light: "blue.600", dark: "gray.100" };
+  const textColor = { light: "blue.400", dark: "gray.100" };
   const { colorMode, toggleColorMode } = useColorMode();
 
   const MenuItems = ({ children }) => (
@@ -35,7 +48,7 @@ const Navbar = () => {
       zIndex="1"
       color={textColor[colorMode]}
       bgColor={bgColor[colorMode]}
-      bgImage="url(./constnav.jpg)"
+      bgImage="url(./navib.png)"
       bgSize="140vh"
 
       position="sticky"
@@ -46,10 +59,7 @@ const Navbar = () => {
       <Flex align="center" mr={5}>
         <Heading as="h1" size="lg" letterSpacing={"-.1rem"}>
         <Link href="/">
-          <Image w="18vw" h="15vh" borderRadius="16" mt="1" mb="-12" src="./currentlogo.png" />
-            {/* <a>
-              House Of 12 
-            </a> */}
+          <Image w="18vw" h="15vh" borderRadius="16" mt="0" mb="-12" src="./logowshad.png" />
           </Link>
         </Heading>
       </Flex>
@@ -108,7 +118,31 @@ const Navbar = () => {
               
               
             )}
+
+          {user && 
+               <Box>
+                <Menu>
+                <MenuButton mr="1vw" as={Button} variant="ghost" >
+                  <TiThMenuOutline />
+                </MenuButton>
+                <MenuList bgColor={bgColor[colorMode]}>
+                  <Link href="/natalchart">
+                  <MenuItem>Natal Info</MenuItem>
+                  </Link>
+                  <Link href="/journal">
+                  <MenuItem>Dream Journal</MenuItem>
+                  </Link>
+                  <MenuItem>House Chart</MenuItem>
+                  <MenuItem>Compatibility</MenuItem>
+                  <MenuItem>Horoscope</MenuItem>
+                </MenuList>
+              </Menu>
+                
+              </Box> }
+              
+              
          <IconButton
+         mr="1vw"
 						rounded="full"
 						onClick={toggleColorMode}
 						icon={colorMode === "light" ? <MoonIcon /> : <SunIcon />}
@@ -131,57 +165,3 @@ export default Navbar
 
 
 
-{/* <Box>
-          
-        <HStack 
-        h="24"
-        w="100%"
-        position="fixed"
-        color={textColor[colorMode]}
-        bgColor={bgColor[colorMode]}
-        spacing="24"
-        position="fixed">
-            
-                
-          <Box>
-          <Link href="/">
-            <a>
-              <h1>House Of 12 </h1>
-            </a>
-          </Link>
-          </Box>
-          
-
-           <Box display="flex" justifyContent="flex-end">
-          
-            {!user ? (
-              <Box border="2px solid red">
-              
-                <Link href="/login">
-                  <a>Sign in  &nbsp;&nbsp;</a>
-                </Link>
-                
-                
-                <Link href="/signup">
-                  <a>Sign up</a>
-                </Link>
-              
-              </Box>
-              
-            ) : (
-                <Box border="2px solid red" marginLeft="30%">
-               
-                <Link  href={`/user/${user._id}`}>
-                  <a>Profile &nbsp;&nbsp;</a> 
-                </Link>
-                
-                <a tabIndex={0} role="button" onClick={handleLogout}>
-                  Logout
-                </a>
-               
-              </Box>
-              
-            )}
-            </Box>
-          </HStack>
-          </Box> */}

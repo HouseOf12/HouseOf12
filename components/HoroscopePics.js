@@ -1,4 +1,4 @@
-import { Grid, GridItem, Image, Box, Button, ButtonGroup, extendTheme, ChakraProvider  } from "@chakra-ui/react";
+import { Grid, GridItem, Image, Box, Button, ButtonGroup, extendTheme, ChakraProvider, useColorMode, colorMode  } from "@chakra-ui/react";
 import {Fonts} from "./Fonts"
 
 const HoroscopePics = () => {
@@ -10,15 +10,23 @@ const HoroscopePics = () => {
     },
   })
 
+  const bgColor = {
+    light: "rgba(140, 145, 151, 0.7)",
+    dark: "rgba(74, 85, 104, 0.9)",
+  };
+  const textColor = { light: "blue.400", dark: "gray.100" };
+  const { colorMode, toggleColorMode } = useColorMode();
+
   return (
     <ChakraProvider>
       <Fonts />
       <Box border="2px solid rgba(212, 175, 53, 0.5)" width="75%" height="70vh" marginLeft="13%" mt="4vh" justifyContent="center" alignContent="center" alignItems="center" textAlign="center"> 
-        <Box fontFamily="Tryst-Regular">
-            <h1 > WELCOME TO HOUSE OF 12 </h1>
+        <Box as="h1" fontFamily="Tryst-Regular" color={textColor[colorMode]} >
+           WELCOME TO HOUSE OF 12 
       </Box>
-      <Box fontFamily="Tryst-Regular" >
-                    <h3 > Select Your Sign </h3>
+      <Box as="h3" fontFamily="Tryst-Regular" color={textColor[colorMode]} >
+      
+                     Select Your Sign 
       </Box>
       <Grid
         templateColumns="repeat(4, 1fr)"

@@ -74,7 +74,7 @@ const RisingCard = () => {
             <Fonts />
             <Center>
 
-            <Box h="75vh" w="26vw" borderRadius={16} backgroundImage="url(./mooncard.jpg)" bgSize="cover">
+            <Box boxShadow="dark-lg" h="75vh" w="26vw" borderRadius={16} backgroundImage="url(./mooncard.jpg)" bgSize="cover">
         <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
             <Box>
             <Box
