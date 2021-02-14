@@ -2,6 +2,8 @@ import { Table, Thead, Tbody,Tfoot, Tr, Th, Td, TableCaption, Box, Center, useCo
 import axios from 'axios';
 import {useEffect, useState} from 'react'
 import {Fonts} from "./Fonts"
+import CardFlip from "./CardFlip"
+
 
 // Houses have a house number and a sign
 // Platents have a name and the sign 
@@ -41,12 +43,12 @@ const Natalchart = () => {
             "Content-Type":'application/json'
             }})
           .then((natalData) => {
-              console.log("HEYYYYYYYY", natalData.data)
+              
               setChart(natalData.data)
           })
             
     }
-    console.log("THIS IS THE CHART",chart)
+    
     
     const bgColor = {
         light: "rgba(70, 93, 114, 0.9)",
@@ -54,6 +56,9 @@ const Natalchart = () => {
       };
       const textColor = { light: "gray.300", dark: "yellow.500" };
       const { colorMode, toggleColorMode } = useColorMode();
+
+     
+
     
     return (
         <ChakraProvider theme={theme}>
@@ -62,7 +67,8 @@ const Natalchart = () => {
         <Center>
         <Image src="./chart.png" w="26vw" h="48vh " mt="12vh" mb="5vh"/> 
         </Center>
-        <Center>
+        <CardFlip />
+        {/* <Center>
         <HStack spacing={24}>
         <Box h="58vh" w="20vw" borderRadius={16} backgroundImage="url(./suncard.jpg)" bgSize="cover">
         <Box
@@ -121,9 +127,9 @@ const Natalchart = () => {
         </Box>
         
         </HStack>
-        </Center>
+        </Center> */}
 
-        <Center> 
+        {/* <Center> 
         <Box 
         borderRadius={16}
         color={textColor[colorMode]}
@@ -208,7 +214,7 @@ const Natalchart = () => {
         </Tbody>
         </Table>
         </Box>
-        </Center>
+        </Center> */}
         </Box>
         </ChakraProvider>
     )
