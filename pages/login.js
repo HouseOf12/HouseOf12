@@ -58,12 +58,8 @@ const LoginPage = () => {
     setShowPass(!showPass);
   }
 
-  const bgColor = {
-    light: "rgba(204, 214, 224, 0.63)",
-    dark: "rgba(74, 85, 104, 0.7)",
-  };
-  const textColor = { light: "black", dark: "gray.100" };
-  const { colorMode, toggleColorMode } = useColorMode();
+  
+  
 
   return (
     
@@ -176,33 +172,3 @@ const LoginPage = () => {
 };
 export default LoginPage;
 
-
-{/* <>
-      <Head>
-        <title>Sign in</title>
-      </Head>
-      <h2>Sign in</h2>
-      <form onSubmit={onSubmit}>
-        {errorMsg ? <p style={{ color: 'red' }}>{errorMsg}</p> : null}
-        <label htmlFor="email">
-          <input
-            id="email"
-            type="email"
-            name="email"
-            placeholder="Email address"
-          />
-        </label>
-        <label htmlFor="password">
-          <input
-            id="password"
-            type="password"
-            name="password"
-            placeholder="Password"
-          />
-        </label>
-        <button type="submit">Sign in</button>
-        <Link href="/forget-password">
-          <a>Forget password</a>
-        </Link>
-      </form>
-    </> */}

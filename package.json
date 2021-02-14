@@ -38,6 +38,7 @@
     "postcss-preset-env": "^6.7.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-icons": "^4.2.0",
     "sequelize": "^6.5.0",
     "sqlite3": "^5.0.1",
     "swr": "^0.4.1",
