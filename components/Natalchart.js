@@ -46,7 +46,7 @@ const Natalchart = () => {
     return (
         
         
-           <Table w="24">
+           <Table variant="simple">
         <Thead>
             <Tr>
             <Th>Planet</Th>
@@ -54,7 +54,7 @@ const Natalchart = () => {
             <Th isNumeric>House</Th>
             </Tr>
         </Thead>
-        <Tbody>
+        <Tbody >
             <Tr>
             <Td>{chart.planets[0].name}</Td>
             <Td>{chart.planets[0].sign}</Td>
