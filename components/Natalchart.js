@@ -1,4 +1,4 @@
-import { Table, Thead, Tbody,Tfoot, Tr, Th, Td, TableCaption, Box, Center, useColorMode, Image, HStack, extendTheme, ChakraProvider } from '@chakra-ui/react';
+import { Table, Thead, Tbody,Tfoot, Tr, Th, Td, TableCaption, Box, Center, useColorMode, Image, HStack, extendTheme, ChakraProvider, Heading, VStack } from '@chakra-ui/react';
 import axios from 'axios';
 import {useEffect, useState} from 'react'
 import {Fonts} from "./Fonts"
@@ -113,20 +113,29 @@ const Natalchart = () => {
         <CardFlip />
         
 
-        {/* <Center> 
+        <Center> 
+          <VStack>
+            <Box border="4px solid rgba(212, 175, 53, 0.6)" borderRadius="12px"mt={4} color={textColor[colorMode]} bgColor={bgColor[colorMode]}>
+          <Heading padding={2}  fontWeight="light">
+            YOUR NATAL PLACEMENTS
+          </Heading>
+          </Box>
         <Box 
+        border="4px solid rgba(212, 175, 53, 0.6)"
         borderRadius={16}
         color={textColor[colorMode]}
         bgColor={bgColor[colorMode]}
-        mt="10vh"
+        mt="8vh"
         w="2xl" 
-        h="md">
+        padding={2}
+        h="56vh">
+          
         <Table variant="simple" size="sm">
         <Thead>
             <Tr>
-            <Th>Planet</Th>
-            <Th>Sign</Th>
-            <Th isNumeric>House</Th>
+            <Th color={textColor[colorMode]} >Planet</Th>
+            <Th color={textColor[colorMode]} >Sign</Th>
+            <Th color={textColor[colorMode]} isNumeric>House</Th>
             </Tr>
         </Thead>
         <Tbody >
@@ -198,7 +207,9 @@ const Natalchart = () => {
         </Tbody>
         </Table>
         </Box>
-        </Center> */}
+        
+        </VStack>
+        </Center>
         </Box>
         </ChakraProvider>
     )

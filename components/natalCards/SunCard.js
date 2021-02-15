@@ -79,7 +79,7 @@ const SunCard = () => {
         <ChakraProvider theme={theme}>
             <Fonts />
         <Center>
-        <Box h="75vh" w="26vw" borderRadius={16} backgroundImage="url(./mooncard.jpg)" bgSize="cover">
+        <Box h="75vh" w="26vw" border="4px solid rgba(212, 175, 53, 0.6)" borderRadius={16} backgroundImage="url(./mooncard.jpg)" bgSize="cover">
            <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
                 <Box>
                 <Box

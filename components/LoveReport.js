@@ -55,6 +55,10 @@ const LoveReport = () => {
         light: "rgba(70, 93, 114, 0.9)",
         dark: "rgba(74, 85, 104, 0.9)",
       };
+      const theColor = {
+        light: "rgba(70, 93, 114, 0.9)",
+        dark: "rgba(43, 70, 115, 0.82)",
+      };
       const textColor = { light: "blue.200", dark: "yellow.500" };
       const { colorMode, toggleColorMode } = useColorMode();
 
@@ -67,7 +71,7 @@ const LoveReport = () => {
     return (
         
         <Center>
-        <Box zIndex="-1" bgColor={bgColor[colorMode]}  bgPosition="center" bgSize="cover" minH="100%" minW="32vw" w="100vw" h="auto" position="fixed" overflowX="scroll" top="0" right="0" bgImage="url('./loginwp.png')" /> 
+        <Box zIndex="-1" bgColor={theColor[colorMode]}  bgPosition="center" bgSize="cover" minH="100%" minW="32vw" w="100vw" h="auto" position="fixed" overflowX="scroll" top="0" right="0" bgImage="url('./loginwp.png')" /> 
        
        
            <VStack>
@@ -76,7 +80,7 @@ const LoveReport = () => {
             <Image
                 src="./icon.png" height="22vh"  width="13vw" size={`${badgeRadius + 1}em`} mt={`${badgeRadius / 6}em`} />
              </Flex>  
-             <Box border="4px solid rgba(212, 175, 53, 0.9)" w="38vw" h="64vh" p={4} pt="24" color={textColor[colorMode]} bgColor={bgColor[colorMode]} borderRadius="md" shadow="lg" >
+             <Box border="4px solid rgba(212, 175, 53, 0.9)" w="38vw" h="64vh" p={4} pt="24" color={textColor[colorMode]} bgColor={bgColor[colorMode]}  borderRadius="md" shadow="lg" >
              <Center>
                  <VStack>
         <Heading as="h1" mt="-2vh" textAlign="center" textTransform="uppercase" color={textColor[colorMode]} letterSpacing={2}>
@@ -255,7 +259,7 @@ const LoveReport = () => {
                 color={textColor[colorMode]}
                 wrap
                 >
-                FRIENDSHIP COMPATIBILITY
+                RELATIONSHIP COMPATIBILITY
                         
                 </Box>
                  {/* <Box
