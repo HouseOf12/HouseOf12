@@ -4,6 +4,19 @@
 //creates ids 
 import { nanoid } from 'nanoid';
 
+//journal entry get route 
+//entries is its own collection, have to grab all the journal entries that have the userId that is equal to the current user: .find() //a function (.forEach, .toArray, etc) needs to be called on the .find BEFORE the .then can be called
+export async function getEntries(db, currentUserId) {
+    return db
+    .collection('journals')
+    .find({userId: currentUserId})
+    .toArray()
+    .then(response => {
+        //return the response (entries) to where getEntries is called
+        return response;
+    })
+}
+
 //this function is attached to the post method for journal in api/journal/index
 export async function insertEntry(db, userId, title, body) {
     return db
@@ -22,4 +35,3 @@ export async function insertEntry(db, userId, title, body) {
     })
 }
 
-//insertOne response is a very large, to see what was added, go into ops (comes from response)
