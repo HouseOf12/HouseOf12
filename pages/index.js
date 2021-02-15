@@ -2,7 +2,7 @@ import React from "react";
 import { useCurrentUser } from "../hooks/index.js";
 import HoroscopePics from "@/components/HoroscopePics.js";
 import {Box} from '@chakra-ui/react'
-// import Test from "../components/Test.js"
+import News from "../components/News.js"
 
 
 const IndexPage = () => {
@@ -28,6 +28,14 @@ const IndexPage = () => {
       </style>
 
       <HoroscopePics />
+      </Box>
+      <br/> 
+      <br/> 
+      <br/> 
+      <br/> 
+      <Box textAlign="center">
+
+      <News />
       </Box>
       </Box>
     </>

@@ -4,7 +4,7 @@ import { Grid, GridItem, Image, Box, Button, ButtonGroup  } from "@chakra-ui/rea
 
 const HoroscopePics = () => {
   return (
-      <Box border="2px solid #D4AF37" width="75%" height="60vh" marginLeft="13%" justifyContent="center" alignContent="center" alignItems="center" textAlign="center"> 
+      <Box border="2px solid #D4AF37" width="75%" height="70vh" marginLeft="13%" justifyContent="center" alignContent="center" alignItems="center" textAlign="center"> 
         <Box fontFamily="caslongrad,serif">
             <h1 > WELCOME TO HOUSE OF 12 </h1>
       </Box>
@@ -140,10 +140,10 @@ const HoroscopePics = () => {
           NOV 22 - DEC 21
         </GridItem>
       </Grid>
-
+{/* 
       <Box fontFamily="caslongrad,serif">
             <h1 > HOROSCOPES </h1>
-      </Box>
+      </Box> */}
 
       </Box>
       
