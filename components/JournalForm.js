@@ -1,23 +1,6 @@
 import React, {useState} from 'react'
 import { Editable, EditableInput, EditablePreview, Button, FormLabel, Input} from "@chakra-ui/react"
 import { useCurrentUser } from '../hooks/index';
-<<<<<<< HEAD
-
-
-const Journal = () => {
-    //grab the current user so you can pass the id to the backend post call in onSubmit
-    const [currentUser] = useCurrentUser();
-
-    const [errorMsg, setErrorMsg] = useState('');
-
-    //stores the title
-    const[title, setTitle] = useState("")
-
-    //stores the entry
-    const[body, setBody] = useState("");
-
-
-=======
 const Journal = () => {
     //grab the current user so you can pass the id to the backend post call in onSubmit
     const [currentUser] = useCurrentUser();
@@ -26,26 +9,16 @@ const Journal = () => {
     const[title, setTitle] = useState("")
     //stores the entry
     const[body, setBody] = useState("");
->>>>>>> fe8eb0c1afc81cd2a276c731df7fb39585c0c259
     // Stores the title in our title state
     const handleChangeTitle = (e) => {
         const title = e.target.value;
         setTitle(title);
     };
-<<<<<<< HEAD
-
-=======
->>>>>>> fe8eb0c1afc81cd2a276c731df7fb39585c0c259
     // Stores the body in our body state
     const handleChangeBody = (e) => {
         const body = e.target.value;
         setBody(body);
     };
-<<<<<<< HEAD
-
-
-=======
->>>>>>> fe8eb0c1afc81cd2a276c731df7fb39585c0c259
     const handleSubmit = async (e) =>{
         e.preventDefault()
         const entry = {
@@ -66,11 +39,6 @@ const Journal = () => {
             setErrorMsg(await res.text());
         }
     }
-<<<<<<< HEAD
-
-
-=======
->>>>>>> fe8eb0c1afc81cd2a276c731df7fb39585c0c259
     return (
         <div>
             <h1 className = "journal_entry_title">Journal Entry:</h1>
@@ -78,23 +46,6 @@ const Journal = () => {
                 <EditablePreview />
                 {/* <EditableInput onChange={(e) => onChangeTitle(e)} />
                 <EditableInput onChange={(e) => onChangeBody(e)} /> */}
-<<<<<<< HEAD
-
-                <FormLabel>Title</FormLabel>
-                <Input type="text" onChange={(e) => handleChangeTitle(e)}/>
-
-                <FormLabel>Write your entry</FormLabel>
-                <Input type="text" onChange={(e) => handleChangeBody(e)} />
-
-                <Button colorScheme='blue' onClick={(e) => handleSubmit(e)}>Save</Button>
-
-            </Editable>
-
-        </div>
-        )
-}
-
-=======
                 <FormLabel>Title</FormLabel>
                 <Input type="text" onChange={(e) => handleChangeTitle(e)}/>
                 <FormLabel>Write your entry</FormLabel>
@@ -104,6 +55,5 @@ const Journal = () => {
         </div>
         )
 }
->>>>>>> fe8eb0c1afc81cd2a276c731df7fb39585c0c259
 export default Journal
 

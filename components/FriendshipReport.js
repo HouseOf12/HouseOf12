@@ -8,7 +8,57 @@ import { MdCake, MdAccessTime } from "react-icons/md";
 
 import axios from 'axios';
 
+
+
+
+
 const FriendshipReport = () => {
+
+
+
+
+    const [firstBday, setFirstBday] = useState('');
+    const [secondBday, setSecondBday] = useState('');
+
+
+    const [firstTime, setFirstTime] = useState('');
+    const [secondTime, setSecondTime] = useState('');
+
+
+
+
+    //handles birthdays
+    const handleInput = (event) =>{
+        setFirstBday(event.target.value)
+    }
+
+    const handleInput2 = (event) =>{
+        setSecondBday(event.target.value)
+    }
+
+
+    //handles time
+    const handleTime = (event) =>{
+        setFirstTime(event.target.value)
+    }
+
+
+
+    //handles dates
+    let newDate = `${firstBday}`.split('-')
+    console.log("first friend", newDate)
+
+    let secondDate = `${secondBday}`.split('-')
+    console.log("second friend", secondDate)
+
+
+    console.log(firstTime)
+    let newTime = `${firstTime}`.split(":")
+    console.log("first time", newTime)
+    
+
+
+
     const badgeRadius = 4;
     const [friendship, setFriendship] = useState()
     useEffect(() => {
@@ -115,10 +165,12 @@ const FriendshipReport = () => {
                     <Icon as={MdCake} />
                     </InputLeftElement>
                     <Input
-                    id="birthday"
+                    id="pbirthday"
                     type="date"
                     name="birthday"
+                    value={firstBday}
                     placeholder="Enter Birth Date"
+                    onChange={handleInput}
                     />
                 </InputGroup>
                 </FormControl>
@@ -133,6 +185,8 @@ const FriendshipReport = () => {
                     id="time"
                     type="time"
                     name="time"
+                    value={firstTime}
+                    onChange ={handleTime}
                     placeholder="Enter Birth Time"
                     />
                 </InputGroup>
@@ -184,9 +238,11 @@ const FriendshipReport = () => {
                <Icon as={MdCake} />
                </InputLeftElement>
                <Input
-               id="birthday"
+               id="sbirthday"
                type="date"
                name="birthday"
+               value={secondBday}
+               onChange={handleInput2}
                placeholder="Friend's Birth Date"
                />
            </InputGroup>
