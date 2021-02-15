@@ -63,6 +63,12 @@ const LoginPage = () => {
     light: "rgba(140, 145, 151, 0.7)",
     dark: "rgba(12, 47, 89, 0.9)",
   };
+  const theColor = {
+    light: "rgba(70, 93, 114, 0.9)",
+    dark: "rgba(74, 85, 104, 0.9)",
+  };
+  
+
   const textColor = { light: "blue.400", dark: "gray.100" };
   const { colorMode, toggleColorMode } = useColorMode();
   
@@ -85,12 +91,11 @@ const LoginPage = () => {
            <Flex
             alignItems="center"
             justifyContent="center"
-            bgColor={bgColor[colorMode]}
-            color={textColor[colorMode]}
-            // color="gray.200"
-            // bg="gray.800"
-            // size="sm"
-            // size={`${badgeRadius * 2}em`}
+            bgColor={theColor[colorMode]}
+            // color={textColor[colorMode]}
+            color="gray.200"
+            bg="gray.800"
+            border="4px solid rgba(212, 175, 53, 0.9)" 
             borderRadius="50%"
             mb={`-${badgeRadius}em`}
             shadow="sm"
@@ -105,11 +110,12 @@ const LoginPage = () => {
             />
           </Flex>
           <Box
+          border="4px solid rgba(212, 175, 53, 0.9)" 
             w="sm"
             p={4}
             pt="24"
-            color="gray.100"
-            bg="gray.700"
+             bgColor={theColor[colorMode]}
+            color={textColor[colorMode]}
             borderRadius="md"
             shadow="lg"
           >
