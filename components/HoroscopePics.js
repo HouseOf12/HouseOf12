@@ -1,6 +1,7 @@
 import { Grid, GridItem, Image, Box, Button, ButtonGroup, extendTheme, ChakraProvider, useColorMode, colorMode  } from "@chakra-ui/react";
 import {Fonts} from "./Fonts"
 
+
 const HoroscopePics = () => {
   const theme = extendTheme({
     fonts: {
@@ -18,17 +19,11 @@ const HoroscopePics = () => {
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (
-<<<<<<< HEAD
-      <Box border="2px solid #D4AF37" width="75%" height="70vh" marginLeft="13%" justifyContent="center" alignContent="center" alignItems="center" textAlign="center"> 
-        <Box fontFamily="caslongrad,serif">
-            <h1 > WELCOME TO HOUSE OF 12 </h1>
-=======
     <ChakraProvider>
       <Fonts />
       <Box border="2px solid rgba(212, 175, 53, 0.5)" width="75%" height="70vh" marginLeft="13%" mt="4vh" justifyContent="center" alignContent="center" alignItems="center" textAlign="center"> 
         <Box as="h1" fontFamily="Tryst-Regular" color={textColor[colorMode]} >
            WELCOME TO HOUSE OF 12 
->>>>>>> 2c406b78b07d36d090e685ccb859b711695a2153
       </Box>
       <Box as="h3" fontFamily="Tryst-Regular" color={textColor[colorMode]} >
       
@@ -149,17 +144,12 @@ const HoroscopePics = () => {
           NOV 22 - DEC 21
         </GridItem>
       </Grid>
-{/* 
-      <Box fontFamily="caslongrad,serif">
-            <h1 > HOROSCOPES </h1>
-      </Box> */}
-<<<<<<< HEAD
 
-      </Box>
-=======
+      {/* <Box fontFamily="caslongrad,serif">
+            <h1 > HOROSCOPES </h1>
+      </Box>  */}
       </Box>
       </ChakraProvider>
->>>>>>> 2c406b78b07d36d090e685ccb859b711695a2153
       
   );
 }
