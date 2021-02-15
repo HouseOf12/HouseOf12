@@ -21,7 +21,7 @@ const HoroscopePics = () => {
   return (
     <ChakraProvider>
       <Fonts />
-      <Box border="2px solid rgba(212, 175, 53, 0.5)" width="75%" height="70vh" marginLeft="13%" mt="4vh" justifyContent="center" alignContent="center" alignItems="center" textAlign="center"> 
+      <Box border="2px solid rgba(212, 175, 53, 0.5)" width="75%" height="60vh" marginLeft="13%" mt="4vh" justifyContent="center" alignContent="center" alignItems="center" textAlign="center" borderRadius="15px"> 
         <Box as="h1" fontFamily="Tryst-Regular" color={textColor[colorMode]} >
            WELCOME TO HOUSE OF 12 
       </Box>
@@ -64,7 +64,7 @@ const HoroscopePics = () => {
         </GridItem>
         <GridItem _hover={{bgGradient:"linear(to-r, #341552, #cc6efa)"}} color="white" justifySelf="center" fontSize=".9vw" alignSelf="center" fontFamily="khand,sans-serif">
           <Box h="8vh">
-            <Image height="8vh"  width="6vw" src="https://media1.giphy.com/media/XBu4BCgRdJ1N2nT3gl/giphy_s.gif?cid=ecf05e47q5obm6jnp0uumr4k1qgaeyyaucic8ima5ikgq5g1&rid=giphy_s.gif" />
+            <Image height="8vh"  width="6vw" src="https://i.postimg.cc/rsm8cFSH/imageedit-10-8599861508.png" />
           </Box>
           {/* <Button variant="outline" colorScheme="teal" size="sm"> Button</Button> */}
           ARIES
