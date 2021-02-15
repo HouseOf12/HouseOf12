@@ -152,10 +152,6 @@ const FriendshipReport = () => {
                 </InputGroup>
                 </FormControl>
 
-                
-                {/* <Button variantColor="blue" type="submit" shadow="md">
-                Register
-                </Button> */}
             </VStack>
             </form>
         
