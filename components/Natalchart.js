@@ -1,11 +1,19 @@
-import { Table, Thead, Tbody,Tfoot, Tr, Th, Td, TableCaption } from '@chakra-ui/react';
+import { Table, Thead, Tbody,Tfoot, Tr, Th, Td, TableCaption, Box, Center, useColorMode, Image, HStack, extendTheme, ChakraProvider, Heading, VStack } from '@chakra-ui/react';
 import axios from 'axios';
 import {useEffect, useState} from 'react'
+import {Fonts} from "./Fonts"
+import CardFlip from "./CardFlip"
+
 
 // Houses have a house number and a sign
 // Platents have a name and the sign 
 // Compare sign from planets, find match in houses and return
 
+const theme = extendTheme({
+    fonts: {
+      body: "Tryst-Regular",
+    },
+  })
 
 const Natalchart = () => {
     const [chart, setChart] = useState([])
@@ -35,26 +43,102 @@ const Natalchart = () => {
             "Content-Type":'application/json'
             }})
           .then((natalData) => {
-              console.log("HEYYYYYYYY", natalData.data)
+              
               setChart(natalData.data)
           })
             
     }
-    console.log("THIS IS THE CHART",chart)
     
+
+
+    const [wheelChart, setWheelChart] = useState()
+   
+
+    useEffect(() => {
+       grabWheel()
+      }, []);
+
+    const grabWheel = () => {
+        var userId = "615745";
+        var apiKey = "758b876f8345a5b798e2f02e38e7c7ab";
+        const wheelData = axios
+        .post("https://json.astrologyapi.com/v1/natal_wheel_chart",
+        {
+            day: '24',
+            month: '2',
+            year: '1998',
+            hour: '06',
+            min: '16',
+            lat: '34.1808',
+            lon: '118.3090',
+            tzone: '5.5',
+            planet_icon_color:"#0A2C52",
+            inner_circle_background:"#7c8394",
+            sign_icon_color:"#A38103",
+            sign_background:"#0A2C52",
+            chart_size:500,
+            image_type:"png"
+          },
+          {headers: {
+            "authorization": "Basic " + btoa(userId+":"+apiKey),
+            "Content-Type":'application/json'
+            }})
+          .then((wheelData) => {
+              
+              setWheelChart(wheelData.data)
+          })
+           
+    }
+    console.log(wheelChart)
+    
+    const bgColor = {
+        light: "rgba(70, 93, 114, 0.9)",
+        dark: "rgba(74, 85, 104, 0.9)",
+      };
+      const textColor = { light: "gray.300", dark: "yellow.500" };
+      const { colorMode, toggleColorMode } = useColorMode();
+
+     
+
     
     return (
+        <ChakraProvider theme={theme}>
+            <Fonts />
+        <Box color="white" bgSize="cover" minH="100%" minW="1024px" w="100%" h="auto" position="absolute" overflowX="scroll" top="0" right="0" bgImage="url('./chartwpp.jpg')" > 
+        <Center>
+          
+          <Box  bgSize="cover"  w="26vw" h="50vh " mt="12vh" mb="5vh"  bgImage={`url(${wheelChart.chart_url})`} />
+          
+        </Center>
+        <CardFlip />
         
-        
-           <Table w="24">
+
+        <Center> 
+          <VStack>
+            <Box border="4px solid rgba(212, 175, 53, 0.6)" borderRadius="12px"mt={4} color={textColor[colorMode]} bgColor={bgColor[colorMode]}>
+          <Heading padding={2}  fontWeight="light">
+            YOUR NATAL PLACEMENTS
+          </Heading>
+          </Box>
+        <Box 
+        border="4px solid rgba(212, 175, 53, 0.6)"
+        borderRadius={16}
+        color={textColor[colorMode]}
+        bgColor={bgColor[colorMode]}
+        mt="8vh"
+        w="2xl" 
+        padding={2}
+        h="56vh">
+          
+        <Table variant="simple" size="sm">
         <Thead>
             <Tr>
-            <Th>Planet</Th>
-            <Th>Sign</Th>
-            <Th isNumeric>House</Th>
+            <Th color={textColor[colorMode]} >Planet</Th>
+            <Th color={textColor[colorMode]} >Sign</Th>
+            <Th color={textColor[colorMode]} isNumeric>House</Th>
             </Tr>
         </Thead>
-        <Tbody>
+        <Tbody >
             <Tr>
             <Td>{chart.planets[0].name}</Td>
             <Td>{chart.planets[0].sign}</Td>
@@ -121,15 +205,13 @@ const Natalchart = () => {
             <Td isNumeric>{chart.planets[12].house}</Td>
             </Tr>
         </Tbody>
-        <Tfoot>
-            <Tr>
-            <Th>To convert</Th>
-            <Th>into</Th>
-            <Th isNumeric>multiply by</Th>
-            </Tr>
-        </Tfoot>
         </Table>
+        </Box>
         
+        </VStack>
+        </Center>
+        </Box>
+        </ChakraProvider>
     )
 }
 

@@ -15,7 +15,18 @@ a {
   box-sizing: border-box;
 }
 
+<<<<<<< HEAD
 .journal_entry_title{
   color:blueviolet;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
 }
+=======
+.journal_entry_title {
+  color: blueviolet;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+/* .css-13j1eqb {
+  width: 6rem !important;
+  height: 6rem !important;
+} */
+>>>>>>> 2c406b78b07d36d090e685ccb859b711695a2153
