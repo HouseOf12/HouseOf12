@@ -6,7 +6,7 @@ import { EmailIcon, LockIcon, ViewIcon, ViewOffIcon, StarIcon } from '@chakra-ui
 import {FaGlobeAmericas } from "react-icons/fa";
 // import { IconName } from "react-icons/fc"
 import { MdCake, MdAccessTime } from "react-icons/md";
-import { Icon } from "@chakra-ui/react"
+import { Icon, colorMode } from "@chakra-ui/react"
 import {
   Box,
   Button,
@@ -56,31 +56,38 @@ const SignupPage = () => {
     e.preventDefault();
     setShowPass(!showPass);
   }
+  const bgColor = {
+    light: "rgba(70, 93, 114, 0.9)",
+    dark: "rgba(74, 85, 104, 0.9)",
+  };
+  const textColor = { light: "blue.200", dark: "yellow.500" };
+  const { colorMode, toggleColorMode } = useColorMode();
 
   const [showPass, setShowPass] = useState(false);
   const badgeRadius = 4;
 
   return (
+    <Box>
+      <Box zIndex="-1" bgColor={bgColor[colorMode]}  bgPosition="center" bgSize="cover" minH="100%" minW="32vw" w="100vw" h="auto" position="fixed" overflowX="scroll" top="0" right="0" bgImage="url('./loginwp.png')" /> 
   <Box
-paddingTop={20}
+paddingTop={0}
 display="flex"
 position="absolute"
 left={0}
 right={0}
-top={96}
+top="50vh"
 bottom={0}
 flexDirection="column"
 alignItems="center"
 justifyContent="center"
 >
  <Flex
-  mt={6}
+  mt={20}
   alignItems="center"
   justifyContent="center"
-  color="gray.200"
-  bg="gray.400"
-  // size="sm"
-  // size={`${badgeRadius * 2}em`}
+  bgColor="gray.400"
+  color={textColor[colorMode]}
+  border="4px solid rgba(212, 175, 53, 0.9)"
   borderRadius="50%"
   mb={`-${badgeRadius}em`}
   shadow="sm"
@@ -88,22 +95,25 @@ justifyContent="center"
 >
   <Image
     src="./icon.png"
-    height="22vh"  
-    width="13vw"
+    height="18vh"  
+    width="10vw"
     size={`${badgeRadius + 1}em`}
     mt={`${badgeRadius / 6}em`}
   />
 </Flex>
+<Center>
 <Box
-  w="sm"
+  w="24vw"
+  h="72vh"
   p={4}
   pt="24"
-  color="gray.100"
-  bg="gray.700"
-  borderRadius="md"
-  shadow="lg"
+  bgColor={bgColor[colorMode]}
+  color={textColor[colorMode]}
+  borderRadius="16px"
+  border="4px solid rgba(212, 175, 53, 0.9)"
+  shadow="dark-lg"
 >
-  <Stack spacing={4}>
+  <Stack spacing={3}>
     <Heading
       as="h1"
       textAlign="center"
@@ -223,49 +233,14 @@ justifyContent="center"
     </form>
   </Stack>
 </Box>
+
+</Center>
 </Box>
+</Box>
+
+
   );
 };
 export default SignupPage;
 
 
-{/* <>
-    //   <Head>
-    //     <title>Sign up</title>
-    //   </Head>
-    //   <div>
-    //     <h2>Sign up</h2>
-    //     <form onSubmit={handleSubmit}>
-    //       {errorMsg ? <p style={{ color: 'red' }}>{errorMsg}</p> : null}
-    //       <label htmlFor="name">
-    //         <input
-    //           id="name" */}
-    //           name="name"
-    //           type="text"
-    //           placeholder="Your name"
-    //         />
-    //       </label>
-    //       <label htmlFor="email">
-    //         <input
-    //           id="email"
-    //           name="email"
-    //           type="email"
-    //           placeholder="Email address"
-    //         />
-    //       </label>
-    //       <label htmlFor="password">
-    //         <input
-    //           id="password"
-    //           name="password"
-    //           type="password"
-    //           placeholder="Create a password"
-    //         />
-    //       </label>
-    //       <button type="submit">Sign up</button>
-    //     </form>
-    //     <p style={{ color: '#777', textAlign: 'center' }}>
-    //       Note: The database is public. For your privacy,
-    //       please avoid using your personal, work email.
-    //     </p>
-    //   </div>
-    // </>

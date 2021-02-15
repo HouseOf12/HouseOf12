@@ -133,7 +133,9 @@ const Navbar = () => {
                   <MenuItem>Dream Journal</MenuItem>
                   </Link>
                   <MenuItem>House Chart</MenuItem>
+                  <Link href="/compatibility">
                   <MenuItem>Compatibility</MenuItem>
+                  </Link>
                   <MenuItem>Horoscope</MenuItem>
                 </MenuList>
               </Menu>
