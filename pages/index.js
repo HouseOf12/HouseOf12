@@ -21,7 +21,7 @@ const IndexPage = () => {
     light: "rgba(196, 199, 202, 0.4)",
     dark: "rgba(74, 85, 104, 0.6)",
   };
-  const textColor = { light: "blue.400", dark: "gray.100" };
+  const textColor = { light: "yellow.500", dark: "gray.300" };
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (
