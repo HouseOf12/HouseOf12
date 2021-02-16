@@ -61,8 +61,10 @@ const FriendshipReport = () => {
 
     const badgeRadius = 4;
     const [friendship, setFriendship] = useState()
+    const [location, setLocation] = useState()
     useEffect(() => {
        grabComp()
+       grabLocation()
       }, []);
 
     const grabComp = () => {
@@ -94,7 +96,28 @@ const FriendshipReport = () => {
             }})
           .then((friendData) => {
               
-              setFriendship(friendData.data)
+              setLocation(friendData.data)
+          })
+           
+    }
+
+
+    const grabLocation = () => {
+        var userId = "615745";
+        var apiKey = "758b876f8345a5b798e2f02e38e7c7ab";
+        const geoData = axios
+        .post("https://json.astrologyapi.com/v1/geo_details",
+        {
+            place: 'los angeles',
+            maxRows: 6
+          },
+          {headers: {
+            "authorization": "Basic " + btoa(userId+":"+apiKey),
+            "Content-Type":'application/json'
+            }})
+          .then((geoData) => {
+              
+              setFriendship(geoData.data)
           })
            
     }
