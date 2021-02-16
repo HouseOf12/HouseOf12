@@ -63,7 +63,7 @@ const FriendshipReport = () => {
 
     //handles split dates
     let newDate = `${firstBday}`.split('-')
-    console.log("first friend", newDate)
+    //console.log("first friend", newDate)
     //returns year, month day
 
     let secondDate = `${secondBday}`.split('-')
@@ -74,20 +74,20 @@ const FriendshipReport = () => {
 
     //handles split  time
     let newTime = `${firstTime}`.split(":")
-    console.log("first time", newTime)
+    //console.log("first time", newTime)
     //returns "13", "00" instead of 1pm
 
 
     let friendTime = `${secondTime}`.split(":")
-    console.log("second time", friendTime)
+    //console.log("second time", friendTime)
 
 
     
 
 
     //returns exactly what we wrote in the input, if user writes boston, it returns boston.
-    console.log("this is the first location", firstLocation)
-    console.log("this is the second location", secondLocation)
+    //console.log("this is the first location", firstLocation)
+    //console.log("this is the second location", secondLocation)
 
 
 
@@ -120,49 +120,48 @@ const FriendshipReport = () => {
     const badgeRadius = 4;
     const [friendship, setFriendship] = useState()
     const [location, setLocation] = useState()
-    useEffect(() => {
-       grabComp()
-       grabLocation()
-      }, []);
+    // useEffect(() => {
+    //    grabComp()
+    //    grabLocation()
+    // }, []);
 
     const grabComp = () => {
-        var userId = "615745";
-        var apiKey = "758b876f8345a5b798e2f02e38e7c7ab";
-        const friendData = axios
-        .post("https://json.astrologyapi.com/v1/friendship_report/tropical",
-        {
-            p_day: '24',
-            p_month: '2',
-            p_year: '1998',
-            p_hour: '06',
-            p_min: '16',
+        const dataToSend = {
+            p_day: `${newDate[2]}`,
+            p_month: `${newDate[1]}`,
+            p_year: `${newDate[0]}`,
+            p_hour: `${newTime[0]}`,
+            p_min: `${newTime[1]}`,
             p_lat: '34.1808',
             p_lon: '118.3090',
             p_tzone: '5.5',
-            s_day: '19',
-            s_month: '07',
-            s_year: '1997',
-            s_hour: '05',
-            s_min: '30',
+            s_day: `${secondDate[2]}`,
+            s_month: `${secondDate[1]}`,
+            s_year: `${secondDate[0]}`,
+            s_hour: `${friendTime[0]}`,
+            s_min: `${friendTime[1]}`,
             s_lat: '34.1808',
             s_lon: '118.3090',
             s_tzone: '5.5',
-          },
-          {headers: {
-            "authorization": "Basic " + btoa(userId+":"+apiKey),
-            "Content-Type":'application/json'
-            }})
-          .then((friendData) => {
-              console.log('FRIEND DATA', friendData.data)
-              setLocation(friendData.data)
-          })
+        }
+
+        console.log('dataTosend', dataToSend)
+
+        // let userId = "615745";
+        // let apiKey = "758b876f8345a5b798e2f02e38e7c7ab";
+        // const friendData = axios
+        // .post("https://json.astrologyapi.com/v1/friendship_report/tropical",,
+        //   {headers: {
+        //     "authorization": "Basic " + btoa(userId+":"+apiKey),
+        //     "Content-Type":'application/json'
+        //     }})
+        //   .then((friendData) => {
+        //       console.log('FRIEND DATA', friendData.data)
+        //       setFriendship(friendData.data)
+        //   })
            
     }
 
-
-    // console.log(grabComp())
-    console.log("LOCATION",  location)
-    console.log("FRIENDSHIP", friendship)
 
     const grabLocation = () => {
         var userId = "615745";
@@ -179,12 +178,19 @@ const FriendshipReport = () => {
             }})
           .then((geoData) => {
               console.log('GET DATA', geoData.data)
-              
-              setFriendship(geoData.data)
+              setLocation(geoData.data)
           })
            
     }
-    // console.log("THTHTHTHTHHTHTHTHTHTHT", friendship.friendship_report[0])
+
+    const handleSubmit = (e) => {
+        console.log('HELLLOOOOOOO')
+        console.log('target', e.target)
+        //would need to call grabComp in here
+
+    }
+
+
     const bgColor = {
         light: "rgba(70, 93, 114, 0.9)",
         dark: "rgba(74, 85, 104, 0.9)",
@@ -252,7 +258,7 @@ const FriendshipReport = () => {
                     </InputLeftElement>
                     <Input
                     id="pbirthday"
-                    type="pdate"
+                    type="date"
                     name="pbirthday"
                     value={firstBday}
                     placeholder="Enter Birth Date"
@@ -269,7 +275,7 @@ const FriendshipReport = () => {
                     </InputLeftElement>
                     <Input
                     id="ptime"
-                    type="ptime"
+                    type="time"
                     name="ptime"
                     value={firstTime}
                     onChange ={handleTime}
@@ -285,7 +291,7 @@ const FriendshipReport = () => {
                     </InputLeftElement>
                     <Input
                     id="plocation"
-                    type="ptext"
+                    type="text"
                     name="plocation"
                     value={firstLocation}
                     onChange = {handleLocation}
@@ -302,8 +308,8 @@ const FriendshipReport = () => {
                <GridItem colStart={2} rowSpan={2}>
                
        
-       <form>
-       {/* <form onSubmit={handleSubmit}> */}
+       {/* <form> */}
+       <form onSubmit={handleSubmit}>
        <VStack spacing={4}>
        <FormControl isRequired>
            <InputGroup>
@@ -327,7 +333,7 @@ const FriendshipReport = () => {
                </InputLeftElement>
                <Input
                id="sbirthday"
-               type="sdate"
+               type="date"
                name="sbirthday"
                value={secondBday}
                onChange={handleInput2}
@@ -344,7 +350,7 @@ const FriendshipReport = () => {
                </InputLeftElement>
                <Input
                id="stime"
-               type="stime"
+               type="time"
                name="stime"
                value={secondTime}
                onChange={handleSecondTime}
@@ -360,7 +366,7 @@ const FriendshipReport = () => {
                </InputLeftElement>
                <Input
                id="slocation"
-               type="stext"
+               type="text"
                name="slocation"
                value={secondLocation}
                onChange = {handleSecondLocation}
