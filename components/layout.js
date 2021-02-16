@@ -37,6 +37,7 @@ export default function Layout({ children }) {
       </header>
 
       <main>{children}</main>
+      
       <footer>
         
       </footer>
