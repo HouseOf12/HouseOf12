@@ -4,9 +4,12 @@ import { useCurrentUser } from '../hooks/index';
 import { all } from '../middlewares/index';
 import { extractUser } from '../lib/api-helpers';
 import { findUserById } from '../db/index';
+import axios from 'axios';
+import { TiArrowMaximiseOutline } from 'react-icons/ti';
 
 
-export default function journal({ user }) {
+export default function journal({ user, data }) {
+    //console.log('data???', data)
     const [entries, setEntries] = useState([]);
     const [errorMsg, setErrorMsg] = useState('');
 
@@ -19,27 +22,19 @@ export default function journal({ user }) {
 
     }, [])
 
-    //function to call the backend and retrieve journal entries
+    //using axios
     const grabEntries = async () => {
         //we dont end up sending the get request to the get route. Because 1. you cant pass a body to a get route and 2. current user is available through req.user
         //const userId = user._id;
         
         //below is the alternative route linked to api/journal/[user]
         //const res = await fetch("/api/journal/" + userId,{
-        const res = await fetch("/api/journal/",{
-            method:"GET",
-            headers:{"Content-Type":"application/json"},
-            //body: JSON.stringify(userId)  
-        })
-        if (res.status === 201) {
-            console.log('response from get entry call', res)
-            const entriesObj = await res.json();
-            console.log('are we getting the entries?', entriesObj)
-            mutate(entriesObj);
-        } else {
-            setErrorMsg(await res.text());
-        }
+        const res = await axios.get("/api/journal/")
+        console.log('res on the get', res.data)
+        setEntries(res.data)
     }
+
+    console.log('entries', entries)
 
 
     return (
@@ -53,9 +48,26 @@ export default function journal({ user }) {
 
 //function that is able to grab and return the user to the functional component 
 //this function getServerSideProps is part of Next.js data fetching and will be run before component loads
-export async function getServerSideProps(context) {
-    await all.run(context.req, context.res);
-    const user = extractUser(await findUserById(context.req.db, context.req.user._id));
-    if (!user) context.res.statusCode = 404;
-    return { props: { user } };
-  }
+// export async function getServerSideProps(context) {
+//     await all.run(context.req, context.res);
+//     const user = extractUser(await findUserById(context.req.db, context.req.user._id));
+//     if (!user) context.res.statusCode = 404;
+//     return { props: { user } };
+//   }
+
+// export async function getServerSideProps(context) {
+//     await all.run(context.req, context.res);
+//     const res = await axios.get("/api/journal")
+
+//     console.log('gimme the response', res.body)
+    
+//     // if (!data) {
+//     //     return {
+//     //     notFound: true,
+//     //     }
+//     // }
+
+//     return {
+//         props: {res}, // will be passed to the page component as props
+//     }
+// }
