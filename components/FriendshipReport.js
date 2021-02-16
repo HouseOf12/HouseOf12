@@ -15,8 +15,6 @@ import axios from 'axios';
 const FriendshipReport = () => {
 
 
-
-
     const [firstBday, setFirstBday] = useState('');
     const [secondBday, setSecondBday] = useState('');
 
@@ -24,10 +22,13 @@ const FriendshipReport = () => {
     const [firstTime, setFirstTime] = useState('');
     const [secondTime, setSecondTime] = useState('');
 
+    const [firstLocation, setFirstLocation] = useState('')
+    const [secondLocation, setSecondLocation] = useState('')
 
 
 
-    //handles birthdays
+
+    //handles onchange for date
     const handleInput = (event) =>{
         setFirstBday(event.target.value)
     }
@@ -37,25 +38,82 @@ const FriendshipReport = () => {
     }
 
 
-    //handles time
+    //handles onchange for time
     const handleTime = (event) =>{
         setFirstTime(event.target.value)
     }
 
 
+    const handleSecondTime = (event) =>{
+        setSecondTime(event.target.value)
+    }
 
-    //handles dates
+
+    //handles on change for location
+    const handleLocation = (event) =>{
+        setFirstLocation(event.target.value)
+    }
+
+    const handleSecondLocation = (event) =>{
+        setSecondLocation(event.target.value)
+    }
+
+
+
+
+    //handles split dates
     let newDate = `${firstBday}`.split('-')
-    //console.log("first friend", newDate)
+    console.log("first friend", newDate)
+    //returns year, month day
 
     let secondDate = `${secondBday}`.split('-')
     //console.log("second friend", secondDate)
 
 
-    //console.log(firstTime)
+
+
+    //handles split  time
     let newTime = `${firstTime}`.split(":")
-    //console.log("first time", newTime)
+    console.log("first time", newTime)
+    //returns "13", "00" instead of 1pm
+
+
+    let friendTime = `${secondTime}`.split(":")
+    console.log("second time", friendTime)
+
+
     
+
+
+    //returns exactly what we wrote in the input, if user writes boston, it returns boston.
+    console.log("this is the first location", firstLocation)
+    console.log("this is the second location", secondLocation)
+
+
+
+
+    // p_day: `${newDate[2]}`,
+    // p_month: `${newDate[1]}`,
+    // p_year: `${newDate[0]}`,
+    // p_hour: `{newTime[0]}`,
+    // p_min: `{newTime[1]}`,
+    // p_lat: '34.1808',
+    // p_lon: '118.3090',
+    // p_tzone: '5.5',
+    // s_day: `{secondDate[2]}`,
+    // s_month: `{secondDate[1]}`',
+    // s_year: `{secondDate[0]}`,
+    // s_hour: `{friendTime[0]}`,
+    // s_min: {friendTime[1]}`,
+    // s_lat: '34.1808',
+    // s_lon: '118.3090',
+    // s_tzone: '5.5',
+
+
+
+
+
+
 
 
 
@@ -101,6 +159,10 @@ const FriendshipReport = () => {
            
     }
 
+
+    // console.log(grabComp())
+    console.log("LOCATION",  location)
+    console.log("FRIENDSHIP", friendship)
 
     const grabLocation = () => {
         var userId = "615745";
@@ -190,8 +252,8 @@ const FriendshipReport = () => {
                     </InputLeftElement>
                     <Input
                     id="pbirthday"
-                    type="date"
-                    name="birthday"
+                    type="pdate"
+                    name="pbirthday"
                     value={firstBday}
                     placeholder="Enter Birth Date"
                     onChange={handleInput}
@@ -206,9 +268,9 @@ const FriendshipReport = () => {
                     <Icon as={MdAccessTime} />
                     </InputLeftElement>
                     <Input
-                    id="time"
-                    type="time"
-                    name="time"
+                    id="ptime"
+                    type="ptime"
+                    name="ptime"
                     value={firstTime}
                     onChange ={handleTime}
                     placeholder="Enter Birth Time"
@@ -222,9 +284,11 @@ const FriendshipReport = () => {
                     <Icon as={FaGlobeAmericas} />
                     </InputLeftElement>
                     <Input
-                    id="location"
-                    type="text"
-                    name="location"
+                    id="plocation"
+                    type="ptext"
+                    name="plocation"
+                    value={firstLocation}
+                    onChange = {handleLocation}
                     placeholder="Enter Birth Place"
                     />
                 </InputGroup>
@@ -263,8 +327,8 @@ const FriendshipReport = () => {
                </InputLeftElement>
                <Input
                id="sbirthday"
-               type="date"
-               name="birthday"
+               type="sdate"
+               name="sbirthday"
                value={secondBday}
                onChange={handleInput2}
                placeholder="Friend's Birth Date"
@@ -279,9 +343,11 @@ const FriendshipReport = () => {
                <Icon as={MdAccessTime} />
                </InputLeftElement>
                <Input
-               id="time"
-               type="time"
-               name="time"
+               id="stime"
+               type="stime"
+               name="stime"
+               value={secondTime}
+               onChange={handleSecondTime}
                placeholder="Friend's Birth Time"
                />
            </InputGroup>
@@ -293,9 +359,11 @@ const FriendshipReport = () => {
                <Icon as={FaGlobeAmericas} />
                </InputLeftElement>
                <Input
-               id="location"
-               type="text"
-               name="location"
+               id="slocation"
+               type="stext"
+               name="slocation"
+               value={secondLocation}
+               onChange = {handleSecondLocation}
                placeholder="Friend's Birth Place"
                />
            </InputGroup>
