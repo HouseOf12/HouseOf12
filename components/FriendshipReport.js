@@ -46,15 +46,15 @@ const FriendshipReport = () => {
 
     //handles dates
     let newDate = `${firstBday}`.split('-')
-    console.log("first friend", newDate)
+    //console.log("first friend", newDate)
 
     let secondDate = `${secondBday}`.split('-')
-    console.log("second friend", secondDate)
+    //console.log("second friend", secondDate)
 
 
-    console.log(firstTime)
+    //console.log(firstTime)
     let newTime = `${firstTime}`.split(":")
-    console.log("first time", newTime)
+    //console.log("first time", newTime)
     
 
 
@@ -95,7 +95,7 @@ const FriendshipReport = () => {
             "Content-Type":'application/json'
             }})
           .then((friendData) => {
-              
+              console.log('FRIEND DATA', friendData.data)
               setLocation(friendData.data)
           })
            
@@ -116,6 +116,7 @@ const FriendshipReport = () => {
             "Content-Type":'application/json'
             }})
           .then((geoData) => {
+              console.log('GET DATA', geoData.data)
               
               setFriendship(geoData.data)
           })

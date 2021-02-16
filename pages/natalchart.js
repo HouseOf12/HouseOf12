@@ -5,9 +5,9 @@ export const natalchart = () => {
     return (
         
         <Box>
-        <Box zIndex="-1"  bgPosition="center" bgSize="cover" minH="100%" minW="32vw" w="100vw" h="auto" position="fixed" overflowX="scroll" top="0" right="0" bgImage="url('./chartwpp.jpg')" /> 
-        <Natalchart /> 
-         </Box>
+            <Box zIndex="-1"  bgPosition="center" bgSize="cover" minH="100%" minW="32vw" w="100vw" h="auto" position="fixed" overflowX="scroll" top="0" right="0" bgImage="url('./chartwpp.jpg')" /> 
+            <Natalchart /> 
+        </Box>
         
     )
 }
