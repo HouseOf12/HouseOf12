@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar.js';
 import { Box, ChakraProvider, VStack } from '@chakra-ui/react';
 import Layout from '../components/layout.js';
 import '../styles/index.module.css'
+import '../styles/date-picker.css'
 
 
 function MyApp({ Component, pageProps }) {

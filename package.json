@@ -38,6 +38,8 @@
     "postcss-preset-env": "^6.7.0",
     "react": "^16.13.1",
     "react-card-flip": "^1.0.11",
+    "react-date-picker": "^8.0.7",
+    "react-datepicker": "^3.4.1",
     "react-dom": "^16.13.1",
     "react-geocode": "^0.2.3",
     "react-icons": "^4.2.0",

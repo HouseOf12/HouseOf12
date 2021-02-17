@@ -6,8 +6,8 @@ import { extractUser } from '../lib/api-helpers';
 import { findUserById } from '../db/index';
 import axios from 'axios';
 import { TiArrowMaximiseOutline } from 'react-icons/ti';
-import FriendshipReport2 from '../components/FriendshipReport2';
-import FriendshipReport from '@/components/FriendshipReport';
+// import JournalEntry from '@/components/JournalEntry';
+
 
 
 export default function journal({ user, data }) {
@@ -37,8 +37,23 @@ export default function journal({ user, data }) {
 
     return (
         <div>
-            <FriendshipReport2 />
+            
             <JournalForm/>
+            <div>
+    
+    {entries.map(entry=>
+            <div>
+                    <h2> {entry.title} </h2>
+                    <p>{entry.body}</p>
+                    <div>
+                {/* <button onClick={()=> deleteItem(entry._id)}> DELETE THIS MOFO </button> */}
+                </div>
+                   
+                </div>
+                )}
+ 
+            
+        </div>
         </div>
     )
 }
