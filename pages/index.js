@@ -1,8 +1,6 @@
 import React from "react";
 import { useCurrentUser } from "../hooks/index.js";
 import HoroscopePics from "@/components/HoroscopePics.js";
-import News from "@/components/News.js";
-
 import {Box, Center, ChakraProvider, extendTheme, useColorMode, colorMode} from '@chakra-ui/react'
 import {Fonts} from "../components/Fonts"
 // import Test from "../components/Test.js"

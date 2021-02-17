@@ -16,6 +16,7 @@ const FriendshipReport2 = () => {
     const [friendship, setFriendship] = useState()
     const [loco, setLoco] = useState()
     const [locoTwo, setLocoTwo] = useState()
+    const [submitted, setIsSubmitted] = useState(false)
 
 
     const grabComp = (dataToSend) => {
@@ -34,42 +35,67 @@ const FriendshipReport2 = () => {
     }
 
 
-    const grabLocation = (place) => {
+    // const grabLocation = (place) => {
+    //     Geocode.setApiKey("AIzaSyCN1OPqkR7QGFRbnbcQKFoqCIei84_dGSY");
+    //     console.log('location', place)
+    //         Geocode.setRegion("us")
+    //             Geocode.fromAddress(place).then(
+    //                 (geoData) => {
+    //                 const { lat, lng } = geoData.results[0].geometry.location;
+    //                 setLoco([lat, lng])
+    //                 },
+    //                 (error) => {
+    //                 console.error(error);
+    //                 }
+    //             );
+    // }
+    async function grabLocation (place){
         Geocode.setApiKey("AIzaSyCN1OPqkR7QGFRbnbcQKFoqCIei84_dGSY");
         console.log('location', place)
-            Geocode.setRegion("us")
-                Geocode.fromAddress(place).then(
-                    (geoData) => {
-                    const { lat, lng } = geoData.results[0].geometry.location;
-                    setLoco([lat, lng])
-                    console.log(loco)
-                    },
-                    (error) => {
-                    console.error(error);
-                    }
-                );
+        Geocode.setRegion("us")
+        try{
+            const response = await Geocode.fromAddress(place)
+            const { lat, lng } = await geoData.results[0].geometry.location;
+            return [lat,lng]
+        } catch (error){
+            return console.log(error)
+        }
     }
 
-    const grabLocationTwo = (place) => {
-        Geocode.setApiKey("AIzaSyCN1OPqkR7QGFRbnbcQKFoqCIei84_dGSY");
-        console.log('location', place)
-            Geocode.setRegion("us")
-                Geocode.fromAddress(place).then(
-                    (geoData) => {
-                    const { lat, lng } = geoData.results[0].geometry.location;
-                    setLocoTwo([lat, lng])
-                    console.log(loco)
-                    },
-                    (error) => {
-                    console.error(error);
-                    }
-                );
-            }
-            console.log("FINAL RESULT",loco)
-            console.log("FINAL RESULT",locoTwo)
+    // async function grabLocationTwo (place){
+    //     Geocode.setApiKey("AIzaSyCN1OPqkR7QGFRbnbcQKFoqCIei84_dGSY");
+    //     console.log('location', place)
+    //     Geocode.setRegion("us")
+    //     try{
+    //         const response = await Geocode.fromAddress(place)
+    //         const { lat, lng } = await geoData.results[0].geometry.location;
+    //         return [lat,lng]
+    //     } catch (error){
+    //         return console.log(error)
+    //     }
+    // }
 
-    const handleSubmit =  (e) => {
+    // const grabLocationTwo = (place) => {
+    //     Geocode.setApiKey("AIzaSyCN1OPqkR7QGFRbnbcQKFoqCIei84_dGSY");
+    //     console.log('location', place)
+    //         Geocode.setRegion("us")
+    //             Geocode.fromAddress(place).then(
+    //                 (geoData) => {
+    //                 const { lat, lng } = geoData.results[0].geometry.location;
+    //                 setLocoTwo([lat, lng])
+    //                 console.log(loco)
+    //                 },
+    //                 (error) => {
+    //                 console.error(error);
+    //                 }
+    //             );
+    //         }
+            // console.log("FINAL RESULT LOCO",loco)
+            // console.log("FINAL RESULT LOCOTWO",locoTwo)
+
+    const handleSubmit =  async (e) => {
         e.preventDefault();
+        console.log(e.currentTarget)
 
          //take a date and split it into day/month/year
         let date = e.currentTarget.birthday.value.split('-');
@@ -79,9 +105,9 @@ const FriendshipReport2 = () => {
         let time = e.currentTarget.timeM.value.split(':');
         let timeF = e.currentTarget.timeF.value.split(':');
 
-        // let latLon =  grabLocation(e.currentTarget.locationM.value);
-        // // console.log(e.currentTarget.locationF.value)
-        // let latLonF =  grabLocationTwo(e.currentTarget.locationF.value);
+        let latLon = await grabLocation(e.currentTarget.locationM.value);
+        console.log("PLEASE WORKK", e.currentTarget.place)
+        let latLonF = await grabLocation(e.currentTarget.place.value);
             
             // console.log("HEYYYYYYYYY", latLon)
         //would need to call grabComp in here and pass in the data
@@ -91,20 +117,21 @@ const FriendshipReport2 = () => {
             p_year: `${date[0]}`,
             p_hour: `${time[0]}`,
             p_min: `${time[1]}`,
-            p_lat: `${loco[0]}`,
-            p_lon: `${loco[1]}`,
+            p_lat: `${latLon[0]}`,
+            p_lon: `${latLon[1]}`,
             p_tzone: '5.5',
             s_day: `${dateF[2]}`,
             s_month: `${dateF[1]}`,
             s_year: `${dateF[0]}`,
             s_hour: `${timeF[0]}`,
             s_min: `${timeF[1]}`,
-            s_lat: `${locoTwo[0]}`,
-            s_lon: `${locoTwo[1]}`,
+            s_lat: `${latLonF[0]}`,
+            s_lon: `${latLonF[1]}`,
             s_tzone: '5.5',
         }
         //call grabComp and pass in the object of data
-        grabComp(dataToSend);
+        const res = await grabComp(dataToSend);
+        setIsSubmitted(true)
     }
 
 
@@ -146,12 +173,14 @@ const FriendshipReport2 = () => {
             </VStack>
             </Center>
            
+           <Box>
            
-           <Grid templateRows="repeat(2, 1fr)" templateColumns="repeat(2, 1fr)" gap={2}>
            <form onSubmit={handleSubmit}>
-            <GridItem colStart={1} rowSpan={2}>
+            
+                
             <VStack spacing={4}>
-                <HStack>
+                
+                <HStack  w="100%">
             <FormControl isRequired>
                 <InputGroup>
                     <InputLeftElement>
@@ -181,7 +210,7 @@ const FriendshipReport2 = () => {
                     </FormControl>
                 </HStack>
                 
-                <HStack>
+                <HStack  w="100%">
                 <FormControl isRequired>
                 <InputGroup>
                     <InputLeftElement>
@@ -208,9 +237,9 @@ const FriendshipReport2 = () => {
                         />
                     </InputGroup>
                     </FormControl>
-
+                    
                 </HStack>
-
+               
                 <HStack w="100%">
                 <FormControl isRequired>
                 <InputGroup>
@@ -239,7 +268,8 @@ const FriendshipReport2 = () => {
                     </InputGroup>
                     </FormControl>
                 </HStack>
-                <HStack>
+                
+                <HStack  w="100%">
                 <FormControl isRequired>
                 <InputGroup>
                     <InputLeftElement>
@@ -261,14 +291,16 @@ const FriendshipReport2 = () => {
                         <Input
                         id="location"
                         type="text"
-                        name="locationF"
+                        name="place"
                         placeholder="Friend's Birth Place"
                         />
                     </InputGroup>
                     </FormControl>
                 </HStack>
+                
             </VStack>
-            </GridItem>
+            
+           
 
                <Center>
                     <Button w="12vw" mt={6} variantColor="blue" bgColor="blue.600" type="submit" shadow="md">
@@ -276,7 +308,8 @@ const FriendshipReport2 = () => {
                     </Button>
                 </Center>
             </form>
-           </Grid>
+            </Box>
+           
 
            </Box>
            </Box>
@@ -297,7 +330,8 @@ const FriendshipReport2 = () => {
                 FRIENDSHIP COMPATIBILITY
                         
                 </Box>
-                 {/* <Box
+                {submitted === true  ? (
+                 <Box
                 padding="2"
                 textAlign="center"
                 as="p"
@@ -308,6 +342,7 @@ const FriendshipReport2 = () => {
                 color={textColor[colorMode]}
                 wrap
                 >
+                
                 {friendship.friendship_report[0]}
                 {friendship.friendship_report[1]}
                 {friendship.friendship_report[2]}
@@ -317,8 +352,11 @@ const FriendshipReport2 = () => {
                 {friendship.friendship_report[6]}
                 {friendship.friendship_report[7]}
                 {friendship.friendship_report[8]}
-                        
-                </Box>  */}
+                   
+                </Box> 
+                ) : ('Please Fill Out Form Above')}
+
+                
        </Box>
        <br></br>
         <br></br>
