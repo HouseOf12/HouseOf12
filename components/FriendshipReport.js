@@ -17,6 +17,7 @@ const FriendshipReport2 = () => {
     const [loco, setLoco] = useState()
     const [locoTwo, setLocoTwo] = useState()
     const [submitted, setIsSubmitted] = useState(false)
+    const [locationF, setLocationF] = useState('');
 
 
     const grabComp = (dataToSend) => {
@@ -55,7 +56,8 @@ const FriendshipReport2 = () => {
         Geocode.setRegion("us")
         try{
             const response = await Geocode.fromAddress(place)
-            const { lat, lng } = await geoData.results[0].geometry.location;
+            const { lat, lng } = await response.results[0].geometry.location;
+            console.log(lat, lng)
             return [lat,lng]
         } catch (error){
             return console.log(error)
@@ -93,6 +95,12 @@ const FriendshipReport2 = () => {
             // console.log("FINAL RESULT LOCO",loco)
             // console.log("FINAL RESULT LOCOTWO",locoTwo)
 
+    const handleChangeLocation = (e) => {
+        const location = e.target.value;
+        console.log('changing', location)
+        setLocationF(location);
+    }
+
     const handleSubmit =  async (e) => {
         e.preventDefault();
         console.log(e.currentTarget)
@@ -106,8 +114,10 @@ const FriendshipReport2 = () => {
         let timeF = e.currentTarget.timeF.value.split(':');
 
         let latLon = await grabLocation(e.currentTarget.locationM.value);
-        console.log("PLEASE WORKK", e.currentTarget.place)
-        let latLonF = await grabLocation(e.currentTarget.place.value);
+        
+        let latLonF = await grabLocation(locationF);
+        console.log('lat lon', latLon)
+        console.log('friend lat lon', latLon);
             
             // console.log("HEYYYYYYYYY", latLon)
         //would need to call grabComp in here and pass in the data
@@ -312,19 +322,22 @@ const FriendshipReport2 = () => {
                     />
                 </InputGroup>
                 </FormControl>
+
                 <FormControl isRequired>
-                    <InputGroup>
-                        <InputLeftElement>
-                        <Icon as={FaGlobeAmericas} />
-                        </InputLeftElement>
-                        <Input
-                        id="location"
-                        type="text"
-                        name="place"
-                        placeholder="Friend's Birth Place"
-                        />
-                    </InputGroup>
-                    </FormControl>
+                <InputGroup>
+                    <InputLeftElement>
+                    <Icon as={FaGlobeAmericas} />
+                    </InputLeftElement>
+                    <Input
+                    id="locationF"
+                    type="text"
+                    name="locationF"
+                    placeholder="Friend's Birth Place"
+                    value = {locationF}
+                    onChange= {(e) => handleChangeLocation(e)}
+                    />
+                </InputGroup>
+                </FormControl>
                 </HStack>
                 
             </VStack>
