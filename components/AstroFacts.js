@@ -1,5 +1,5 @@
 import {useState} from 'react'
-import {Button} from "@chakra-ui/react";
+import {Button, Box, VStack, Image} from "@chakra-ui/react";
 
 
 const AstroFacts = () => {
@@ -88,7 +88,9 @@ const AstroFacts = () => {
     const returnGoodFact = (event) =>{
         let goodNumber = Math.floor(Math.random() * 30)
         let goodQuote = goodFacts.filter(fact => goodNumber === fact.id)
+        let eraseBad =  {   id:0, fact:""} 
         setGFact(goodQuote)
+        setBFact(eraseBad)
     }
 
 
@@ -98,7 +100,9 @@ const AstroFacts = () => {
     const returnBadFact = (event) =>{
         let badNumber = Math.floor(Math.random() * 30)
         let badQuote = badFacts.filter(fact => badNumber === fact.id)
+        let eraseGood =  {   id:0, fact:""} 
         setBFact(badQuote)
+        setGFact(eraseGood)
     }
 
 
@@ -107,16 +111,24 @@ console.log("goooooood", gFact)
 
     return (
         <div>
-            <h1> hi bitch</h1>
+            {/* <h1> hi bitch</h1> */}
+            <Box display="flex" justifyContent="center" marginTop="70px"> 
             <Button color="black" onClick={()=>returnGoodFact(event)}> Good Fact</Button>      
             <Button  color="black" onClick={()=>returnBadFact(event)}> Bad Fact</Button>            
-      
-            <h1>
-                {gFact.map(info => info.fact)}
-            </h1>
-            <h1>
-                {bFact.map(info => info.fact)}
-            </h1>
+            </Box>
+            <VStack display="flex" justifyContent="center" marginBottom="100px"> 
+
+            <Image height="50%"  width="50%" marginTop="30px" src="https://media1.giphy.com/media/AszR2sY1ijlw8CCk1o/giphy.gif?cid=ecf05e47y0alza4cyl467t0i2xz757chfw7c2shw42f2tcjf&rid=giphy.gif" />
+
+
+            <Box width="30%" marginTop="140px" fontSize="1.8vw" position="absolute" color="black">
+            {(gFact.fact != "") ? gFact.map(info => info.fact) : "" } 
+            </Box>
+            <Box  width="30%" marginTop="140px" fontSize="1.8vw"   position="absolute" color="black">
+                {(bFact.fact != "") ? bFact.map(info => info.fact) : "" } 
+                {/* {bFact.map(info => info.fact)} */}
+            </Box>
+            </VStack>
         </div>
     )
 }
