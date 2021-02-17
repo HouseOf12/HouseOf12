@@ -33,5 +33,21 @@ export function insertEntry(db, userId, title, body) {
         //ops is an array in the repsonse object, ops at 0 is the object that object of the entry that was just put into the db
         return ops[0];
     })
+
+    
+
+
+}
+
+export function deleteEntry(db, id) {
+    return db
+    .collection('journals')
+    .findOneAndDelete({
+        _id: id
+    })
+    .then(res=>{
+        console.log("this is deleted")
+    })
+    
 }
 

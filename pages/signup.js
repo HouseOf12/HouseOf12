@@ -24,28 +24,91 @@ import {
   Image,
   Center
 } from "@chakra-ui/react";
+import Geocode from 'react-geocode';
 
 
 const SignupPage = () => {
   const [user, { mutate }] = useCurrentUser();
   const [errorMsg, setErrorMsg] = useState('');
+
   useEffect(() => {
     // redirect to home if user is authenticated
     if (user) Router.replace('/');
   }, [user]);
 
+  async function getLatLon(place) {
+    console.log('the location', place);
+    Geocode.setApiKey("AIzaSyCN1OPqkR7QGFRbnbcQKFoqCIei84_dGSY");
+    Geocode.setLanguage("en");
+    Geocode.setRegion("us"); //optional
+    Geocode.setLocationType("APPROXIMATE");
+    try {
+      const response = await Geocode.fromAddress(place);
+      //console.log('the response', response);
+      const { lat, lng } =  await response.results[0].geometry.location;
+      console.log(lat, lng)
+      return [lat, lng];
+
+    }
+    catch(err) {
+      return console.log('error', err);
+    }
+   
+
+  }
+  // const getLatLon = (place) => {
+  //   console.log('the location', place);
+  //   Geocode.setApiKey("AIzaSyCN1OPqkR7QGFRbnbcQKFoqCIei84_dGSY");
+  //   Geocode.setLanguage("en");
+  //   Geocode.setRegion("us"); //optional
+  //   Geocode.setLocationType("APPROXIMATE");
+  //   Geocode.fromAddress(place)
+  //   .then((response) => {
+  //       const { lat, lng } =  response.results[0].geometry.location;
+  //       console.log(lat, lng);
+  //       setLatLon([lat, lng]);
+  //     },
+  //     (error) => {
+  //       console.error(error);
+  //     }
+  //   );
+  // }
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    let name = e.currentTarget.name.value;
+    let email = e.currentTarget.email.value;
+    let password = e.currentTarget.password.value;
+
+    //split up birthday into day/month/year
+    //split up time into hour/min
+    //split location lat lon
+
+    //take a date and split it into day/month/year
+    let date = e.currentTarget.birthday.value.split('-');
+   
+
+    //take a time and split it into hour/min
+    let time = e.currentTarget.time.value.split(':');
+    console.log('time', time)
+    let latLon = await getLatLon(e.currentTarget.location.value);
+    console.log('LAT LON INSIDE', latLon)
 
     const userInfo = {
-      name: e.currentTarget.name.value,
-      email: e.currentTarget.email.value,
-      password: e.currentTarget.password.value,
-      birthday: e.currentTarget.birthday.value,
-      time: e.currentTarget.time.value,
-      location: e.currentTarget.location.value
+      name: name,
+      email: email,
+      password: password,
+      day: date[2],
+      month: date[1],
+      year: date[0],
+      hour: time[0],
+      minute: time[1],
+      lat: latLon[0],
+      lon: latLon[1],
     };
 
+    console.log('userinfo to post', userInfo)
     const res = await fetch('/api/users', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

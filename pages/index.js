@@ -1,6 +1,12 @@
 import React from "react";
 import { useCurrentUser } from "../hooks/index.js";
 import HoroscopePics from "@/components/HoroscopePics.js";
+<<<<<<< HEAD
+=======
+import AstroFacts from "@/components/AstroFacts.js";
+import News from "@/components/News.js";
+
+>>>>>>> fd1bbd43036322cfcd06605f2390ebbc7924e461
 import {Box, Center, ChakraProvider, extendTheme, useColorMode, colorMode} from '@chakra-ui/react'
 import {Fonts} from "../components/Fonts"
 // import Test from "../components/Test.js"
@@ -41,6 +47,9 @@ const IndexPage = () => {
        
        
       </Box>
+    
+        <AstroFacts />
+     
       </ChakraProvider>
     
       // {/* </Box> */}

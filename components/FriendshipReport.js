@@ -159,18 +159,47 @@ const FriendshipReport2 = () => {
            <Box>
            <Flex mt={6} border="4px solid rgba(212, 175, 53, 0.9)" alignItems="center" justifyContent="center" color="gray.200" bg="gray.400" borderRadius="full"  mb={`-${badgeRadius}em`} shadow="md" zIndex="docked">
             <Image
-                src="./icon.png" height="22vh"  width="13vw" size={`${badgeRadius + 1}em`} mt={`${badgeRadius / 6}em`} />
-             </Flex>  
-             <Box border="4px solid rgba(212, 175, 53, 0.9)" w="38vw" h="64vh" p={4} pt="24" color={textColor[colorMode]} bgColor={bgColor[colorMode]} borderRadius="md" shadow="lg" >
-             <Center>
-                 <VStack>
-        <Heading as="h1" mt="-2vh" textAlign="center" textTransform="uppercase" color={textColor[colorMode]} letterSpacing={2}>
-            Compatible Amongst The Stars
-            </Heading>
-            <Heading mb="2" as="h2" color="gray.300" fontSize="lg" color={textColor[colorMode]} textAlign="center">
-           Friendship
-            </Heading>
-            </VStack>
+              src="./icon.png"
+              height="22vh"
+              width="13vw"
+              size={`${badgeRadius + 1}em`}
+              mt={`${badgeRadius / 6}em`}
+            />
+          </Flex>
+          <Box
+            border="4px solid rgba(212, 175, 53, 0.9)"
+            w="38vw"
+            h="64vh"
+            p={4}
+            pt="24"
+            color={textColor[colorMode]}
+            bgColor={bgColor[colorMode]}
+            borderRadius="md"
+            shadow="lg"
+          >
+            <Center>
+              <VStack>
+                <Heading
+                  as="h1"
+                  mt="-2vh"
+                  textAlign="center"
+                  textTransform="uppercase"
+                  color={textColor[colorMode]}
+                  letterSpacing={2}
+                >
+                  Compatible Amongst The Stars
+                </Heading>
+                <Heading
+                  mb="2"
+                  as="h2"
+                  color="gray.300"
+                  fontSize="lg"
+                  color={textColor[colorMode]}
+                  textAlign="center"
+                >
+                  Friendship
+                </Heading>
+              </VStack>
             </Center>
            
            <Box>
@@ -352,6 +381,7 @@ const FriendshipReport2 = () => {
                 {friendship.friendship_report[6]}
                 {friendship.friendship_report[7]}
                 {friendship.friendship_report[8]}
+<<<<<<< HEAD
                    
                 </Box> 
                 ) : ('Please Fill Out Form Above')}
@@ -359,20 +389,14 @@ const FriendshipReport2 = () => {
                 
        </Box>
        <br></br>
+=======
+                        
+                </Box>  */}
+        </Box>
+>>>>>>> fd1bbd43036322cfcd06605f2390ebbc7924e461
         <br></br>
        </VStack>
-       
        </Center>
-       
-       
-       
-       
-       
-       
-       
-       
-       
-
     )
 }
 
