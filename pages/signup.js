@@ -24,6 +24,7 @@ import {
   Image,
   Center
 } from "@chakra-ui/react";
+import Geocode from 'react-geocode';
 
 
 const SignupPage = () => {
@@ -34,30 +35,70 @@ const SignupPage = () => {
     if (user) Router.replace('/');
   }, [user]);
 
+  const getLatLon = () => {
+    let latLon = [];
+    Geocode.setLanguage("en");
+    Geocode.setRegion("us"); //optional
+    Geocode.setLocationType("APPROXIMATE");
+    Geocode.fromAddress("Eiffel Tower")
+    .then((response) => {
+        const { lat, lng } = response.results[0].geometry.location;
+        console.log(lat, lng);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+
+
+  }
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const userInfo = {
-      name: e.currentTarget.name.value,
-      email: e.currentTarget.email.value,
-      password: e.currentTarget.password.value,
-      birthday: e.currentTarget.birthday.value,
-      time: e.currentTarget.time.value,
-      location: e.currentTarget.location.value
-    };
+    //split up birthday into day/month/year
+    //split up time into hour/min
+    //split location lat lon
 
-    const res = await fetch('/api/users', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(userInfo),
-    });
+    //take a date and split it into day/month/year
+    let date = e.currentTarget.birthday.value.split('-');
    
-    if (res.status === 201) {
-      const userObj = await res.json();
-      mutate(userObj);
-    } else {
-      setErrorMsg(await res.text());
-    }
+
+    //take a time and split it into hour/min
+    let time = e.currentTarget.time.value.split(':');
+    console.log('time', time)
+
+    getLatLon()
+
+    // const userInfo = {
+    //   name: e.currentTarget.name.value,
+    //   email: e.currentTarget.email.value,
+    //   password: e.currentTarget.password.value,
+    //   day: date[2],
+    //   month: date[1],
+    //   year: date[0]
+    //   hour: time[0],
+    //   minute: time[1],
+    //   lat: ,
+    //   lon: ,
+    //   time: e.currentTarget.time.value,
+    //   location: e.currentTarget.location.value
+    // };
+
+    //console.log('userinfo to post', userInfo)
+    // const res = await fetch('/api/users', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify(userInfo),
+    // });
+   
+    // if (res.status === 201) {
+    //   const userObj = await res.json();
+    //   mutate(userObj);
+    // } else {
+    //   setErrorMsg(await res.text());
+    // }
   };
 
   function handleToggle(e) {

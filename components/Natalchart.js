@@ -6,6 +6,7 @@ import CardFlip from "./CardFlip"
 import { useCurrentUser } from '../hooks/index';
 
 
+
 // Houses have a house number and a sign
 // Platents have a name and the sign 
 // Compare sign from planets, find match in houses and return
@@ -22,6 +23,11 @@ const Natalchart = ({ user }) => {
     const [chart, setChart] = useState([])
 
     console.log('user@@@', user)
+
+   
+
+
+
    
 
     useEffect(() => {

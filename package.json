@@ -39,6 +39,7 @@
     "react": "^16.13.1",
     "react-card-flip": "^1.0.11",
     "react-dom": "^16.13.1",
+    "react-geocode": "^0.2.3",
     "react-icons": "^4.2.0",
     "sequelize": "^6.5.0",
     "sqlite3": "^5.0.1",

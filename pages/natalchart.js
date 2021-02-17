@@ -9,7 +9,6 @@ import { findUserById } from '../db/index';
 
 //export const natalchart = ({user}) => {
 export default function natalchart({ user }) {
-    console.log('the user', user)
     return (
         
         <Box>
