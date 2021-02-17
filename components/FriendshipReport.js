@@ -381,7 +381,6 @@ const FriendshipReport2 = () => {
                 {friendship.friendship_report[6]}
                 {friendship.friendship_report[7]}
                 {friendship.friendship_report[8]}
-<<<<<<< HEAD
                    
                 </Box> 
                 ) : ('Please Fill Out Form Above')}
@@ -389,11 +388,6 @@ const FriendshipReport2 = () => {
                 
        </Box>
        <br></br>
-=======
-                        
-                </Box>  */}
-        </Box>
->>>>>>> fd1bbd43036322cfcd06605f2390ebbc7924e461
         <br></br>
        </VStack>
        </Center>
