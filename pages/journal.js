@@ -9,6 +9,7 @@ import { TiArrowMaximiseOutline } from 'react-icons/ti';
 // import JournalEntry from '@/components/JournalEntry';
 
 
+
 export default function journal({ user, data }) {
     //console.log('data???', data)
     const [entries, setEntries] = useState([]);
@@ -36,6 +37,7 @@ export default function journal({ user, data }) {
 
     return (
         <div>
+            
             <JournalForm/>
             <div>
     

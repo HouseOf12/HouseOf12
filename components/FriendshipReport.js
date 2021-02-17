@@ -1,202 +1,126 @@
 import React from 'react'
 import {useEffect, useState} from 'react'
-import {Box, Center, useColorMode, Image, VStack, extendTheme, ChakraProvider, Icon , IconButton, Button, Heading, Flex, Stack, FormControl, InputGroup, InputLeftElement, Input, Divider, Grid, GridItem} from '@chakra-ui/react';
+import {Box, Center, useColorMode, Image, VStack, extendTheme, ChakraProvider, Icon , IconButton, Button, Heading, Flex, Stack, FormControl, InputGroup, InputLeftElement, Input, Divider, Grid, GridItem, HStack} from '@chakra-ui/react';
 import { EmailIcon, LockIcon, ViewIcon, ViewOffIcon, StarIcon } from '@chakra-ui/icons'
 import {FaGlobeAmericas } from "react-icons/fa";
 import { MdCake, MdAccessTime } from "react-icons/md";
+import Geocode from "react-geocode";
 
 
 import axios from 'axios';
 
 
-
-
-
-const FriendshipReport = () => {
-
-
-    const [firstBday, setFirstBday] = useState('');
-    const [secondBday, setSecondBday] = useState('');
-
-
-    const [firstTime, setFirstTime] = useState('');
-    const [secondTime, setSecondTime] = useState('');
-
-    const [firstLocation, setFirstLocation] = useState('')
-    const [secondLocation, setSecondLocation] = useState('')
-
-
-
-
-    //handles onchange for date
-    const handleInput = (event) =>{
-        setFirstBday(event.target.value)
-    }
-
-    const handleInput2 = (event) =>{
-        setSecondBday(event.target.value)
-    }
-
-
-    //handles onchange for time
-    const handleTime = (event) =>{
-        setFirstTime(event.target.value)
-    }
-
-
-    const handleSecondTime = (event) =>{
-        setSecondTime(event.target.value)
-    }
-
-
-    //handles on change for location
-    const handleLocation = (event) =>{
-        setFirstLocation(event.target.value)
-    }
-
-    const handleSecondLocation = (event) =>{
-        setSecondLocation(event.target.value)
-    }
-
-
-
-
-    //handles split dates
-    let newDate = `${firstBday}`.split('-')
-    console.log("first friend", newDate)
-    //returns year, month day
-
-    let secondDate = `${secondBday}`.split('-')
-    //console.log("second friend", secondDate)
-
-
-
-
-    //handles split  time
-    let newTime = `${firstTime}`.split(":")
-    console.log("first time", newTime)
-    //returns "13", "00" instead of 1pm
-
-
-    let friendTime = `${secondTime}`.split(":")
-    console.log("second time", friendTime)
-
-
-    
-
-
-    //returns exactly what we wrote in the input, if user writes boston, it returns boston.
-    console.log("this is the first location", firstLocation)
-    console.log("this is the second location", secondLocation)
-
-
-
-
-    // p_day: `${newDate[2]}`,
-    // p_month: `${newDate[1]}`,
-    // p_year: `${newDate[0]}`,
-    // p_hour: `{newTime[0]}`,
-    // p_min: `{newTime[1]}`,
-    // p_lat: '34.1808',
-    // p_lon: '118.3090',
-    // p_tzone: '5.5',
-    // s_day: `{secondDate[2]}`,
-    // s_month: `{secondDate[1]}`',
-    // s_year: `{secondDate[0]}`,
-    // s_hour: `{friendTime[0]}`,
-    // s_min: {friendTime[1]}`,
-    // s_lat: '34.1808',
-    // s_lon: '118.3090',
-    // s_tzone: '5.5',
-
-
-
-
-
-
-
-
+const FriendshipReport2 = () => {
 
     const badgeRadius = 4;
     const [friendship, setFriendship] = useState()
-    const [location, setLocation] = useState()
-    useEffect(() => {
-       grabComp()
-       grabLocation()
-      }, []);
+    const [loco, setLoco] = useState()
+    const [locoTwo, setLocoTwo] = useState()
 
-    const grabComp = () => {
-        var userId = "615745";
-        var apiKey = "758b876f8345a5b798e2f02e38e7c7ab";
+
+    const grabComp = (dataToSend) => {
+        let userId = "615745";
+        let apiKey = "758b876f8345a5b798e2f02e38e7c7ab";
         const friendData = axios
-        .post("https://json.astrologyapi.com/v1/friendship_report/tropical",
-        {
-            p_day: '24',
-            p_month: '2',
-            p_year: '1998',
-            p_hour: '06',
-            p_min: '16',
-            p_lat: '34.1808',
-            p_lon: '118.3090',
-            p_tzone: '5.5',
-            s_day: '19',
-            s_month: '07',
-            s_year: '1997',
-            s_hour: '05',
-            s_min: '30',
-            s_lat: '34.1808',
-            s_lon: '118.3090',
-            s_tzone: '5.5',
-          },
+        .post("https://json.astrologyapi.com/v1/friendship_report/tropical", dataToSend,
           {headers: {
             "authorization": "Basic " + btoa(userId+":"+apiKey),
             "Content-Type":'application/json'
             }})
           .then((friendData) => {
               console.log('FRIEND DATA', friendData.data)
-              setLocation(friendData.data)
-          })
-           
+              setFriendship(friendData.data)
+          })    
     }
 
 
-    // console.log(grabComp())
-    console.log("LOCATION",  location)
-    console.log("FRIENDSHIP", friendship)
-
-    const grabLocation = () => {
-        var userId = "615745";
-        var apiKey = "758b876f8345a5b798e2f02e38e7c7ab";
-        const geoData = axios
-        .post("https://json.astrologyapi.com/v1/geo_details",
-        {
-            place: 'los angeles',
-            maxRows: 6
-          },
-          {headers: {
-            "authorization": "Basic " + btoa(userId+":"+apiKey),
-            "Content-Type":'application/json'
-            }})
-          .then((geoData) => {
-              console.log('GET DATA', geoData.data)
-              
-              setFriendship(geoData.data)
-          })
-           
+    const grabLocation = (place) => {
+        Geocode.setApiKey("AIzaSyCN1OPqkR7QGFRbnbcQKFoqCIei84_dGSY");
+        console.log('location', place)
+            Geocode.setRegion("us")
+                Geocode.fromAddress(place).then(
+                    (geoData) => {
+                    const { lat, lng } = geoData.results[0].geometry.location;
+                    setLoco([lat, lng])
+                    console.log(loco)
+                    },
+                    (error) => {
+                    console.error(error);
+                    }
+                );
     }
-    // console.log("THTHTHTHTHHTHTHTHTHTHT", friendship.friendship_report[0])
+
+    const grabLocationTwo = (place) => {
+        Geocode.setApiKey("AIzaSyCN1OPqkR7QGFRbnbcQKFoqCIei84_dGSY");
+        console.log('location', place)
+            Geocode.setRegion("us")
+                Geocode.fromAddress(place).then(
+                    (geoData) => {
+                    const { lat, lng } = geoData.results[0].geometry.location;
+                    setLocoTwo([lat, lng])
+                    console.log(loco)
+                    },
+                    (error) => {
+                    console.error(error);
+                    }
+                );
+            }
+            console.log("FINAL RESULT",loco)
+            console.log("FINAL RESULT",locoTwo)
+
+    const handleSubmit =  (e) => {
+        e.preventDefault();
+
+         //take a date and split it into day/month/year
+        let date = e.currentTarget.birthday.value.split('-');
+        let dateF = e.currentTarget.birthdayF.value.split('-');
+
+        //take a time and split it into hour/min
+        let time = e.currentTarget.timeM.value.split(':');
+        let timeF = e.currentTarget.timeF.value.split(':');
+
+        // let latLon =  grabLocation(e.currentTarget.locationM.value);
+        // // console.log(e.currentTarget.locationF.value)
+        // let latLonF =  grabLocationTwo(e.currentTarget.locationF.value);
+            
+            // console.log("HEYYYYYYYYY", latLon)
+        //would need to call grabComp in here and pass in the data
+        const dataToSend = {
+            p_day: `${date[2]}`,
+            p_month: `${date[1]}`,
+            p_year: `${date[0]}`,
+            p_hour: `${time[0]}`,
+            p_min: `${time[1]}`,
+            p_lat: `${loco[0]}`,
+            p_lon: `${loco[1]}`,
+            p_tzone: '5.5',
+            s_day: `${dateF[2]}`,
+            s_month: `${dateF[1]}`,
+            s_year: `${dateF[0]}`,
+            s_hour: `${timeF[0]}`,
+            s_min: `${timeF[1]}`,
+            s_lat: `${locoTwo[0]}`,
+            s_lon: `${locoTwo[1]}`,
+            s_tzone: '5.5',
+        }
+        //call grabComp and pass in the object of data
+        grabComp(dataToSend);
+    }
+
+
     const bgColor = {
         light: "rgba(70, 93, 114, 0.9)",
         dark: "rgba(74, 85, 104, 0.9)",
-      };
-      const textColor = { light: "blue.200", dark: "yellow.500" };
-      const { colorMode, toggleColorMode } = useColorMode();
+    };
 
-      const theme = extendTheme({
-        fonts: {
-          body: "Tryst-Regular",
-        },
-      })
+    const textColor = { light: "blue.200", dark: "yellow.500" };
+    const { colorMode, toggleColorMode } = useColorMode();
+
+    const theme = extendTheme({
+    fonts: {
+        body: "Tryst-Regular",
+    },
+    })
 
     return (
         
@@ -224,12 +148,10 @@ const FriendshipReport = () => {
            
            
            <Grid templateRows="repeat(2, 1fr)" templateColumns="repeat(2, 1fr)" gap={2}>
-               <GridItem colStart={1} rowSpan={2}>
-               
-       
-            <form>
-            {/* <form onSubmit={handleSubmit}> */}
+           <form onSubmit={handleSubmit}>
+            <GridItem colStart={1} rowSpan={2}>
             <VStack spacing={4}>
+                <HStack>
             <FormControl isRequired>
                 <InputGroup>
                     <InputLeftElement>
@@ -244,150 +166,125 @@ const FriendshipReport = () => {
                 </InputGroup>
                 </FormControl>
 
-
+                <FormControl isRequired>
+                    <InputGroup>
+                        <InputLeftElement>
+                        <StarIcon />
+                        </InputLeftElement>
+                        <Input
+                        id="name"
+                        type="text"
+                        name="nameF"
+                        placeholder="Your Friend's Name"
+                        />
+                    </InputGroup>
+                    </FormControl>
+                </HStack>
+                
+                <HStack>
                 <FormControl isRequired>
                 <InputGroup>
                     <InputLeftElement>
                     <Icon as={MdCake} />
                     </InputLeftElement>
                     <Input
-                    id="pbirthday"
-                    type="pdate"
-                    name="pbirthday"
-                    value={firstBday}
+                    id="birthday"
+                    type="date"
+                    name="birthday"
                     placeholder="Enter Birth Date"
-                    onChange={handleInput}
                     />
                 </InputGroup>
                 </FormControl>
+                <FormControl isRequired>
+                    <InputGroup>
+                        <InputLeftElement>
+                        <Icon as={MdCake} />
+                        </InputLeftElement>
+                        <Input
+                        id="sbirthday"
+                        type="date"
+                        name="birthdayF"
+                        placeholder="Friend's Birth Date"
+                        />
+                    </InputGroup>
+                    </FormControl>
 
+                </HStack>
 
+                <HStack w="100%">
                 <FormControl isRequired>
                 <InputGroup>
                     <InputLeftElement>
                     <Icon as={MdAccessTime} />
                     </InputLeftElement>
                     <Input
-                    id="ptime"
-                    type="ptime"
-                    name="ptime"
-                    value={firstTime}
-                    onChange ={handleTime}
+                    id="time"
+                    type="time"
+                    name="timeM"
                     placeholder="Enter Birth Time"
                     />
                 </InputGroup>
                 </FormControl>
-
+                <FormControl isRequired>
+                    <InputGroup>
+                        <InputLeftElement>
+                        <Icon as={MdAccessTime} />
+                        </InputLeftElement>
+                        <Input
+                        id="time"
+                        type="time"
+                        name="timeF"
+                        placeholder="Friend's Birth Time"
+                        />
+                    </InputGroup>
+                    </FormControl>
+                </HStack>
+                <HStack>
                 <FormControl isRequired>
                 <InputGroup>
                     <InputLeftElement>
                     <Icon as={FaGlobeAmericas} />
                     </InputLeftElement>
                     <Input
-                    id="plocation"
-                    type="ptext"
-                    name="plocation"
-                    value={firstLocation}
-                    onChange = {handleLocation}
+                    id="location"
+                    type="text"
+                    name="locationM"
                     placeholder="Enter Birth Place"
                     />
                 </InputGroup>
                 </FormControl>
-
+                <FormControl isRequired>
+                    <InputGroup>
+                        <InputLeftElement>
+                        <Icon as={FaGlobeAmericas} />
+                        </InputLeftElement>
+                        <Input
+                        id="location"
+                        type="text"
+                        name="locationF"
+                        placeholder="Friend's Birth Place"
+                        />
+                    </InputGroup>
+                    </FormControl>
+                </HStack>
             </VStack>
+            </GridItem>
+
+               <Center>
+                    <Button w="12vw" mt={6} variantColor="blue" bgColor="blue.600" type="submit" shadow="md">
+                    Check Synastry
+                    </Button>
+                </Center>
             </form>
-        
-               </GridItem>
-
-               <GridItem colStart={2} rowSpan={2}>
-               
-       
-       <form>
-       {/* <form onSubmit={handleSubmit}> */}
-       <VStack spacing={4}>
-       <FormControl isRequired>
-           <InputGroup>
-               <InputLeftElement>
-               <StarIcon />
-               </InputLeftElement>
-               <Input
-               id="name"
-               type="text"
-               name="name"
-               placeholder="Your Friend's Name"
-               />
-           </InputGroup>
-           </FormControl>
-
-
-           <FormControl isRequired>
-           <InputGroup>
-               <InputLeftElement>
-               <Icon as={MdCake} />
-               </InputLeftElement>
-               <Input
-               id="sbirthday"
-               type="sdate"
-               name="sbirthday"
-               value={secondBday}
-               onChange={handleInput2}
-               placeholder="Friend's Birth Date"
-               />
-           </InputGroup>
-           </FormControl>
-
-
-           <FormControl isRequired>
-           <InputGroup>
-               <InputLeftElement>
-               <Icon as={MdAccessTime} />
-               </InputLeftElement>
-               <Input
-               id="stime"
-               type="stime"
-               name="stime"
-               value={secondTime}
-               onChange={handleSecondTime}
-               placeholder="Friend's Birth Time"
-               />
-           </InputGroup>
-           </FormControl>
-
-           <FormControl isRequired>
-           <InputGroup>
-               <InputLeftElement>
-               <Icon as={FaGlobeAmericas} />
-               </InputLeftElement>
-               <Input
-               id="slocation"
-               type="stext"
-               name="slocation"
-               value={secondLocation}
-               onChange = {handleSecondLocation}
-               placeholder="Friend's Birth Place"
-               />
-           </InputGroup>
-           </FormControl>
-
-           
-           
-       </VStack>
-       </form>
-  
-               </GridItem>
-               
            </Grid>
-           <Center>
-           <Button w="12vw" mt={6} variantColor="blue" bgColor="blue.600" type="submit" shadow="md">
-           Check Synastry
-           </Button>
-           </Center>
+
            </Box>
            </Box>
            <br></br>
            <br></br>
            <Box mt="2" bgColor={bgColor[colorMode]} borderRadius="15px" border="4px solid rgba(212, 175, 53, 0.5)" width="70vw" height="62vh" mt="4vh" justifyContent="center" alignContent="center" alignItems="center" textAlign="center">
-         <Box
+         
+           <Box
                 textAlign="center"
                 as="h3"
                 fontFamily="body"
@@ -441,4 +338,4 @@ const FriendshipReport = () => {
     )
 }
 
-export default FriendshipReport
+export default FriendshipReport2
