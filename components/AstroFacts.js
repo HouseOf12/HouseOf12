@@ -105,10 +105,6 @@ const AstroFacts = () => {
         setGFact(eraseGood)
     }
 
-
-
-console.log("goooooood", gFact)
-
     return (
         <div>
             {/* <h1> hi bitch</h1> */}

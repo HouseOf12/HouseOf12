@@ -3,6 +3,8 @@ import axios from 'axios';
 import {useEffect, useState} from 'react'
 import {Fonts} from "./Fonts"
 import CardFlip from "./CardFlip"
+import { useCurrentUser } from '../hooks/index';
+
 
 
 // Houses have a house number and a sign
@@ -15,8 +17,17 @@ const theme = extendTheme({
     },
   })
 
-const Natalchart = () => {
+const Natalchart = ({ user }) => {
+    //call useCurrentUser to have access to user info
+    //const [user] = useCurrentUser();
     const [chart, setChart] = useState([])
+
+    console.log('user@@@', user)
+
+   
+
+
+
    
 
     useEffect(() => {
@@ -106,7 +117,7 @@ const Natalchart = () => {
             <Fonts />
         <Center>
           
-          <Box  bgSize="cover"  w="26vw" h="50vh " mt="12vh" mb="5vh"  bgImage={`url(${wheelChart.chart_url})`} />
+          {/* <Box  bgSize="cover"  w="26vw" h="50vh " mt="12vh" mb="5vh"  bgImage={`url(${wheelChart.chart_url})`} /> */}
           
         </Center>
         <CardFlip />
@@ -129,7 +140,7 @@ const Natalchart = () => {
         padding={2}
         h="56vh">
           
-        <Table variant="simple" size="sm">
+        {/* <Table variant="simple" size="sm">
         <Thead>
             <Tr>
             <Th color={textColor[colorMode]} >Planet</Th>
@@ -204,7 +215,7 @@ const Natalchart = () => {
             <Td isNumeric>{chart.planets[12].house}</Td>
             </Tr>
         </Tbody>
-        </Table>
+        </Table> */}
         </Box>
         
         </VStack>

@@ -3,9 +3,10 @@ import JournalForm from "../components/JournalForm"
 import { useCurrentUser } from '../hooks/index';
 import { all } from '../middlewares/index';
 import { extractUser } from '../lib/api-helpers';
-import { findUserById } from '../db/index';
+import { findUserById} from '../db/index';
 import axios from 'axios';
 import { TiArrowMaximiseOutline } from 'react-icons/ti';
+import {Center,Box, useColorMode} from "@chakra-ui/react"
 // import JournalEntry from '@/components/JournalEntry';
 
 
@@ -19,10 +20,14 @@ export default function journal({ user, data }) {
     //console.log('current user', currentUser)
     //need a use effect to call the backend and retrieve the journal entries 
     useEffect(() => {
-       
        grabEntries()
-
     }, [])
+
+    useEffect(() => {
+        displayEntry
+     }, [])
+
+    
 
     //using axios
     const grabEntries = async () => {
@@ -31,29 +36,67 @@ export default function journal({ user, data }) {
         console.log('res on the get', res.data)
         setEntries(res.data)
     }
+    //send and cache in your id file
+    const deleteEntry = async (id) => {
+        const res = await axios.delete("/api/journal/" + id)
+       
+    }
+
+    //map through my entries to display
+    const displayEntry = () => {
+        console.log(entry.title)
+        {entries.map(entry=>{
+            entry.title,
+            entry.body
+            
+        } , 
+
+        )}
+    }
 
     console.log('entries', entries)
 
+    const bgColor = {
+        light: "rgba(70, 93, 114, 0.9)",
+        dark: "rgba(74, 85, 104, 0.9)",
+      };
+      const theColor = {
+        light: "rgba(70, 93, 114, 0.9)",
+        dark: "rgba(43, 70, 115, 0.82)",
+      };
+      const textColor = { light: "blue.200", dark: "yellow.500" };
+      const { colorMode, toggleColorMode } = useColorMode();
+
 
     return (
+    <div>
+     <JournalForm/>
+     <br></br>
+     <Center> 
         <div>
-            
-            <JournalForm/>
+            <Box
+                textAlign="center"
+                as="h3"
+                fontFamily="body"
+                fontSize="md"
+                fontWeight="light"
+                mt="2"
+                color={textColor[colorMode]}
+                wrap
+                >
+            {entries.map(entry=>
             <div>
-    
-    {entries.map(entry=>
-            <div>
-                    <h2> {entry.title} </h2>
-                    <p>{entry.body}</p>
-                    <div>
-                {/* <button onClick={()=> deleteItem(entry._id)}> DELETE THIS MOFO </button> */}
+                <h2> Title : {entry.title} </h2>
+                <p> Journal Entry :{entry.body}</p>
+                <div>
+                <button onClick={()=> deleteEntry(entry._id)}> DELETE THIS MOFO </button>
                 </div>
                    
                 </div>
                 )}
  
-            
-        </div>
+            </Box>
+        </div></Center>
         </div>
     )
 }
