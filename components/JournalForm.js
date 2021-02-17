@@ -32,6 +32,8 @@ const Journal = () => {
             headers:{"Content-Type":"application/json"},
             body: JSON.stringify(entry)  
         })
+        console.log('RES FROM ENTRY POST', res)
+        //this code never runs
         if (res.status === 201) {
             const entryObj = await res.json();
             mutate(entryObj);

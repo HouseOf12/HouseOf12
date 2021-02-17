@@ -18,7 +18,7 @@ export async function getEntries(db, currentUserId) {
 }
 
 //this function is attached to the post method for journal in api/journal/index
-export async function insertEntry(db, userId, title, body) {
+export function insertEntry(db, userId, title, body) {
     return db
     .collection('journals')
     .insertOne({

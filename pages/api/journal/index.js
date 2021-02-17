@@ -12,8 +12,10 @@ handler.get(async (req, res) => {
     const currentUserId = req.user._id;
     //call getEntries function from the db/journal and pass in the database and the currentUserId
     const entries = await getEntries(req.db, currentUserId)
-    console.log('entries', entries)
-    return entries;
+    //console.log('entries', entries)
+    //return entries;
+    //console.log('response!!!!!', res)
+    res.status(201).json(entries)
 })
 
 
