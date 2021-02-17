@@ -25,6 +25,7 @@ import {
   Center
 } from "@chakra-ui/react";
 
+
 const SignupPage = () => {
   const [user, { mutate }] = useCurrentUser();
   const [errorMsg, setErrorMsg] = useState('');
@@ -35,16 +36,22 @@ const SignupPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const body = {
-      email: e.currentTarget.email.value,
+
+    const userInfo = {
       name: e.currentTarget.name.value,
+      email: e.currentTarget.email.value,
       password: e.currentTarget.password.value,
+      birthday: e.currentTarget.birthday.value,
+      time: e.currentTarget.time.value,
+      location: e.currentTarget.location.value
     };
+
     const res = await fetch('/api/users', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body),
+      body: JSON.stringify(userInfo),
     });
+   
     if (res.status === 201) {
       const userObj = await res.json();
       mutate(userObj);
@@ -52,14 +59,17 @@ const SignupPage = () => {
       setErrorMsg(await res.text());
     }
   };
+
   function handleToggle(e) {
     e.preventDefault();
     setShowPass(!showPass);
   }
+
   const bgColor = {
     light: "rgba(70, 93, 114, 0.9)",
     dark: "rgba(74, 85, 104, 0.9)",
   };
+
   const textColor = { light: "blue.200", dark: "yellow.500" };
   const { colorMode, toggleColorMode } = useColorMode();
 
@@ -69,38 +79,38 @@ const SignupPage = () => {
   return (
     <Box>
       <Box zIndex="-1" bgColor={bgColor[colorMode]}  bgPosition="center" bgSize="cover" minH="100%" minW="32vw" w="100vw" h="auto" position="fixed" overflowX="scroll" top="0" right="0" bgImage="url('./loginwp.png')" /> 
-  <Box
-paddingTop={0}
-display="flex"
-position="absolute"
-left={0}
-right={0}
-top="50vh"
-bottom={0}
-flexDirection="column"
-alignItems="center"
-justifyContent="center"
->
- <Flex
-  mt={20}
-  alignItems="center"
-  justifyContent="center"
-  bgColor="gray.400"
-  color={textColor[colorMode]}
-  border="4px solid rgba(212, 175, 53, 0.9)"
-  borderRadius="50%"
-  mb={`-${badgeRadius}em`}
-  shadow="sm"
-  zIndex="docked"
->
-  <Image
-    src="./icon.png"
-    height="18vh"  
-    width="10vw"
-    size={`${badgeRadius + 1}em`}
-    mt={`${badgeRadius / 6}em`}
-  />
-</Flex>
+      <Box
+      paddingTop={0}
+      display="flex"
+      position="absolute"
+      left={0}
+      right={0}
+      top="50vh"
+      bottom={0}
+      flexDirection="column"
+      alignItems="center"
+      justifyContent="center"
+      >
+      <Flex
+        mt={20}
+        alignItems="center"
+        justifyContent="center"
+        bgColor="gray.400"
+        color={textColor[colorMode]}
+        border="4px solid rgba(212, 175, 53, 0.9)"
+        borderRadius="50%"
+        mb={`-${badgeRadius}em`}
+        shadow="sm"
+        zIndex="docked"
+      >
+        <Image
+          src="./icon.png"
+          height="18vh"  
+          width="10vw"
+          size={`${badgeRadius + 1}em`}
+          mt={`${badgeRadius / 6}em`}
+        />
+      </Flex>
 <Center>
 <Box
   w="24vw"
@@ -130,6 +140,7 @@ justifyContent="center"
     >
       Sign Up
     </Heading>
+
     <form onSubmit={handleSubmit}>
     {errorMsg ? <p style={{ color: 'red' }}>{errorMsg}</p> : null}
       <Stack spacing={4}>

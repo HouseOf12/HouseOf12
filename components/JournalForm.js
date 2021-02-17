@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { Editable, EditableInput, EditablePreview, Button, FormLabel, Input} from "@chakra-ui/react"
+import { Editable, EditableInput, EditablePreview, Button, FormLabel, Input, Center, Box, useColorMode, Text} from "@chakra-ui/react"
 import { useCurrentUser } from '../hooks/index';
 const Journal = () => {
     //grab the current user so you can pass the id to the backend post call in onSubmit
@@ -41,19 +41,62 @@ const Journal = () => {
             setErrorMsg(await res.text());
         }
     }
+
+    // const dream = () =>{
+    //     axios.get(`https://mercuryretrogradeapi.com?date=${year}-${month}-${date}`,{
+    //     })
+    //     .then((response)=>{
+    //        setRetrograde(response.data)
+    //  })
+    // .catch((error) => {
+    //   console.error(error)
+    // })
+    // } 
+
+    const bgColor = {
+        light: "rgba(70, 93, 114, 0.9)",
+        dark: "rgba(74, 85, 104, 0.9)",
+      };
+      const theColor = {
+        light: "rgba(70, 93, 114, 0.9)",
+        dark: "rgba(43, 70, 115, 0.82)",
+      };
+      const textColor = { light: "blue.200", dark: "yellow.500" };
+      const { colorMode, toggleColorMode } = useColorMode();
+
+      
     return (
         <div>
-            <h1 className = "journal_entry_title">Journal Entry:</h1>
+          <Box
+                textAlign="center"
+                as="h3"
+                fontFamily="body"
+                fontSize="md"
+                fontWeight="light"
+                mt="2"
+                color={textColor[colorMode]}
+                wrap
+                >
+               Dream Journal
+               <Center>
             <Editable >
                 <EditablePreview />
-                {/* <EditableInput onChange={(e) => onChangeTitle(e)} />
-                <EditableInput onChange={(e) => onChangeBody(e)} /> */}
+
                 <FormLabel>Title</FormLabel>
                 <Input type="text" onChange={(e) => handleChangeTitle(e)}/>
                 <FormLabel>Write your entry</FormLabel>
                 <Input type="text" onChange={(e) => handleChangeBody(e)} />
                 <Button colorScheme='blue' onClick={(e) => handleSubmit(e)}>Save</Button>
             </Editable>
+        </Center>
+
+        
+
+
+
+
+                </Box>
+      
         </div>
         )
 }

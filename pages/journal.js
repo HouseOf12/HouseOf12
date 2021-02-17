@@ -6,6 +6,8 @@ import { extractUser } from '../lib/api-helpers';
 import { findUserById } from '../db/index';
 import axios from 'axios';
 import { TiArrowMaximiseOutline } from 'react-icons/ti';
+// import JournalEntry from '@/components/JournalEntry';
+
 
 
 export default function journal({ user, data }) {
@@ -25,10 +27,6 @@ export default function journal({ user, data }) {
     //using axios
     const grabEntries = async () => {
         //we dont end up sending the get request to the get route. Because 1. you cant pass a body to a get route and 2. current user is available through req.user
-        //const userId = user._id;
-        
-        //below is the alternative route linked to api/journal/[user]
-        //const res = await fetch("/api/journal/" + userId,{
         const res = await axios.get("/api/journal/")
         console.log('res on the get', res.data)
         setEntries(res.data)
@@ -39,21 +37,35 @@ export default function journal({ user, data }) {
 
     return (
         <div>
-
-        
+            
             <JournalForm/>
+            <div>
+    
+    {entries.map(entry=>
+            <div>
+                    <h2> {entry.title} </h2>
+                    <p>{entry.body}</p>
+                    <div>
+                {/* <button onClick={()=> deleteItem(entry._id)}> DELETE THIS MOFO </button> */}
+                </div>
+                   
+                </div>
+                )}
+ 
+            
+        </div>
         </div>
     )
 }
 
 //function that is able to grab and return the user to the functional component 
 //this function getServerSideProps is part of Next.js data fetching and will be run before component loads
-// export async function getServerSideProps(context) {
-//     await all.run(context.req, context.res);
-//     const user = extractUser(await findUserById(context.req.db, context.req.user._id));
-//     if (!user) context.res.statusCode = 404;
-//     return { props: { user } };
-//   }
+export async function getServerSideProps(context) {
+    await all.run(context.req, context.res);
+    const user = extractUser(await findUserById(context.req.db, context.req.user._id));
+    if (!user) context.res.statusCode = 404;
+    return { props: { user } };
+  }
 
 // export async function getServerSideProps(context) {
 //     await all.run(context.req, context.res);

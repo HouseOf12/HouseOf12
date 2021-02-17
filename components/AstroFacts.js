@@ -1,6 +1,8 @@
-import React from 'react'
+import {useState} from 'react'
+import {Button} from "@chakra-ui/react";
 
-const Facts = () => {
+
+const AstroFacts = () => {
 
 
 
@@ -73,13 +75,50 @@ const Facts = () => {
         {id:30, fact: "Scorpios are the most passionate of all the signs, often feeling the feels in every aspect of their life — relationships, work, hobbies, etc."}
     ])
 
+    const [gFact, setGFact] = useState([{
+        id:0, fact:""
+    }])
 
+    const [bFact, setBFact] = useState([{
+        id:0, fact:""
+    }])
+
+
+
+    const returnGoodFact = (event) =>{
+        let goodNumber = Math.floor(Math.random() * 30)
+        let goodQuote = goodFacts.filter(fact => goodNumber === fact.id)
+        setGFact(goodQuote)
+    }
+
+
+    
+
+
+    const returnBadFact = (event) =>{
+        let badNumber = Math.floor(Math.random() * 30)
+        let badQuote = badFacts.filter(fact => badNumber === fact.id)
+        setBFact(badQuote)
+    }
+
+
+
+console.log("goooooood", gFact)
 
     return (
         <div>
-            
+            <h1> hi bitch</h1>
+            <Button color="black" onClick={()=>returnGoodFact(event)}> Good Fact</Button>      
+            <Button  color="black" onClick={()=>returnBadFact(event)}> Bad Fact</Button>            
+      
+            <h1>
+                {gFact.map(info => info.fact)}
+            </h1>
+            <h1>
+                {bFact.map(info => info.fact)}
+            </h1>
         </div>
     )
 }
 
-export default Facts
+export default AstroFacts
