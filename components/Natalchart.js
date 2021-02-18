@@ -45,7 +45,6 @@ const Natalchart = ({ user }) => {
             "Content-Type":'application/json'
             }})
           .then((natalData) => {
-            console.log('natal data:', natalData)
             setChart(natalData.data)
           })   
     }
