@@ -1,7 +1,7 @@
 import { Table, Thead, Tbody,Tfoot, Tr, Th, Td, TableCaption, Box, Center, useColorMode, Image, HStack, extendTheme, ChakraProvider, Heading, VStack } from '@chakra-ui/react';
 import axios from 'axios';
 import {useEffect, useState} from 'react'
-import {Fonts} from "./Fonts"
+import Fonts from "./Fonts"
 import CardFlip from "./CardFlip"
 
 
@@ -9,13 +9,16 @@ import CardFlip from "./CardFlip"
 // Platents have a name and the sign 
 // Compare sign from planets, find match in houses and return
 
-const theme = extendTheme({
+
+const Natalchart = ({ user }) => {
+
+  const theme = extendTheme({
     fonts: {
-      body: "Tryst-Regular",
+      heading: 'Philosopheri',
+      body: 'Philosopher',
     },
   })
 
-const Natalchart = ({ user }) => {
     //call useCurrentUser to have access to user info
     //const [user] = useCurrentUser();
     const [chart, setChart] = useState();
@@ -104,8 +107,8 @@ const Natalchart = ({ user }) => {
         <Center> 
           <VStack>
             <Box border="4px solid rgba(212, 175, 53, 0.6)" borderRadius="12px"mt={4} color={textColor[colorMode]} bgColor={bgColor[colorMode]}>
-              <Heading padding={2}  fontWeight="light">
-              YOUR NATAL PLACEMENTS
+              <Heading padding={2}  fontFamily="Philosopheri">
+              {user.name}'s Natal Chart
               </Heading>
             </Box>
 

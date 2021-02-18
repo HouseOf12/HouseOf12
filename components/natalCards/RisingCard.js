@@ -4,7 +4,7 @@ import ReactCardFlip from 'react-card-flip';
 import {useEffect, useState} from 'react'
 import {Box, Center, useColorMode, Image, HStack, extendTheme, ChakraProvider, Icon , IconButton, Button} from '@chakra-ui/react';
 import { CgMore } from "react-icons/cg";
-import {Fonts} from "../Fonts"
+import Fonts from "../Fonts"
 
 const RisingCard = ({ user }) => {
 
@@ -53,7 +53,8 @@ const RisingCard = ({ user }) => {
 
     const theme = extendTheme({
       fonts: {
-        body: "Tryst-Regular",
+        heading: 'Philosopheri',
+        body: 'Philosopher',
       },
     })
 
@@ -62,14 +63,14 @@ const RisingCard = ({ user }) => {
         <Fonts />
         <Center>
 
-        <Box border="4px solid rgba(212, 175, 53, 0.6)" boxShadow="dark-lg" h="75vh" w="26vw" borderRadius={16} backgroundImage="url(./mooncard.jpg)" bgSize="cover">
+        <Box  overflowY="scroll" h="58vh" w="20vw" border="4px solid rgba(212, 175, 53, 0.6)" boxShadow="dark-lg"  borderRadius={16} backgroundImage="url(./mooncard.jpg)" bgSize="cover">
         <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
           <Box>
             <Box
             textAlign="center"
-            as="h3"
+            as="p"
             fontFamily="body"
-            fontSize="md"
+            fontSize="lg"
             fontWeight="light"
             mt="2"
             color={textColor[colorMode]}
@@ -83,7 +84,7 @@ const RisingCard = ({ user }) => {
             textAlign="center"
             as="p"
             fontFamily="body"
-            fontSize="md"
+            fontSize="lg"
             fontWeight="light"
             mt="2"
             color={textColor[colorMode]}
@@ -111,11 +112,11 @@ const RisingCard = ({ user }) => {
             </Box>
 
             <Box
-            padding="2"
+            padding="4"
             textAlign="center"
-            as="h3"
+            as="p"
             fontFamily="body"
-            fontSize="md"
+            fontSize="lg"
             fontWeight="light"
             mt="2"
             color={textColor[colorMode]}

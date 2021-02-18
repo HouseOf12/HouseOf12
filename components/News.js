@@ -1,7 +1,7 @@
 import { Box, Icon, Center,colorMode, Text, useColorMode, Image, HStack, extendTheme, ChakraProvider, Heading, List , VStack, UnorderedList, ListItem, ListIcon, Divider } from '@chakra-ui/react';
 import axios from 'axios';
 import {useEffect, useState} from 'react'
-import {Fonts} from "./Fonts"
+import Fonts from "./Fonts"
 import CardFlip from "./CardFlip"
 import { WiMoonFull,WiMoonAltWaxingCrescent5,  WiMoonAltWaxingCrescent6, WiMoonAltWaxingGibbous1, WiMoonAltWaxingGibbous2,WiMoonAltWaxingGibbous3, WiMoonAltWaxingGibbous4, WiMoonAltWaxingGibbous6, } from "react-icons/wi";
 
@@ -45,12 +45,21 @@ const News = () => {
     })
     } 
 
+    const theme = extendTheme({
+      fonts: {
+        heading: 'Philosopheri',
+        body: 'Philosopher',
+      },
+    })
 
 
 
     return (
-        <Box marginTop="50px" fontFamily="Tryst-Regular">
-            <Heading fontFamily="Tryst-Regular"> Is Mercury in Retrograde? </Heading>
+      
+      <ChakraProvider theme={theme}>
+      <Fonts />
+        <Box marginTop="50px" >
+            <Heading fontFamily="Philosopheri"> Is Mercury in Retrograde? </Heading>
             <Text fontSize='2xl' fontFamily="Tryst-Regular" marginBottom="10px">
                 {(retrograde.is_retrograde ===true)? "Yes ✨"  : "No" }
             </Text> 
@@ -61,7 +70,7 @@ const News = () => {
         <Box>
         <Image height='22vh'  src = "https://media.giphy.com/media/lIeUAWuLK7cv6/giphy.gif" /> 
         </Box>
-            <Box as="p" align="left" width="40%"  marginBottom="30px" fontFamily="Tryst-Regular" fontSize="2vh" >
+            <Box as="p" align="left" width="40%"  marginBottom="30px" fontFamily="Philosopher" fontSize="2vh" >
 "Yes, that may account for the weirdness... Mercury is known as the planet that rules all communication, B.C.-based astrologist Georgia Nicols explains. This means that when Mercury appears retrograde, people may experience communication issues, problems with technology, or even things like lost mail Be careful not to make huge life changing decisions during this time, Mercury in retrograde has a way of making sure it won’t work out as planned. This goes for things like changing jobs, a move, plastic surgery, signing contracts, etc. Be cautious of new job opportunities or business offers, they can easily turn out to be nothing like what you had first expected. Take this time to relax, heal old wounds, and protect your energy."
             </Box>  
             </HStack>
@@ -73,7 +82,7 @@ const News = () => {
 
             </Center> */}
             <Center> 
-                  <List marginBottom="50px" align="left">
+                  <List marginBottom="50px" align="left" fontFamily="Philosopher">
                       <HStack align="left"> 
                       <VStack align="left" >
                         <ListItem> 
@@ -124,6 +133,7 @@ const News = () => {
                 
                   
         </Box>
+        </ChakraProvider>
     )
 }
 

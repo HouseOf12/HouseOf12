@@ -3,7 +3,7 @@ import ReactCardFlip from 'react-card-flip';
 import {useEffect, useState} from 'react'
 import {Box, Center, useColorMode, Image, HStack, extendTheme, ChakraProvider, Icon , IconButton, Button} from '@chakra-ui/react';
 import { CgMore } from "react-icons/cg";
-import {Fonts} from "./Fonts"
+import Fonts from "./Fonts"
 import MoonCard from "./natalCards/MoonCard.js"
 import SunCard from "./natalCards/SunCard.js"
 import RisingCard from "./natalCards/RisingCard.js"
@@ -35,7 +35,8 @@ const CardFlip = ({ user }) => {
 
     const theme = extendTheme({
       fonts: {
-        body: "Tryst-Regular",
+        heading: 'Philosopheri',
+        body: 'Philosopher',
       },
     })
 

@@ -30,6 +30,7 @@
     "native-dns": "^0.7.0",
     "next": "latest",
     "next-connect": "^0.9.1",
+    "next-google-fonts": "^1.2.1",
     "nprogress": "^0.2.0",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",

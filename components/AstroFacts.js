@@ -1,5 +1,5 @@
 import {useState} from 'react'
-import {Button, Box, VStack, Image} from "@chakra-ui/react";
+import {Button, Box, VStack, Image, Center, Spacer} from "@chakra-ui/react";
 
 
 const AstroFacts = () => {
@@ -107,19 +107,22 @@ const AstroFacts = () => {
 
     return (
         <div>
-            {/* <h1> hi bitch</h1> */}
+            
             <Box display="flex" justifyContent="center" marginTop="70px"> 
-            <Button color="black" onClick={()=>returnGoodFact(event)}> Good Fact</Button>      
-            <Button  color="black" onClick={()=>returnBadFact(event)}> Bad Fact</Button>            
+            <Button bgColor="blue.600" marginRight="1vw"  onClick={()=>returnGoodFact(event)}>🤩 Good Fact</Button> 
+            <Button  bgColor="blue.600" marginLeft="1vw" onClick={()=>returnBadFact(event)}>Bad Fact 👹</Button>            
             </Box>
             <VStack display="flex" justifyContent="center" marginBottom="100px"> 
 
-            <Image height="50%"  width="50%" marginTop="30px" src="https://media1.giphy.com/media/AszR2sY1ijlw8CCk1o/giphy.gif?cid=ecf05e47y0alza4cyl467t0i2xz757chfw7c2shw42f2tcjf&rid=giphy.gif" />
+            <Image height="36%"  width="36%" marginTop="30px" src="https://media1.giphy.com/media/AszR2sY1ijlw8CCk1o/giphy.gif?cid=ecf05e47y0alza4cyl467t0i2xz757chfw7c2shw42f2tcjf&rid=giphy.gif" />
 
-
+            
             <Box width="30%" marginTop="140px" fontSize="1.8vw" position="absolute" color="black">
+                
             {(gFact.fact != "") ? gFact.map(info => info.fact) : "" } 
+            
             </Box>
+            
             <Box  width="30%" marginTop="140px" fontSize="1.8vw"   position="absolute" color="black">
                 {(bFact.fact != "") ? bFact.map(info => info.fact) : "" } 
                 {/* {bFact.map(info => info.fact)} */}

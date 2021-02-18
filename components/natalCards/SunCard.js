@@ -4,7 +4,7 @@ import ReactCardFlip from 'react-card-flip';
 import {useEffect, useState} from 'react'
 import {Box, Center, useColorMode, Image, HStack, extendTheme, ChakraProvider, Icon , IconButton, Button} from '@chakra-ui/react';
 import { CgMore } from "react-icons/cg";
-import {Fonts} from "../Fonts"
+import Fonts from "../Fonts"
 
 const SunCard = ({ user }) => {
 
@@ -40,20 +40,8 @@ const SunCard = ({ user }) => {
           })
            
     }
-    //  console.log("HIIIIIIIIII", sunSign.planet_name)
-
-
-
-
-
-
-
-
-
-
-
-
-
+    console.log(sunSign)
+   
 
     const [isFlipped, setIsFlipped] = useState(false)
 
@@ -70,7 +58,8 @@ const SunCard = ({ user }) => {
 
       const theme = extendTheme({
         fonts: {
-          body: "Tryst-Regular",
+          heading: 'Philosopheri',
+          body: 'Philosopher',
         },
       })
 
@@ -79,18 +68,18 @@ const SunCard = ({ user }) => {
         <ChakraProvider theme={theme}>
             <Fonts />
         <Center>
-        <Box h="75vh" w="26vw" border="4px solid rgba(212, 175, 53, 0.6)" borderRadius={16} backgroundImage="url(./mooncard.jpg)" bgSize="cover">
+        <Box overflowY="scroll" h="58vh" w="20vw" border="4px solid rgba(212, 175, 53, 0.6)" borderRadius={16} backgroundImage="url(./mooncard.jpg)" bgSize="cover">
            <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
                 <Box>
                 <Box
-                textAlign="center"
-                as="h3"
-                fontFamily="body"
-                fontSize="md"
-                fontWeight="light"
-                mt="2"
-                color={textColor[colorMode]}
-                wrap
+                 textAlign="center"
+                 as="p"
+                 fontFamily="body"
+                 fontSize="lg"
+                 fontWeight="light"
+                 mt="2"
+                 color={textColor[colorMode]}
+                 wrap
                 >
                 RISING
                 </Box>
@@ -99,7 +88,7 @@ const SunCard = ({ user }) => {
                 textAlign="center"
                 as="p"
                 fontFamily="body"
-                fontSize="md"
+                fontSize="lg"
                 fontWeight="light"
                 mt="2"
                 color={textColor[colorMode]}
@@ -115,7 +104,7 @@ const SunCard = ({ user }) => {
                 <Button variant="ghost" onClick={handleClick}> <CgMore /> </Button>
                  </Box>
 
-              <Center>
+              
                 {sunSign && 
                 <Box>
                   <Box
@@ -132,11 +121,11 @@ const SunCard = ({ user }) => {
                   </Box>
 
                   <Box
-                  padding="2"
+                  padding="4"
                   textAlign="center"
                   as="p"
                   fontFamily="body"
-                  fontSize="md"
+                  fontSize="lg"
                   fontWeight="light"
                   mt="2"
                   color={textColor[colorMode]}
@@ -144,13 +133,14 @@ const SunCard = ({ user }) => {
                   >
                   {sunSign.report}       
                   </Box>
-
+                  
                   <Button variant="ghost" onClick={handleClick}> <CgMore /> </Button>
+                  
                 </Box>
                 }
                 
 
-              </Center>
+              
             </ReactCardFlip>
         </Box>
 
