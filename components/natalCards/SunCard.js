@@ -6,7 +6,7 @@ import {Box, Center, useColorMode, Image, HStack, extendTheme, ChakraProvider, I
 import { CgMore } from "react-icons/cg";
 import {Fonts} from "../Fonts"
 
-const SunCard = () => {
+const SunCard = ({ user }) => {
 
     const [sunSign, setSunSign] = useState()
    
@@ -21,13 +21,13 @@ const SunCard = () => {
         const sunData = axios
         .post("https://json.astrologyapi.com/v1/general_sign_report/tropical/sun",
         {
-            day: '24',
-            month: '2',
-            year: '1998',
-            hour: '06',
-            min: '16',
-            lat: '34.1808',
-            lon: '118.3090',
+            day: user.day,
+            month: user.month,
+            year: user.year,
+            hour: user.hour,
+            min: user.minute,
+            lat: user.lat,
+            lon: user.lon,
             tzone: '5.5',
           },
           {headers: {
@@ -115,38 +115,42 @@ const SunCard = () => {
                 <Button variant="ghost" onClick={handleClick}> <CgMore /> </Button>
                  </Box>
 
-                <Center>
+              <Center>
+                {sunSign && 
                 <Box>
-                <Box
-                textAlign="center"
-                as="h3"
-                fontFamily="body"
-                fontSize="md"
-                fontWeight="light"
-                mt="2"
-                color={textColor[colorMode]}
-                wrap
-                >
-                {/* {sunSign.planet_name} */}
-                        
+                  <Box
+                  textAlign="center"
+                  as="h3"
+                  fontFamily="body"
+                  fontSize="md"
+                  fontWeight="light"
+                  mt="2"
+                  color={textColor[colorMode]}
+                  wrap
+                  >
+                  {sunSign.planet_name}     
+                  </Box>
+
+                  <Box
+                  padding="2"
+                  textAlign="center"
+                  as="p"
+                  fontFamily="body"
+                  fontSize="md"
+                  fontWeight="light"
+                  mt="2"
+                  color={textColor[colorMode]}
+                  wrap
+                  >
+                  {sunSign.report}       
+                  </Box>
+
+                  <Button variant="ghost" onClick={handleClick}> <CgMore /> </Button>
                 </Box>
-                <Box
-                padding="2"
-                textAlign="center"
-                as="p"
-                fontFamily="body"
-                fontSize="md"
-                fontWeight="light"
-                mt="2"
-                color={textColor[colorMode]}
-                wrap
-                >
-                {/* {sunSign.report} */}
-                        
-                </Box>
-                <Button variant="ghost" onClick={handleClick}> <CgMore /> </Button>
-                 </Box>
-                 </Center>
+                }
+                
+
+              </Center>
             </ReactCardFlip>
         </Box>
 
