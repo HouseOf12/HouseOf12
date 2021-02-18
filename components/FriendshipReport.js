@@ -23,8 +23,7 @@ const FriendshipReport2 = () => {
     const grabComp = (dataToSend) => {
         let userId = "615745";
         let apiKey = "758b876f8345a5b798e2f02e38e7c7ab";
-        const friendData = axios
-        .post("https://json.astrologyapi.com/v1/friendship_report/tropical", dataToSend,
+        axios.post("https://json.astrologyapi.com/v1/friendship_report/tropical", dataToSend,
           {headers: {
             "authorization": "Basic " + btoa(userId+":"+apiKey),
             "Content-Type":'application/json'
@@ -32,24 +31,12 @@ const FriendshipReport2 = () => {
           .then((friendData) => {
               console.log('FRIEND DATA', friendData.data)
               setFriendship(friendData.data)
+              setIsSubmitted(true)
+             
           })    
     }
+     console.log("THIS IS THE STATE", friendship)
 
-
-    // const grabLocation = (place) => {
-    //     Geocode.setApiKey("AIzaSyCN1OPqkR7QGFRbnbcQKFoqCIei84_dGSY");
-    //     console.log('location', place)
-    //         Geocode.setRegion("us")
-    //             Geocode.fromAddress(place).then(
-    //                 (geoData) => {
-    //                 const { lat, lng } = geoData.results[0].geometry.location;
-    //                 setLoco([lat, lng])
-    //                 },
-    //                 (error) => {
-    //                 console.error(error);
-    //                 }
-    //             );
-    // }
     async function grabLocation (place){
         Geocode.setApiKey("AIzaSyCN1OPqkR7QGFRbnbcQKFoqCIei84_dGSY");
         console.log('location', place)
@@ -64,37 +51,6 @@ const FriendshipReport2 = () => {
         }
     }
 
-    // async function grabLocationTwo (place){
-    //     Geocode.setApiKey("AIzaSyCN1OPqkR7QGFRbnbcQKFoqCIei84_dGSY");
-    //     console.log('location', place)
-    //     Geocode.setRegion("us")
-    //     try{
-    //         const response = await Geocode.fromAddress(place)
-    //         const { lat, lng } = await geoData.results[0].geometry.location;
-    //         return [lat,lng]
-    //     } catch (error){
-    //         return console.log(error)
-    //     }
-    // }
-
-    // const grabLocationTwo = (place) => {
-    //     Geocode.setApiKey("AIzaSyCN1OPqkR7QGFRbnbcQKFoqCIei84_dGSY");
-    //     console.log('location', place)
-    //         Geocode.setRegion("us")
-    //             Geocode.fromAddress(place).then(
-    //                 (geoData) => {
-    //                 const { lat, lng } = geoData.results[0].geometry.location;
-    //                 setLocoTwo([lat, lng])
-    //                 console.log(loco)
-    //                 },
-    //                 (error) => {
-    //                 console.error(error);
-    //                 }
-    //             );
-    //         }
-            // console.log("FINAL RESULT LOCO",loco)
-            // console.log("FINAL RESULT LOCOTWO",locoTwo)
-
     const handleChangeLocation = (e) => {
         const location = e.target.value;
         console.log('changing', location)
@@ -103,7 +59,6 @@ const FriendshipReport2 = () => {
 
     const handleSubmit =  async (e) => {
         e.preventDefault();
-        // e.persist();
         console.log(e.currentTarget)
 
          //take a date and split it into day/month/year
@@ -115,15 +70,10 @@ const FriendshipReport2 = () => {
         let timeF = e.currentTarget.timeF.value.split(':');
 
         let latLon = await grabLocation(e.currentTarget.locationM.value);
-<<<<<<< HEAD
-        console.log("PLEASE WORKK", e.target.place.value)
-        let latLonF = await grabLocation(e.currentTarget.place.value);
-=======
         
         let latLonF = await grabLocation(locationF);
         console.log('lat lon', latLon)
         console.log('friend lat lon', latLon);
->>>>>>> 59142dec4c18db4cff234b73665925eb9fd83438
             
             // console.log("HEYYYYYYYYY", latLon)
         //would need to call grabComp in here and pass in the data
@@ -147,7 +97,7 @@ const FriendshipReport2 = () => {
         }
         //call grabComp and pass in the object of data
         const res = await grabComp(dataToSend);
-        setIsSubmitted(true)
+        // setIsSubmitted(true)
     }
 
 
@@ -392,14 +342,15 @@ const FriendshipReport2 = () => {
                 >
                 
                 {friendship.friendship_report[0]}
+                <br></br>
                 {friendship.friendship_report[1]}
                 {friendship.friendship_report[2]}
                 {friendship.friendship_report[3]}
                 {friendship.friendship_report[4]}
                 {friendship.friendship_report[5]}
-                {friendship.friendship_report[6]}
+                {/* {friendship.friendship_report[6]}
                 {friendship.friendship_report[7]}
-                {friendship.friendship_report[8]}
+                {friendship.friendship_report[8]} */}
                    
                 </Box> 
                 ) : ('Please Fill Out Form Above')}
