@@ -20,33 +20,28 @@ const theme = extendTheme({
 const Natalchart = ({ user }) => {
     //call useCurrentUser to have access to user info
     //const [user] = useCurrentUser();
-    const [chart, setChart] = useState([])
+    const [chart, setChart] = useState();
+    const [wheelChart, setWheelChart] = useState();
 
-    console.log('user@@@', user)
-
-   
-
-
-
-   
+    console.log('user@@@', user.year)
 
     useEffect(() => {
-       grabNatal()
+       grabNatal();
+       grabWheel();
       }, []);
 
     const grabNatal = () => {
         var userId = "615745";
         var apiKey = "758b876f8345a5b798e2f02e38e7c7ab";
-        const natalData = axios
-        .post("https://json.astrologyapi.com/v1/western_horoscope",
+        const natalData = axios.post("https://json.astrologyapi.com/v1/western_horoscope",
         {
-            day: '25',
-            month: '12',
-            year: '1988',
-            hour: '10',
-            min: '12',
-            lat: '25.123',
-            lon: '82.34',
+            day: user.day,
+            month: user.month,
+            year: user.year,
+            hour: user.hour,
+            min: user.minute,
+            lat: user.lat,
+            lon: user.lon,
             tzone: '5.5',
           },
           {headers: {
@@ -54,20 +49,11 @@ const Natalchart = ({ user }) => {
             "Content-Type":'application/json'
             }})
           .then((natalData) => {
-              
-              setChart(natalData.data)
-          })
-            
+            console.log('natal data:', natalData)
+            setChart(natalData.data)
+          })   
     }
     
-
-
-    const [wheelChart, setWheelChart] = useState()
-   
-
-    useEffect(() => {
-       grabWheel()
-      }, []);
 
     const grabWheel = () => {
         var userId = "615745";
@@ -75,13 +61,13 @@ const Natalchart = ({ user }) => {
         const wheelData = axios
         .post("https://json.astrologyapi.com/v1/natal_wheel_chart",
         {
-            day: '24',
-            month: '2',
-            year: '1998',
-            hour: '06',
-            min: '16',
-            lat: '34.1808',
-            lon: '118.3090',
+            day: user.day,
+            month: user.month,
+            year: user.year,
+            hour: user.hour,
+            min: user.minute,
+            lat: user.lat,
+            lon: user.lon,
             tzone: '5.5',
             planet_icon_color:"#0A2C52",
             inner_circle_background:"#7c8394",
@@ -100,7 +86,7 @@ const Natalchart = ({ user }) => {
           })
            
     }
-    console.log(wheelChart)
+    console.log('wheel chart', wheelChart)
     
     const bgColor = {
         light: "rgba(70, 93, 114, 0.9)",
@@ -116,11 +102,14 @@ const Natalchart = ({ user }) => {
         <ChakraProvider theme={theme}>
             <Fonts />
         <Center>
+          {console.log('loaded', wheelChart)}
+          {wheelChart !== undefined && 
+        <Box bgSize="cover"  w="26vw" h="50vh " mt="12vh" mb="5vh"  bgImage={`url(${wheelChart.chart_url})`} />
+        }
           
-          {/* <Box  bgSize="cover"  w="26vw" h="50vh " mt="12vh" mb="5vh"  bgImage={`url(${wheelChart.chart_url})`} /> */}
           
         </Center>
-        <CardFlip />
+        {/* <CardFlip /> */}
         
 
         <Center> 
@@ -139,8 +128,10 @@ const Natalchart = ({ user }) => {
         w="2xl" 
         padding={2}
         h="56vh">
-          
-        {/* <Table variant="simple" size="sm">
+        {console.log('chart//', chart)}
+        
+        {chart &&
+        <Table variant="simple" size="sm">
         <Thead>
             <Tr>
             <Th color={textColor[colorMode]} >Planet</Th>
@@ -215,7 +206,9 @@ const Natalchart = ({ user }) => {
             <Td isNumeric>{chart.planets[12].house}</Td>
             </Tr>
         </Tbody>
-        </Table> */}
+        </Table>
+        }
+        
         </Box>
         
         </VStack>
