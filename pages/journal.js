@@ -69,38 +69,38 @@ export default function journal({ user, data }) {
 
 
     return (
-    <>
+    <div>
      <JournalForm/>
      <br></br>
      <Center> 
         <div>
             <Box
-                textAlign="center"
-                as="h3"
-                fontFamily="body"
-                fontSize="md"
-                fontWeight="light"
-                mt="2"
-                color={textColor[colorMode]}
-                wrap
+                  border="4px solid rgba(212, 175, 53, 0.6)"
+                  borderRadius={16}
+                  color={textColor[colorMode]}
+                  bgColor={bgColor[colorMode]}
+                  mt="8vh"
+                  w="2xl" 
+                  padding={2}
+                  h="56vh"
                 >
-
-            
-          
-            {entries.map(entry=>
-            <div>
-                <h2> Title : {entry.title} </h2>
-                <p> Journal Entry :{entry.body}</p>
+                {entries.map(entry=>
                 <div>
-                <button onClick={()=> deleteEntry(entry._id)}> DELETE THIS MOFO </button>
-                </div>
-                
+                    <h2>Date: {entry.date}</h2>
+                    <br></br>
+                    <h2> Title: {entry.title} </h2>
+                    <br></br>
+                    <p> Journal Entry: {entry.body}</p>
+                    <div>
+                    <button onClick={()=> deleteEntry(entry._id)}> Delete</button>
+                    </div>
+                    
                 </div>
                 )}
  
             </Box>
         </div></Center>
-        </>
+        </div>
     )
 }
 

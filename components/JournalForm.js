@@ -71,7 +71,7 @@ const Journal = () => {
                 textAlign="center"
                 as="h3"
                 fontFamily="body"
-                fontSize="md"
+                fontSize="lg"
                 fontWeight="light"
                 mt="2"
                 color={textColor[colorMode]}
