@@ -20,7 +20,8 @@ https://mercuryretrogradeapi.com/about.html
 ## Final Pages
 
 ## ERD
-https://github.com/kleddy17/StarWars-API-HW/issues/new
+![Screen Shot 2021-02-18 at 6 18 14 PM](https://user-images.githubusercontent.com/69171194/108434525-cd596680-7215-11eb-9d24-0cdc54e7d8f0.png)
+
 
 ### Wireframe:
 
