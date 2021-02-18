@@ -95,6 +95,7 @@ const FriendshipReport2 = () => {
 
     const handleSubmit =  async (e) => {
         e.preventDefault();
+        // e.persist();
         console.log(e.currentTarget)
 
          //take a date and split it into day/month/year
@@ -106,7 +107,7 @@ const FriendshipReport2 = () => {
         let timeF = e.currentTarget.timeF.value.split(':');
 
         let latLon = await grabLocation(e.currentTarget.locationM.value);
-        console.log("PLEASE WORKK", e.currentTarget.place)
+        console.log("PLEASE WORKK", e.target.place.value)
         let latLonF = await grabLocation(e.currentTarget.place.value);
             
             // console.log("HEYYYYYYYYY", latLon)
