@@ -6,7 +6,7 @@ import { extractUser } from '../lib/api-helpers';
 import { findUserById} from '../db/index';
 import axios from 'axios';
 import { TiArrowMaximiseOutline } from 'react-icons/ti';
-import {Center,Box, useColorMode} from "@chakra-ui/react"
+import {Center,Box, useColorMode, TextArea} from "@chakra-ui/react"
 // import JournalEntry from '@/components/JournalEntry';
 
 
@@ -69,7 +69,7 @@ export default function journal({ user, data }) {
 
 
     return (
-    <div>
+    <>
      <JournalForm/>
      <br></br>
      <Center> 
@@ -84,6 +84,9 @@ export default function journal({ user, data }) {
                 color={textColor[colorMode]}
                 wrap
                 >
+
+            
+          
             {entries.map(entry=>
             <div>
                 <h2> Title : {entry.title} </h2>
@@ -91,13 +94,13 @@ export default function journal({ user, data }) {
                 <div>
                 <button onClick={()=> deleteEntry(entry._id)}> DELETE THIS MOFO </button>
                 </div>
-                   
+                
                 </div>
                 )}
  
             </Box>
         </div></Center>
-        </div>
+        </>
     )
 }
 
