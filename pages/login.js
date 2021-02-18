@@ -104,7 +104,7 @@ const LoginPage = () => {
             <Image
               src="./icon.png"
               height="20vh"  
-              width="13vw"
+              width="12vw"
               size={`${badgeRadius + 1}em`}
               mt={`${badgeRadius / 6}em`}
             />

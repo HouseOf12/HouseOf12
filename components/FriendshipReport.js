@@ -175,7 +175,7 @@ const FriendshipReport2 = () => {
                 
             <VStack spacing={4}>
                 
-                <HStack  w="100%">
+                <HStack  w="36vw">
             <FormControl isRequired>
                 <InputGroup>
                     <InputLeftElement>
@@ -205,7 +205,7 @@ const FriendshipReport2 = () => {
                     </FormControl>
                 </HStack>
                 
-                <HStack  w="100%">
+                <HStack  w="36vw">
                 <FormControl isRequired>
                 <InputGroup>
                     <InputLeftElement>
@@ -235,7 +235,7 @@ const FriendshipReport2 = () => {
                     
                 </HStack>
                
-                <HStack w="100%">
+                <HStack w="36vw">
                 <FormControl isRequired>
                 <InputGroup>
                     <InputLeftElement>
@@ -264,7 +264,7 @@ const FriendshipReport2 = () => {
                     </FormControl>
                 </HStack>
                 
-                <HStack  w="100%">
+                <HStack  w="36vw">
                 <FormControl isRequired>
                 <InputGroup>
                     <InputLeftElement>
@@ -342,7 +342,6 @@ const FriendshipReport2 = () => {
                 >
                 
                 {friendship.friendship_report[0]}
-                <br></br>
                 {friendship.friendship_report[1]}
                 {friendship.friendship_report[2]}
                 {friendship.friendship_report[3]}

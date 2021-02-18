@@ -4,7 +4,7 @@ import ReactCardFlip from 'react-card-flip';
 import {useEffect, useState} from 'react'
 import {Box, Center, useColorMode, Image, HStack, extendTheme, ChakraProvider, Icon , IconButton, Button} from '@chakra-ui/react';
 import { CgMore } from "react-icons/cg";
-import {Fonts} from "../Fonts"
+// import {Fonts} from "../Fonts"
 
 const SunCard = () => {
 
@@ -77,7 +77,7 @@ const SunCard = () => {
 
     return (
         <ChakraProvider theme={theme}>
-            <Fonts />
+            {/* <Fonts /> */}
         <Center>
         <Box h="75vh" w="26vw" border="4px solid rgba(212, 175, 53, 0.6)" borderRadius={16} backgroundImage="url(./mooncard.jpg)" bgSize="cover">
            <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">

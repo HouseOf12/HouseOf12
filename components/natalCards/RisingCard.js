@@ -4,7 +4,7 @@ import ReactCardFlip from 'react-card-flip';
 import {useEffect, useState} from 'react'
 import {Box, Center, useColorMode, Image, HStack, extendTheme, ChakraProvider, Icon , IconButton, Button} from '@chakra-ui/react';
 import { CgMore } from "react-icons/cg";
-import {Fonts} from "../Fonts"
+// import {Fonts} from "../Fonts"
 
 const RisingCard = () => {
 
@@ -71,7 +71,7 @@ const RisingCard = () => {
 
     return (
         <ChakraProvider theme={theme}>
-            <Fonts />
+            {/* <Fonts /> */}
             <Center>
 
             <Box border="4px solid rgba(212, 175, 53, 0.6)" boxShadow="dark-lg" h="75vh" w="26vw" borderRadius={16} backgroundImage="url(./mooncard.jpg)" bgSize="cover">

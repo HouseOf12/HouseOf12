@@ -3,12 +3,13 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useCurrentUser } from '../hooks/index.js';
 import Navbar from './Navbar.js';
+import GoogleFonts from "next-google-fonts";
 
 export default function Layout({ children }) {
   
   return (
     <>
-      
+      {/* <GoogleFonts href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;1,700&display=swap"/> */}
       <Head>
         <title>House Of 12</title>
         <meta
@@ -32,7 +33,7 @@ export default function Layout({ children }) {
       </Head>
       <header>
        
-        <Navbar />
+        {/* <Navbar /> */}
        
       </header>
 

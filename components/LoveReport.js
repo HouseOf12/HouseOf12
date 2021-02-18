@@ -136,7 +136,7 @@ const LoveReport = () => {
           <Box
             border="4px solid rgba(212, 175, 53, 0.9)"
             w="38vw"
-            h="64vh"
+            h="54vh"
             p={4}
             pt="24"
             color={textColor[colorMode]}
@@ -169,14 +169,14 @@ const LoveReport = () => {
               </VStack>
             </Center>
            
-           <Box>
+           <Box >
            
            <form onSubmit={handleSubmit}>
             
                 
             <VStack spacing={4}>
                 
-                <HStack  w="100%">
+                <HStack  w="36vw">
             <FormControl isRequired>
                 <InputGroup>
                     <InputLeftElement>
@@ -206,7 +206,7 @@ const LoveReport = () => {
                     </FormControl>
                 </HStack>
                 
-                <HStack  w="100%">
+                <HStack  w="36vw">
                 <FormControl isRequired>
                 <InputGroup>
                     <InputLeftElement>
@@ -236,7 +236,7 @@ const LoveReport = () => {
                     
                 </HStack>
                
-                <HStack w="100%">
+                <HStack  w="36vw">
                 <FormControl isRequired>
                 <InputGroup>
                     <InputLeftElement>
@@ -265,7 +265,7 @@ const LoveReport = () => {
                     </FormControl>
                 </HStack>
                 
-                <HStack  w="100%">
+                <HStack  w="36vw">
                 <FormControl isRequired>
                 <InputGroup>
                     <InputLeftElement>
@@ -326,7 +326,7 @@ const LoveReport = () => {
                 color={textColor[colorMode]}
                 wrap
                 >
-                FRIENDSHIP COMPATIBILITY
+                LOVER COMPATIBILITY
                         
                 </Box>
                 {submitted === true  ? (
@@ -343,15 +343,10 @@ const LoveReport = () => {
                 >
                 
                 {friendship.love_report[0]}
-                <br></br>
                 {friendship.love_report[1]}
-                <br></br>
                 {friendship.love_report[2]}
-                <br></br>
                 {friendship.love_report[3]}
-                <br></br>
                 {friendship.love_report[4]}
-                <br></br>
                 {friendship.love_report[5]}
                 {/* {friendship.friendship_report[6]}
                 {friendship.friendship_report[7]}

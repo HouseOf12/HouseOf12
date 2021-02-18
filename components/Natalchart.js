@@ -113,8 +113,9 @@ const Natalchart = ({ user }) => {
 
     
     return (
-        <ChakraProvider theme={theme}>
-            <Fonts />
+      <ChakraProvider >
+        {/* // <ChakraProvider theme={theme}> */}
+            {/* <Fonts /> */}
         <Center>
           
           {/* <Box  bgSize="cover"  w="26vw" h="50vh " mt="12vh" mb="5vh"  bgImage={`url(${wheelChart.chart_url})`} /> */}

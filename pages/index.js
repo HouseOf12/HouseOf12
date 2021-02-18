@@ -5,7 +5,7 @@ import AstroFacts from "@/components/AstroFacts.js";
 import News from "@/components/News.js";
 
 import {Box, Center, ChakraProvider, extendTheme, useColorMode, colorMode} from '@chakra-ui/react'
-import {Fonts} from "../components/Fonts"
+import Fonts from "../components/Fonts"
 // import Test from "../components/Test.js"
 
 
@@ -14,7 +14,8 @@ const IndexPage = () => {
 
   const theme = extendTheme({
     fonts: {
-      body: "Tryst-Regular",
+      heading: 'Philosopheri',
+      body: 'Philosopher',
     },
   })
 
@@ -28,10 +29,11 @@ const IndexPage = () => {
   return (
     <ChakraProvider theme={theme}>
       <Fonts />
-    <Box bgColor={bgColor[colorMode]}> 
+    <Box> 
+      <Box bgColor={bgColor[colorMode]} zIndex="-1"  bgPosition="center" bgSize="cover" minH="100%" minW="32vw" w="100vw" h="auto" position="fixed" overflowX="scroll" top="0" right="0" bgImage="url('./homewppp.png')" /> 
      <Center>
      
-        <Box  color={textColor[colorMode]} mb="2rem" fontFamily="Tryst-Regular" mt="2">   Hello, {user ? user.name : "stranger"}!</Box>
+        <Box  color={textColor[colorMode]} mb="2rem" fontFamily="Philosopheri" mt="2">   Hello, {user ? user.name : "stranger"}!</Box>
       
     </Center>
 
@@ -40,7 +42,7 @@ const IndexPage = () => {
       <News />
 
       </Box>
-      <Box zIndex="-1"  bgPosition="center" bgSize="cover" minH="100%" minW="32vw" w="100vw" h="auto" position="fixed" overflowX="scroll" top="0" right="0" bgImage="url('./homewppp.png')" /> 
+      
        
        
       </Box>
@@ -49,7 +51,7 @@ const IndexPage = () => {
      
       </ChakraProvider>
     
-      // {/* </Box> */}
+      
     
   );
 };
