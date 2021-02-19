@@ -51,7 +51,7 @@ const HoroscopePics = () => {
     light: "rgba(140, 145, 151, 0.7)",
     dark: "rgba(0, 0, 10, 0.9)",
   };
-  const textColor = { light: "yellow.500", dark: "gray.300" };
+  const textColor = { light: "cyan.900", dark: "gray.300" };
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (
