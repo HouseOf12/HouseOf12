@@ -27,15 +27,6 @@ import CardFlip from "./CardFlip";
 // Compare sign from planets, find match in houses and return
 
 const Natalchart = ({ user }) => {
-  const theme = extendTheme({
-    fonts: {
-      heading: "Philosopheri",
-      body: "Philosopher",
-    },
-  });
-
-  //call useCurrentUser to have access to user info
-  //const [user] = useCurrentUser();
   const [chart, setChart] = useState();
   const [wheelChart, setWheelChart] = useState();
 
@@ -44,6 +35,23 @@ const Natalchart = ({ user }) => {
     grabWheel();
   }, []);
 
+  //styling 
+  const theme = extendTheme({
+    fonts: {
+      heading: "Philosopheri",
+      body: "Philosopher",
+    },
+  });
+
+  const bgColor = {
+    light: "rgba(70, 93, 114, 0.9)",
+    dark: "rgba(74, 85, 104, 0.9)",
+  };
+  const textColor = { light: "gray.300", dark: "yellow.500" };
+  const { colorMode, toggleColorMode } = useColorMode();
+
+
+  //functions
   const grabNatal = () => {
     var userId = "615745";
     var apiKey = "758b876f8345a5b798e2f02e38e7c7ab";
@@ -106,36 +114,15 @@ const Natalchart = ({ user }) => {
       });
   };
 
-  const bgColor = {
-    light: "rgba(70, 93, 114, 0.9)",
-    dark: "rgba(74, 85, 104, 0.9)",
-  };
-  const textColor = { light: "gray.300", dark: "yellow.500" };
-  const { colorMode, toggleColorMode } = useColorMode();
 
   return (
     <ChakraProvider theme={theme}>
       <Fonts />
       <Center>
-        {/* <Box w="50%" h="50%" bg='rgb(0,0,0)' borderRadius="80%"> */}
           <Center>
           {wheelChart !== undefined && (
-            // <Box
-            //   z-index="1"
-            //   //bg="rgb(0,0,0)"
-            //   borderRadius="full"
-            //   border="1px solid goldenrod"
-            //   //bgSize="cover"
-            //   w="25em"
-            //   h="25em"
-            //   mt="12vh"
-            //   mb="5vh"
-            //   bgImage={`url(${wheelChart.chart_url})`}
-            //   bgSize= "95%"
-            // />
             <Box w='70%' bg='rgb(0,0,0)' borderRadius="full" border="0.3em solid goldenrod" mt="12vh" mb="5vh">
-              <Image src={wheelChart} />
-
+              <Image src={wheelChart}/>
             </Box>
           )}
           </Center>

@@ -97,7 +97,7 @@ import React from 'react'
               As the ruler of the tides, it is fitting that the Moon should be the ruler of our emotions. Still waters run deep? Making waves? A wellspring of emotion? Yes, our emotions have long been portrayed in terms of the sea: fluid, momentous, churning from within. Mood swings, instinct, 
               how we feel about things and how our feelings affect others are all influenced by the Moon. Whereas the Sun gives us our spirit, it’s the Moon that gives us our soul.
             </Box>
-            <Button variant="ghost" onClick={handleClick}> <CgMore /> </Button>
+            <Button variant="ghost" textColor='rgb(180, 130, 70)' onClick={handleClick}> <CgMore /> </Button>
           </Box>
 
           {moonSign && 
@@ -129,7 +129,7 @@ import React from 'react'
             {moonSign.report}
             </Box>
 
-            <Button variant="ghost" onClick={handleClick}> <CgMore /> </Button>
+            <Button variant="ghost" textColor='rgb(180, 130, 70)' onClick={handleClick}> <CgMore /> </Button>
           </Box>
           }
 

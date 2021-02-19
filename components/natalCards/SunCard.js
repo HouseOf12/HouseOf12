@@ -99,7 +99,7 @@ const SunCard = ({ user }) => {
                     It is our identity and our face to the world. The sun also speaks to creative ability and the power of the individual to meet the challenges of everyday life.
                         
                 </Box>
-                <Button variant="ghost" onClick={handleClick}> <CgMore /> </Button>
+                <Button variant="ghost" textColor='rgb(180, 130, 70)' onClick={handleClick}> <CgMore /> </Button>
                  </Box>
 
               
@@ -132,7 +132,7 @@ const SunCard = ({ user }) => {
                   {sunSign.report}       
                   </Box>
                   
-                  <Button variant="ghost" onClick={handleClick}> <CgMore /> </Button>
+                  <Button variant="ghost" textColor='rgb(180, 130, 70)' onClick={handleClick}> <CgMore /> </Button>
                   
                 </Box>
                 }

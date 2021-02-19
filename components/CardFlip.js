@@ -56,7 +56,7 @@ const CardFlip = ({ user }) => {
     <ChakraProvider theme={theme}>
       <Fonts />
       <Center>
-        <HStack spacing={24}>
+        <HStack spacing={20}>
           <SunCard user={user} />
           <MoonCard user={user} />
           <RisingCard user={user} />
