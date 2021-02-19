@@ -27,7 +27,7 @@ const CardFlip = ({ user }) => {
 
     const bgColor = {
       light: "rgba(70, 93, 114, 0.9)",
-      dark: "rgba(74, 85, 104, 0.9)",
+      dark: "rgba(0, 0, 0, 0.9)",
     };
 
     const textColor = { light: "gray.300", dark: "yellow.500" };

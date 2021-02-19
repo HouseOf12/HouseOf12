@@ -28,6 +28,7 @@ const IndexPage = () => {
 
   return (
     <ChakraProvider theme={theme}>
+      
       <Fonts />
     <Box> 
       <Box bgColor={bgColor[colorMode]} zIndex="-1"  bgPosition="center" bgSize="cover" minH="100%" minW="32vw" w="100vw" h="auto" position="fixed" overflowX="scroll" top="0" right="0" bgImage="url('./homewppp.png')" /> 
