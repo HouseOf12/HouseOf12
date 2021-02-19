@@ -97,9 +97,11 @@ const Natalchart = ({ user }) => {
         <ChakraProvider theme={theme}>
         <Fonts />
         <Center>
+          <Box >
         {wheelChart !== undefined && 
-          <Box bgSize="cover"  w="26vw" h="50vh " mt="12vh" mb="5vh"  bgImage={`url(${wheelChart.chart_url})`} />
+          <Box z-index='1' bg="rgb(0,0,0)" borderRadius="full" border="1px solid goldenrod" bgSize="cover"  w="26vw" h="50vh " mt="12vh" mb="5vh"  bgImage={`url(${wheelChart.chart_url})`} />
         }
+        </Box>
         </Center>
 
         <CardFlip user = {user}/>
