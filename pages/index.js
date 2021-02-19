@@ -23,37 +23,29 @@ const IndexPage = () => {
     light: "rgba(112, 131, 153, 0.4)",
     dark: "rgba(0, 0, 10, 0.9)",
   };
-  const textColor = { light: "cyan.900", dark: "gray.300" };
+  //const textColor = { light: "cyan.900", dark: "gray.300" };
+  const textColor = { light: "cyan.900", dark: "rgb(150, 120, 65)" };
+  //good text color option: dark: "rgb(150, 120, 65)"
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (
     <ChakraProvider theme={theme}>
-      
-      <Fonts />
-    <Box> 
+    <Fonts />
+    <Box color={textColor[colorMode]}> 
       <Box bgColor={bgColor[colorMode]} zIndex="-1"  bgPosition="center" bgSize="cover" minH="100%" minW="32vw" w="100vw" h="auto" position="fixed" overflowX="scroll" top="0" right="0" bgImage="url('./homewppp.png')" /> 
-     <Center>
-     
-        <Box  color={textColor[colorMode]} mb="2rem" fontFamily="Philosopheri" mt="2">   Hello, {user ? user.name : "stranger"}!</Box>
-      
-    </Center>
+      <Center>
+        <Box  /*color={textColor[colorMode]}*/ mb="2rem" fontFamily="Philosopheri" mt="2">   Hello, {user ? user.name : "stranger"}!</Box>
+      </Center>
 
       <HoroscopePics />
-      <Box color="white" textAlign="center">
-      <News />
+      {/* <Box color="white" textAlign="center"> */}
+      <Box /*color={textColor[colorMode]}*/ textAlign="center">
+        <News />
+      </Box>
+    </Box>
 
-      </Box>
-      
-       
-       
-      </Box>
-    
-        <AstroFacts />
-     
-      </ChakraProvider>
-    
-      
-    
+    <AstroFacts />
+    </ChakraProvider>
   );
 };
 export default IndexPage;
