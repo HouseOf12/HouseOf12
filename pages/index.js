@@ -4,9 +4,19 @@ import HoroscopePics from "@/components/HoroscopePics.js";
 import AstroFacts from "@/components/AstroFacts.js";
 import News from "@/components/News.js";
 
-import {Box, Center, ChakraProvider, extendTheme, useColorMode, colorMode} from '@chakra-ui/react'
-import Fonts from "../components/Fonts"
+import {
+  Box,
+  Center,
+  ChakraProvider,
+  extendTheme,
+  useColorMode,
+  colorMode,
+} from "@chakra-ui/react";
+import Fonts from "../components/Fonts";
 // import Test from "../components/Test.js"
+
+
+
 
 
 const IndexPage = () => {
@@ -14,10 +24,10 @@ const IndexPage = () => {
 
   const theme = extendTheme({
     fonts: {
-      heading: 'Philosopheri',
-      body: 'Philosopher',
+      heading: "Philosopheri",
+      body: "Philosopher",
     },
-  })
+  });
 
   const bgColor = {
     light: "rgba(112, 131, 153, 0.4)",

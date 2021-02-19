@@ -1,43 +1,61 @@
-import { useState } from 'react'
-import { Grid, GridItem, Image, Box, Button, ButtonGroup, extendTheme, ChakraProvider, useColorMode, colorMode  } from "@chakra-ui/react";
-import Fonts from "./Fonts"
-import Link from 'next/link';
+import { useState } from "react";
+import {
+  Grid,
+  GridItem,
+  Image,
+  Box,
+  Button,
+  ButtonGroup,
+  extendTheme,
+  ChakraProvider,
+  useColorMode,
+  colorMode,
+} from "@chakra-ui/react";
+import Fonts from "./Fonts";
+import Link from "next/link";
 import axios from "axios";
 //component import
-import Horoscope from './Horoscope';
+import Horoscope from "./Horoscope";
+
+
 
 
 const HoroscopePics = () => {
+  const [signInfo, setSignInfo] = useState({ sign: "", info: "", date: "" });
 
-  const [signInfo, setSignInfo] = useState({sign: '', info: '', date: ''});
-
-  const [showSign, setShowSign] = useState(false)
-  
+  const [showSign, setShowSign] = useState(false);
 
   //function that calls the api for a specific sign
   const grabSignInfo = async (sign) => {
     let userId = "615745";
     let apiKey = "758b876f8345a5b798e2f02e38e7c7ab";
+    console.log("chosen sign", sign);
     try {
-      let res = await axios.post(`https://json.astrologyapi.com/v1/sun_sign_prediction/daily/` + sign, {timezone: '5.5'}, {headers: {
-        "authorization": "Basic " + btoa(userId+":"+apiKey),
-        "Content-Type":'application/json'
-        }});
+      let res = await axios.post(
+        `https://json.astrologyapi.com/v1/sun_sign_prediction/daily/` + sign,
+        { timezone: "5.5" },
+        {
+          headers: {
+            authorization: "Basic " + btoa(userId + ":" + apiKey),
+            "Content-Type": "application/json",
+          },
+        }
+      );
       let info = res.data.prediction;
       let date = res.data.prediction_date;
-      setSignInfo({sign, info, date})
-      setShowSign(true)
-    } catch (error){
-        return console.log('horoscope post call error:', error)
+      setSignInfo({ sign, info, date });
+      setShowSign(true);
+    } catch (error) {
+      return console.log("horoscope post call error:", error);
     }
-  }
+  };
 
   const theme = extendTheme({
     fonts: {
-      heading: 'Philosopheri',
-      body: 'Philosopher',
+      heading: "Philosopheri",
+      body: "Philosopher",
     },
-  })
+  });
 
   const bgColor = {
     light: "rgba(140, 145, 151, 0.7)",
@@ -212,5 +230,5 @@ const HoroscopePics = () => {
       })
       </ChakraProvider> 
   );
-}
-export default HoroscopePics
+};
+export default HoroscopePics;

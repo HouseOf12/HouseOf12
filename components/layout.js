@@ -1,12 +1,14 @@
-import React from 'react';
-import Head from 'next/head';
-import Link from 'next/link';
-import { useCurrentUser } from '../hooks/index.js';
-import Navbar from './Navbar.js';
+import React from "react";
+import Head from "next/head";
+import Link from "next/link";
+import { useCurrentUser } from "../hooks/index.js";
+import Navbar from "./Navbar.js";
 import GoogleFonts from "next-google-fonts";
 
+
+
+
 export default function Layout({ children }) {
-  
   return (
     <>
       {/* <GoogleFonts href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;1,700&display=swap"/> */}
@@ -31,19 +33,11 @@ export default function Layout({ children }) {
           content="https://repository-images.githubusercontent.com/201392697/5d392300-eef3-11e9-8e20-53310193fbfd"
         />
       </Head>
-      <header>
-       
-        {/* <Navbar /> */}
-       
-      </header>
+      <header>{/* <Navbar /> */}</header>
 
       <main>{children}</main>
-      
-      <footer>
-        
-      </footer>
+
+      <footer></footer>
     </>
   );
-};
-
-
+}
