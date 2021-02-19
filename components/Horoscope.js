@@ -1,4 +1,6 @@
 import React from 'react'
+import { Center, Box  } from "@chakra-ui/react";
+
 
 function Horoscope({sign, info, date }) {
     console.log(info)
