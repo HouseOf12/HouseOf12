@@ -8,7 +8,15 @@ import Horoscope from './Horoscope';
 
 
 const HoroscopePics = () => {
+
   const [signInfo, setSignInfo] = useState({sign: '', info: '', date: ''});
+
+  const [showSign, setShowSign] = useState(false)
+  
+
+
+
+
 
   //function that calls the api for a specific sign
   const grabSignInfo = async (sign) => {
@@ -20,13 +28,15 @@ const HoroscopePics = () => {
         "authorization": "Basic " + btoa(userId+":"+apiKey),
         "Content-Type":'application/json'
         }});
-      console.log('HOROSCOPE RESONSE', res.data)
       let info = res.data.prediction;
       let date = res.data.prediction_date;
       setSignInfo({sign, info, date})
+      setShowSign(true)
     } catch (error){
         return console.log('horoscope post call error:', error)
     }
+
+
   
   }
 
@@ -47,10 +57,28 @@ const HoroscopePics = () => {
   return (
     <ChakraProvider theme={theme}>
       <Fonts />
-      <Box border="2px solid rgba(212, 175, 53, 0.5)" width="75%" height="60vh" marginLeft="13%" mt="4vh" justifyContent="center" alignContent="center" alignItems="center" textAlign="center" borderRadius="15px"> 
-        <Box as="h1" fontFamily="Philosopheri" color={textColor[colorMode]} >
-           WELCOME TO HOUSE OF 12 
+      
+      ({!showSign ?  
+      <Box 
+      border="2px solid rgba(212, 175, 53, 0.5)" 
+      width="75%" 
+      height="60vh" 
+      marginLeft="13%" 
+      mt="4vh"
+      justifyContent="center" 
+      alignContent="center"
+      alignItems="center" 
+      textAlign="center" 
+      borderRadius="15px" 
+      > 
+        <Box 
+          as="h1" 
+          fontFamily="Philosopheri" 
+          color={textColor[colorMode]} 
+        >
+      WELCOME TO HOUSE OF 12 
         </Box>
+
       <Box as="h3" fontFamily="Philosopheri" color={textColor[colorMode]} >
       Select Your Sign 
       </Box>
@@ -184,7 +212,9 @@ const HoroscopePics = () => {
             <h1 > HOROSCOPES </h1>
       </Box>  */}
       </Box>
-      <Horoscope sign = {signInfo.sign} info = {signInfo.info} date = {signInfo.date} />
+      :
+      <Horoscope sign = {signInfo.sign} info = {signInfo.info} date = {signInfo.date}  setShowSign={setShowSign}/>
+      })
       </ChakraProvider> 
   );
 }
