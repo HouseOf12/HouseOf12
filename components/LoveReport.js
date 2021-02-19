@@ -33,11 +33,7 @@ import {
 import { FaGlobeAmericas } from "react-icons/fa";
 import { MdCake, MdAccessTime } from "react-icons/md";
 import Geocode from "react-geocode";
-
 import axios from "axios";
-
-
-
 
 
 const LoveReport = () => {
@@ -68,7 +64,6 @@ const LoveReport = () => {
         setIsSubmitted(true);
       });
   };
-  console.log("THIS IS THE STATE", friendship);
 
   async function grabLocation(place) {
     Geocode.setApiKey("AIzaSyCN1OPqkR7QGFRbnbcQKFoqCIei84_dGSY");
@@ -77,7 +72,6 @@ const LoveReport = () => {
     try {
       const response = await Geocode.fromAddress(place);
       const { lat, lng } = await response.results[0].geometry.location;
-      console.log(lat, lng);
       return [lat, lng];
     } catch (error) {
       return console.log(error);
@@ -86,13 +80,11 @@ const LoveReport = () => {
 
   const handleChangeLocation = (e) => {
     const location = e.target.value;
-    console.log("changing", location);
     setLocationF(location);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(e.currentTarget);
 
     //take a date and split it into day/month/year
     let date = e.currentTarget.birthday.value.split("-");
@@ -103,12 +95,8 @@ const LoveReport = () => {
     let timeF = e.currentTarget.timeF.value.split(":");
 
     let latLon = await grabLocation(e.currentTarget.locationM.value);
-
     let latLonF = await grabLocation(locationF);
-    console.log("lat lon", latLon);
-    console.log("friend lat lon", latLon);
 
-    // console.log("HEYYYYYYYYY", latLon)
     //would need to call grabComp in here and pass in the data
     const dataToSend = {
       p_day: `${date[2]}`,
@@ -190,7 +178,6 @@ const LoveReport = () => {
           <Box
             border="4px solid rgba(212, 175, 53, 0.9)"
             w="38vw"
-            h="54vh"
             p={4}
             pt="24"
             color={textColor[colorMode]}
@@ -371,7 +358,6 @@ const LoveReport = () => {
           borderRadius="15px"
           border="4px solid rgba(212, 175, 53, 0.5)"
           width="70vw"
-          height="62vh"
           mt="4vh"
           justifyContent="center"
           alignContent="center"
