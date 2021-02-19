@@ -102,7 +102,7 @@ const Natalchart = ({ user }) => {
         }
       )
       .then((wheelData) => {
-        setWheelChart(wheelData.data);
+        setWheelChart(wheelData.data.chart_url);
       });
   };
 
@@ -117,22 +117,30 @@ const Natalchart = ({ user }) => {
     <ChakraProvider theme={theme}>
       <Fonts />
       <Center>
-        <Box>
+        {/* <Box w="50%" h="50%" bg='rgb(0,0,0)' borderRadius="80%"> */}
+          <Center>
           {wheelChart !== undefined && (
-            <Box
-              z-index="1"
-              bg="rgb(0,0,0)"
-              borderRadius="full"
-              border="1px solid goldenrod"
-              bgSize="cover"
-              w="26vw"
-              h="50vh "
-              mt="12vh"
-              mb="5vh"
-              bgImage={`url(${wheelChart.chart_url})`}
-            />
+            // <Box
+            //   z-index="1"
+            //   //bg="rgb(0,0,0)"
+            //   borderRadius="full"
+            //   border="1px solid goldenrod"
+            //   //bgSize="cover"
+            //   w="25em"
+            //   h="25em"
+            //   mt="12vh"
+            //   mb="5vh"
+            //   bgImage={`url(${wheelChart.chart_url})`}
+            //   bgSize= "95%"
+            // />
+            <Box w='70%' bg='rgb(0,0,0)' borderRadius="full" border="0.3em solid goldenrod" mt="12vh" mb="5vh">
+              <Image src={wheelChart} />
+
+            </Box>
           )}
-        </Box>
+          </Center>
+          
+        {/* </Box> */}
       </Center>
 
       <CardFlip user={user} />
@@ -159,7 +167,6 @@ const Natalchart = ({ user }) => {
             mt="8vh"
             w="2xl"
             padding={2}
-            h="56vh"
           >
             {chart && (
               <Table variant="simple" size="sm">

@@ -40,8 +40,6 @@ const SunCard = ({ user }) => {
           })
            
     }
-    console.log(sunSign)
-   
 
     const [isFlipped, setIsFlipped] = useState(false)
 
