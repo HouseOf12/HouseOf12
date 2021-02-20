@@ -91,9 +91,7 @@ const SignupPage = () => {
 
     //take a time and split it into hour/min
     let time = e.currentTarget.time.value.split(':');
-    console.log('time', time)
     let latLon = await getLatLon(e.currentTarget.location.value);
-    console.log('LAT LON INSIDE', latLon)
 
     const userInfo = {
       name: name,
@@ -108,7 +106,6 @@ const SignupPage = () => {
       lon: latLon[1],
     };
 
-    console.log('userinfo to post', userInfo)
     const res = await fetch('/api/users', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -177,7 +174,6 @@ const SignupPage = () => {
 <Center>
 <Box
   w="32vw"
-  // h="72vh"
   p={4}
   pt="24"
   bgColor={bgColor[colorMode]}

@@ -194,7 +194,6 @@ const FriendshipReport2 = () => {
           <Box
             border="4px solid rgba(212, 175, 53, 0.9)"
             w="38vw"
-            h="64vh"
             p={4}
             pt="24"
             color={textColor[colorMode]}
@@ -375,7 +374,6 @@ const FriendshipReport2 = () => {
           borderRadius="15px"
           border="4px solid rgba(212, 175, 53, 0.5)"
           width="70vw"
-          height="62vh"
           mt="4vh"
           justifyContent="center"
           alignContent="center"

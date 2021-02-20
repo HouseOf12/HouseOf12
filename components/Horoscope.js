@@ -29,7 +29,6 @@ function Horoscope({ sign, info, date, setShowSign }) {
       <Box
         border="2px solid rgba(212, 175, 53, 0.5)"
         width="75%"
-        height="60vh"
         marginLeft="13%"
         mt="4vh"
         justifyContent="center"

@@ -93,7 +93,7 @@ const RisingCard = ({ user }) => {
               Your rising sign represents the way others see you, your general impression on people and your spontaneous reactions. It reflects the zodiacal sign that was ascending on the eastern horizon the moment you were born. Until the early 20th century, the ascendant, rather than the sun sign, was the dominant indicator of one’s nature.
               Upon meeting you, people will interact with your rising sign. Does the way people describe you puzzle you? That’s because it’s hard for us to see what others see. What you project may not be how you see yourself at all. If you feel nervous and anxious inside, yet everyone sees you as calm and laid-back, your rising sign may be dramatically different from your moon or sun sign.
             </Box>
-            <Button variant="ghost" onClick={handleClick}> <CgMore /> </Button>
+            <Button variant="ghost" textColor='rgb(180, 130, 70)' onClick={handleClick}> <CgMore /> </Button>
           </Box>
 
           {risingSign && 
@@ -125,7 +125,7 @@ const RisingCard = ({ user }) => {
             {risingSign.asc_report.report}   
             </Box>
 
-            <Button variant="ghost" onClick={handleClick}> <CgMore /> </Button>
+            <Button variant="ghost" textColor='rgb(180, 130, 70)' onClick={handleClick}> <CgMore /> </Button>
           </Box>
           }
 

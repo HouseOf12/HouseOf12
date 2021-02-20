@@ -114,9 +114,9 @@ const LoginPage = () => {
             w="sm"
             p={4}
             pt="24"
-             bgColor={theColor[colorMode]}
+            bgColor={theColor[colorMode]}
             color={textColor[colorMode]}
-            borderRadius="md"
+            borderRadius="16px"
             shadow="lg"
           >
             <Stack spacing={4}>

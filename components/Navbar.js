@@ -28,21 +28,28 @@ import {
   MenuCommand,
   MenuDivider,
 } from "@chakra-ui/react";
+import { useRouter } from 'next/router'
+
 
 const Navbar = () => {
   const [user, { mutate }] = useCurrentUser();
+  const router = useRouter();
+
   const handleLogout = async () => {
     await fetch("/api/auth", {
       method: "DELETE",
     });
     mutate(null);
+    router.push('/login');
+    
   };
 
   const bgColor = {
     light: "rgba(140, 145, 151, 0.7)",
     dark: "rgba(74, 85, 104, 0.9)",
   };
-  const textColor = { light: "blue.400", dark: "gray.100" };
+  //const textColor = { light: "blue.400", dark: "gray.100" };
+  const textColor = { light: "rgb(0, 0, 0)", dark: "gray.100" };
   const { colorMode, toggleColorMode } = useColorMode();
 
   const MenuItems = ({ children }) => (
