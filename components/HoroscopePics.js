@@ -88,6 +88,7 @@ const HoroscopePics = () => {
 
   //function that calls the api for a specific sign
   const grabSignInfo = async (sign) => {
+
     let userId = "615745";
     let apiKey = "758b876f8345a5b798e2f02e38e7c7ab";
     try {
@@ -147,7 +148,6 @@ const HoroscopePics = () => {
   return (
     <ChakraProvider theme={theme} >
       <Fonts />
-      
       ({!showSign ?  
       <Box 
       border="2px solid rgba(212, 175, 53, 0.5)" 
