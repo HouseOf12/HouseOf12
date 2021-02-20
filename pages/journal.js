@@ -29,7 +29,7 @@ export default function journal({ user, data }) {
   //need a use effect to call the backend and retrieve the journal entries
   useEffect(() => {
     grabEntries();
-    displayEntry;
+    displayEntry();
   }, []);
 
 
@@ -46,7 +46,7 @@ export default function journal({ user, data }) {
 
   //map through my entries to display
   const displayEntry = () => {
-    console.log(entry.title);
+    console.log('runnin runnin')
     {
       entries.map((entry) => {
         entry.title, entry.body;

@@ -1,6 +1,31 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Head from 'next/head';
 import { useCurrentUser } from '@/hooks/index';
+import { EmailIcon, LockIcon, ViewIcon, ViewOffIcon, StarIcon } from '@chakra-ui/icons'
+import {
+  Stack,
+  FormControl,
+  Editable,
+  VStack,
+  Textarea,
+  Image,
+  EditableInput,
+  EditablePreview,
+  FormLabel,
+  Center,
+  useColorMode,
+  Text,
+  Box,
+  Button,
+  Divider,
+  Flex,
+  Heading,
+  IconButton,
+  Input,
+  InputGroup,
+  InputLeftElement,
+  InputRightElement,
+} from "@chakra-ui/react";
 
 const ProfileSection = () => {
   const [user, { mutate }] = useCurrentUser();
@@ -9,11 +34,23 @@ const ProfileSection = () => {
   const bioRef = useRef();
   const profilePictureRef = useRef();
   const [msg, setMsg] = useState({ message: '', isError: false });
+  const [showOldPass, setShowOldPass] = useState(false);
+  const [showNewPass, setShowNewPass] = useState(false);
 
   useEffect(() => {
     nameRef.current.value = user.name;
     bioRef.current.value = user.bio;
   }, [user]);
+
+  function handleToggleOld(e) {
+    e.preventDefault();
+    setShowOldPass(!showOldPass);
+  }
+
+  function handleToggleNew(e) {
+    e.preventDefault();
+    setShowNewPass(!showNewPass);
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -76,82 +113,117 @@ const ProfileSection = () => {
   }
 
   return (
-    <>
+    <div>
       <Head>
         <title>Settings</title>
       </Head>
-      <section>
         <h2>Edit Profile</h2>
         {msg.message ? <p style={{ color: msg.isError ? 'red' : '#0070f3', textAlign: 'center' }}>{msg.message}</p> : null}
-        <form onSubmit={handleSubmit}>
-          {!user.emailVerified ? (
-            <p>
-              Your email has not been verify.
-              {' '}
-              {/* eslint-disable-next-line */}
-                <a role="button" onClick={sendVerificationEmail}>
-                  Send verification email
-                </a>
-            </p>
-          ) : null}
-          <label htmlFor="name">
-            Name
-            <input
-              required
-              id="name"
-              name="name"
-              type="text"
-              placeholder="Your name"
-              ref={nameRef}
-            />
-          </label>
-          <label htmlFor="bio">
-            Bio
-            <textarea
-              id="bio"
-              name="bio"
-              type="text"
-              placeholder="Bio"
-              ref={bioRef}
-            />
-          </label>
-          <label htmlFor="avatar">
-            Profile picture
-            <input
-              type="file"
-              id="avatar"
-              name="avatar"
-              accept="image/png, image/jpeg"
-              ref={profilePictureRef}
-            />
-          </label>
-          <button disabled={isUpdating} type="submit">Save</button>
-        </form>
-        <form onSubmit={handleSubmitPasswordChange}>
-          <label htmlFor="oldpassword">
-            Old Password
-            <input
-              type="password"
+  
+      <form onSubmit={handleSubmit}>
+      {!user.emailVerified ? (
+        <p>
+          Your email has not been verify.
+          {' '}
+          {/* eslint-disable-next-line */}
+            <a role="button" onClick={sendVerificationEmail}>
+              Send verification email
+            </a>
+        </p>
+      ) : null}
+        <Stack spacing={4}>
+        <FormControl isRequired>
+            <InputGroup>
+              <InputLeftElement>
+                <StarIcon />
+              </InputLeftElement>
+              <Input
+                id="name"
+                type="text"
+                name="name"
+                placeholder="Your Name"
+                ref={nameRef}
+              />
+            </InputGroup>
+          </FormControl>
+        
+          <FormControl isRequired>
+            <InputGroup>
+              <InputLeftElement>
+                <EmailIcon />
+              </InputLeftElement>
+              <Input
+                id="bio"
+                type="text"
+                name="bio"
+                placeholder="Bio"
+                ref={bioRef}
+              />
+            </InputGroup>
+          </FormControl>
+          <Divider />
+          <Button variantColor="blue" type="submit" shadow="md">
+            Save
+          </Button>
+        </Stack>
+      </form>
+
+      <form onSubmit={handleSubmitPasswordChange}>
+          <FormControl isRequired>
+          <InputGroup>
+            <InputLeftElement>
+              <LockIcon />
+            </InputLeftElement>
+            <Input
+              id="oldPassword"
               name="oldPassword"
-              id="oldpassword"
-              required
+              type={showOldPass ? "text" : "password"}
+              placeholder="Old Password"
+              //ref={newpassword}
             />
-          </label>
-          <label htmlFor="newpassword">
-            New Password
-            <input
-              type="password"
+            <InputRightElement>
+              <IconButton
+                icon={showOldPass ? <ViewOffIcon/> : <ViewIcon />}
+                variant="ghost"
+                size="sm"
+                onClick={handleToggleOld}
+                title={`${showOldPass ? "Hide" : "Show"} Password`}
+              />
+            </InputRightElement>
+          </InputGroup>
+        </FormControl>
+
+        <FormControl isRequired>
+          <InputGroup>
+            <InputLeftElement>
+              <LockIcon />
+            </InputLeftElement>
+            <Input
+              id="newPassword"
               name="newPassword"
-              id="newpassword"
-              required
+              type={showNewPass ? "text" : "password"}
+              placeholder="New Password"
             />
-          </label>
-          <button type="submit">Change Password</button>
+            <InputRightElement>
+              <IconButton
+                icon={showNewPass ? <ViewOffIcon/> : <ViewIcon />}
+                variant="ghost"
+                size="sm"
+                onClick={handleToggleNew}
+                title={`${showNewPass ? "Hide" : "Show"} Password`}
+              />
+            </InputRightElement>
+          </InputGroup>
+        </FormControl>
+        <Divider />
+          <Button variantColor="blue" type="submit" shadow="md">
+            Change Password
+          </Button>
         </form>
-      </section>
-    </>
+    </div>
   );
 };
+
 const SettingPage = () => {
   const [user] = useCurrentUser();
   if (!user) {

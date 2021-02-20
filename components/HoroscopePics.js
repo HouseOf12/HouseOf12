@@ -122,7 +122,7 @@ const HoroscopePics = () => {
         <Box h="8vh" justifyContent="center" display="flex">
         <motion.div whileHover={{ 
           scale: 1.2 ,
-          rotate: [0, 0, 270, 270, 0],
+          rotate: [0, 0, 30, 30, 0],
           }} >
           <Image height="8vh" src={signData.img} />
           </motion.div>
