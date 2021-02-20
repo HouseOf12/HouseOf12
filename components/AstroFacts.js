@@ -294,18 +294,27 @@ const AstroFacts = () => {
     <div>
       <Box display="flex" justifyContent="center" marginTop="70px">
         <Button
-          bgColor="blue.600"
+          // bgColor="blue.600"
+          variant="ghost"
+          border="2px solid purple"
           marginRight="1vw"
+          color="goldenrod"
+          _hover={{ bg: "goldenrod", color:"black"}}
           onClick={() => returnGoodFact(event)}
         >
-          🤩 Good Fact
+          🤩 Good Karma
         </Button>
         <Button
-          bgColor="blue.600"
+          // bgColor="blue.600"
+          variant="ghost"
+          border="2px solid purple"
+          marginRight="1vw"
+          color="goldenrod"
+          _hover={{ bg: "goldenrod", color:"black"}}
           marginLeft="1vw"
           onClick={() => returnBadFact(event)}
         >
-          Bad Fact 👹
+          Bad Karma 👹
         </Button>
       </Box>
       <VStack display="flex" justifyContent="center" marginBottom="100px">

@@ -136,38 +136,38 @@ const News = () => {
                 <HStack align="left">
                   <VStack align="left">
                     <ListItem>
-                      <ListIcon as={WiMoonFull} color="white" align="left" />
+                      <ListIcon as={WiMoonFull}  color="teal" align="left" />
                       Don’t start any new projects.
                     </ListItem>
                     <ListItem>
-                      <ListIcon as={WiMoonAltWaxingCrescent5} color="white" />
+                      <ListIcon as={WiMoonAltWaxingCrescent5}   color="teal" />
                       Clear yourself of others' energy.
                     </ListItem>
                     <ListItem>
-                      <ListIcon as={WiMoonAltWaxingCrescent6} color="white" />
+                      <ListIcon as={WiMoonAltWaxingCrescent6}   color="teal" />
                       Double check all your work.
                     </ListItem>
                     <ListItem>
-                      <ListIcon as={WiMoonAltWaxingGibbous1} color="white" />
+                      <ListIcon as={WiMoonAltWaxingGibbous1}   color="teal" />
                       Back up your computer and devices.
                     </ListItem>
                   </VStack>
 
                   <VStack align="left">
                     <ListItem>
-                      <ListIcon as={WiMoonAltWaxingGibbous2} color="white" />
+                      <ListIcon as={WiMoonAltWaxingGibbous2}   color="teal"/>
                       Tie up or cut off all loose ends.
                     </ListItem>
                     <ListItem>
-                      <ListIcon as={WiMoonAltWaxingGibbous3} color="white" />
+                      <ListIcon as={WiMoonAltWaxingGibbous3}   color="teal" />
                       Listen to your intuition.
                     </ListItem>
                     <ListItem>
-                      <ListIcon as={WiMoonAltWaxingGibbous4} color="white" />
+                      <ListIcon as={WiMoonAltWaxingGibbous4}  color="teal" />
                       Don't take people’s irritability personally.
                     </ListItem>
                     <ListItem>
-                      <ListIcon as={WiMoonAltWaxingGibbous6} color="white" />
+                      <ListIcon as={WiMoonAltWaxingGibbous6}   color="teal" />
                       Think before you speak.
                     </ListItem>
                   </VStack>
