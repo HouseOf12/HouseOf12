@@ -29,17 +29,14 @@ export default function journal({ user, data }) {
   //need a use effect to call the backend and retrieve the journal entries
   useEffect(() => {
     grabEntries();
-  }, []);
-
-  useEffect(() => {
     displayEntry;
   }, []);
+
 
   //using axios
   const grabEntries = async () => {
     //we dont end up sending the get request to the get route. Because 1. you cant pass a body to a get route and 2. current user is available through req.user
     const res = await axios.get("/api/journal/");
-    console.log("res on the get", res.data);
     setEntries(res.data);
   };
   //send and cache in your id file
@@ -57,7 +54,6 @@ export default function journal({ user, data }) {
     }
   };
 
-  console.log("entries", entries);
 
   const bgColor = {
     light: "rgba(70, 93, 114, 0.9)",
@@ -72,7 +68,7 @@ export default function journal({ user, data }) {
 
   return (
     <div>
-      <JournalForm />
+      <JournalForm grabEntries={grabEntries}/>
       <br></br>
       <Center>
         <div>
