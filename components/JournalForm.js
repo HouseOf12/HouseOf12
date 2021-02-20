@@ -44,20 +44,13 @@ const Journal = () => {
       title: title,
       body: body,
     };
-    console.log("entry info", entry);
+    
     const res = await fetch("/api/journal", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(entry),
     });
-    console.log("RES FROM ENTRY POST", res);
-    //this code never runs
-    if (res.status === 201) {
-      const entryObj = await res.json();
-      mutate(entryObj);
-    } else {
-      setErrorMsg(await res.text());
-    }
+    
   };
 
   // const dream = () =>{
