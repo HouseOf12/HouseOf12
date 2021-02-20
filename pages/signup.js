@@ -173,7 +173,7 @@ const SignupPage = () => {
       </Flex>
 <Center>
 <Box
-  w="24vw"
+  w="32vw"
   p={4}
   pt="24"
   bgColor={bgColor[colorMode]}
