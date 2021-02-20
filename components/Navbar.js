@@ -99,7 +99,8 @@ const Navbar = () => {
         ) : (
           <Box>
             <MenuItems>
-              <Link href={`/user/${user._id}`}>
+            <Link href='/natalchart'>
+              {/* <Link href={`/user/${user._id}`}> */}
                 <a>Profile</a>
               </Link>
             </MenuItems>
