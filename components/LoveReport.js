@@ -205,7 +205,7 @@ const LoveReport = () => {
                   color={textColor[colorMode]}
                   textAlign="center"
                 >
-                  Friendship
+                  Love
                 </Heading>
               </VStack>
             </Center>
