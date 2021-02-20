@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion } from "framer-motion"
 import {
   Grid,
   GridItem,
@@ -116,9 +117,15 @@ const HoroscopePics = () => {
     return Object.keys(zodiacs).map(sign => {
       let signData = zodiacs[sign];
       return (
-      <GridItem onClick={() => grabSignInfo(sign)}  _hover={{bgGradient:"linear(to-r, #341552, #cc6efa)"}} justifySelf="center" fontSize=".9vw" alignSelf="center" fontFamily="Philosopheri">
+        
+      <GridItem onClick={() => grabSignInfo(sign)}  _hover={{borderRadius:"full", bgGradient:"linear(to-r, #022a41, #30639d)"}} justifySelf="center" fontSize=".9vw" alignSelf="center" fontFamily="Philosopheri">
         <Box h="8vh" justifyContent="center" display="flex">
+        <motion.div whileHover={{ 
+          scale: 1.2 ,
+          rotate: [0, 0, 270, 270, 0],
+          }} >
           <Image height="8vh" src={signData.img} />
+          </motion.div>
         </Box>
         {signData.name}
         <br/>
