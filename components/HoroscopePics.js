@@ -121,7 +121,11 @@ const HoroscopePics = () => {
       <GridItem onClick={() => grabSignInfo(sign)}  _hover={{borderRadius:"full", bgGradient:"linear(to-r, #022a41, #30639d)"}} justifySelf="center" fontSize=".9vw" alignSelf="center" fontFamily="Philosopheri">
         <Box h="8vh" justifyContent="center" display="flex">
         <motion.div whileHover={{ 
+<<<<<<< HEAD
           scale: 1.5 ,
+=======
+          scale: 1.2 ,
+>>>>>>> 716f922c5622acf420a76932455d84107ccbc9a5
           rotate: [0, 0, 30, 30, 0],
           }} >
           <Image height="8vh" src={signData.img} />
