@@ -15,8 +15,8 @@ const RisingCard = ({ user }) => {
   }, []);
 
   const grabRising = () => {
-    var userId = "615745";
-    var apiKey = "758b876f8345a5b798e2f02e38e7c7ab";
+    var userId = "615875";
+    var apiKey = "5c21d3f71cfa8be2e7de0f3adc0ec33c";
     const risingData = axios
     .post("https://json.astrologyapi.com/v1/general_ascendant_report",
     {

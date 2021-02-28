@@ -53,8 +53,8 @@ const FriendshipReport2 = () => {
 
 
   const grabComp = (dataToSend) => {
-    let userId = "615745";
-    let apiKey = "758b876f8345a5b798e2f02e38e7c7ab";
+    let userId = "615875";
+    let apiKey = "5c21d3f71cfa8be2e7de0f3adc0ec33c";
     axios
       .post(
         "https://json.astrologyapi.com/v1/friendship_report/tropical",

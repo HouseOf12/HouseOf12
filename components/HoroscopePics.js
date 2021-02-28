@@ -90,8 +90,8 @@ const HoroscopePics = () => {
   //function that calls the api for a specific sign
   const grabSignInfo = async (sign) => {
 
-    let userId = "615745";
-    let apiKey = "758b876f8345a5b798e2f02e38e7c7ab";
+    let userId = "615875";
+    let apiKey = "5c21d3f71cfa8be2e7de0f3adc0ec33c";
     try {
       let res = await axios.post(
         `https://json.astrologyapi.com/v1/sun_sign_prediction/daily/` + sign,
@@ -121,8 +121,8 @@ const HoroscopePics = () => {
       <GridItem onClick={() => grabSignInfo(sign)}  _hover={{borderRadius:"full", bgGradient:"linear(to-r, #022a41, #30639d)"}} justifySelf="center" fontSize=".9vw" alignSelf="center" fontFamily="Philosopheri">
         <Box h="8vh" justifyContent="center" display="flex">
         <motion.div whileHover={{ 
-          scale: 1.2 ,
-          rotate: [0, 0, 270, 270, 0],
+          scale: 1.5 ,
+          rotate: [0, 0, 30, 30, 0],
           }} >
           <Image height="8vh" src={signData.img} />
           </motion.div>
